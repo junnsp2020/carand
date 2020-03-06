@@ -1,0 +1,2 @@
+module Users::TransfersHelper
+end

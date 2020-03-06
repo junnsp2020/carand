@@ -1,0 +1,2 @@
+module Users::BarterRequestsHelper
+end

@@ -1,0 +1,2 @@
+module Administers::TransactionsHelper
+end

@@ -1,0 +1,2 @@
+module Users::ReportsHelper
+end
