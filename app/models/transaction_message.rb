@@ -1,0 +1,2 @@
+class TransactionMessage < ApplicationRecord
+end

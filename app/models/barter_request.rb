@@ -1,0 +1,2 @@
+class BarterRequest < ApplicationRecord
+end
