@@ -1,0 +1,70 @@
+<div class="container">
+  <h3>個人情報設定</h3>
+
+    <div class="row">
+      <div class="col-xs-10">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>お名前</td>
+              <td>
+                <%= f.text_field :last_name, placeholder: "姓を入力", autofocus: true, class: "col-xs-6" %>
+                <%= f.text_field :first_name, placeholder: "名を入力", class: "col-xs-6" %>
+              </td>
+            </tr>
+            <tr>
+              <td>お名前  (カナ)</td>
+              <td>
+                <%= f.text_field :last_name_kana, placeholder: "姓(カナ)を入力", class: "col-xs-6" %>
+                <%= f.text_field :first_name_kana, placeholder: "名(カナ)を入力", class: "col-xs-6" %>
+              </td>
+            </tr>
+            <tr>
+              <td>郵便番号</td>
+              <td><%= f.text_field :postcode, placeholder: "郵便番号(ハイフンなし7桁)を入力", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>都道府県</td>
+              <td><%= f.text_field :prefecture_code, placeholder: "都道府県を入力", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>市区町村</td>
+              <td><%= f.text_field :address_city, placeholder: "市区町村を入力", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>番地</td>
+              <td><%= f.text_field :address_street, placeholder: "番地を入力", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>建物名  (任意)</td>
+              <td><%= f.text_field :address_building, placeholder: "建物名", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>電話番号</td>
+              <td><%= f.text_field :phone_number, placeholder: "電話番号(ハイフンなし10桁もしくは11桁)を入力", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= f.text_field :email, placeholder: "メールアドレスを入力", class: "col-xs-12" %></td>
+            </tr>
+            <tr>
+              <td>
+                パスワード
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %>文字以上)</em>
+                <% end %>
+              </td>
+              <td><%= f.password_field :password, placeholder: "パスワードを入力" %></td>
+            </tr>
+            <tr>
+              <td>パスワード再入力</td>
+              <td><%= f.password_field :password_confirmation, placeholder: "パスワードを入力" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= f.submit "登録", class: "btn btn-success col-xs-4 col-xs-offset-4" %>
+        <% end %>
+      </div>
+    </div>
+</div>

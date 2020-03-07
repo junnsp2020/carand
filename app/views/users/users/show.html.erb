@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-2">
+			<h3>メニューバー</h3>
+		</div>
+			<div class="col-xs-10">
+			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
+							<p><%= link_to"個人情報詳細", userinfo_user_path, class: "btn btn-success col-xs-4 col-xs-offset-4" %></p>
+							<p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<td colspan="2">取引</td>
+						</tr>
+						<tr>
+							<td rowspan="2">マイブログ</td>
+							<td>いいね一覧</td>
+						</tr>
+						<tr>
+							<td>交換希望リスト</td>
+						</tr>
+					</tbody>
+				</table>
+	</div>
+</div>

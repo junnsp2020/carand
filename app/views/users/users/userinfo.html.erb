@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-2">
+			メニューバー
+		</div>
+		<div class="col-xs-10">
+			<table class="table table-bordered">
+				<h4>登録情報</h4>
+				<tbody>
+					<tr>
+						<td>お名前</td>
+						<td><%= @user.last_name + @user.first_name %></td>
+					<tr>
+					<tr>
+						<td>お名前  (カナ)</td>
+						<td><%= @user.last_name_kana + @user.first_name_kana %></td>
+					</tr>
+					<tr>
+						<td>郵便番号</td>
+						<td><%= @user.postcode %></td>
+					</tr>
+					<tr>
+						<td>都道府県</td>
+						<td><%= @user.prefecture_code %></td>
+					</tr>
+					<tr>
+						<td>市区町村</td>
+						<td><%= @user.address_city %></td>
+					</tr>
+					<tr>
+						<td>番地</td>
+						<td><%= @user.address_street %></td>
+					</tr>
+					<tr>
+						<td>建物名 (任意)</td>
+						<td><%= @user.address_city %></td>
+					</tr>
+					<tr>
+						<td>電話番号</td>
+						<td><%= @user.phone_number %></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered">
+				<h4>銀行口座</h4>
+					<tbody>
+						<tr>
+							<td>銀行名</td>
+							<td><%= @user.bank_name %></td>
+							<td>口座種別</td>
+							<td><%= @user.account_type %></td>
+						</tr>
+						<tr>
+							<td>支店コード</td>
+							<td><%= @user.branch_code %></td>
+							<td>口座番号</td>
+							<td><%= @user.account_number %></td>
+						</tr>
+						<tr>
+							<td>口座名義 (セイ)</td>
+							<td><%= @user.account_last_name_kana %></td>
+							<td>口座名義 (メイ)</td>
+							<td><%= @user.account_first_name_kana %></td>
+						</tr>
+					</tbody>
+			</table>
+			<p><%=link_to "登録情報を編集する", edit_user_path(@user.id), class: "btn btn-danger col-xs-4 col-xs-offset-4" %></p>
+        </div>
+	</div>
+</div>
