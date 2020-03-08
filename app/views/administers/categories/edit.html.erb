@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<h2>カテゴリー編集</h2>
+			<%= form_for [:administers,(@category)] do |f| %>
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= f.label :カテゴリー名, placeholder: "ジャンル名を入力", autofocus: true, class: "col-xs-4" %>
+								<%= f.text_field :name, class: "col-xs-8" %>
+								<%= f.submit "編集を確定", class: "btn btn-success" %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+			<% end %>
+		</div>
+	</div>
+</div>
