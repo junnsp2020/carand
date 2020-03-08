@@ -1,2 +1,66 @@
-<h1>Users::Products#edit</h1>
-<p>Find me in app/views/users/products/edit.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<h2>商品の編集</h2>
+			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
+			<%= form_for(@product) do |f| %>
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= f.label :商品名, class: "col-xs-4" %>
+								<%= f.text_field :name, class: "col-xs-8" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :カテゴリー, class: "col-xs-4" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :商品の状態, class: "col-xs-4" %>
+								<%= f.select :status, Product.statuses.keys, class: "col-xs-8" %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= f.label :販売価格 %>
+								<%= f.text_field :price, id: "price" %>円 (販売手数料 10%分が差し引かれます)
+								<%= f.label :"受取金額", class: "col-xs-offset-1" %>
+								<%= f.text_field :profit, id: "profit" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :送料の負担, class: "col-xs-2" %>
+								<%= f.select :postage_responsibility, Product.postage_responsibilities.keys %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+
+			<%= f.label :商品説明 %>
+			<%= f.text_area :introduction, size: "20x10", class: "col-xs-12 book_body" %>
+			<%= f.submit "編集を完了する", class: "btn btn-success col-xs-12" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script>
+$('#price').keyup(function() {
+  var s = $("#price").val();
+  var sa = parseInt(s);
+  var sb = 0.9
+
+  var profit = sa * sb
+
+  $('#profit').val(profit)
+});
+</script>
