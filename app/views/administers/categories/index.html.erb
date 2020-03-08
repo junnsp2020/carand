@@ -1,2 +1,36 @@
-<h1>Administers::Categories#index</h1>
-<p>Find me in app/views/administers/categories/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<h2>カテゴリー編集</h2>
+			<%= form_for [:administers,(@category)] do |f| %>
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= f.label :カテゴリー名, placeholder: "カテゴリー名を入力", autofocus: true, class: "col-xs-4" %>
+								<%= f.text_field :name, class: "col-xs-8" %>
+								<%= f.submit "保存する", class: "btn btn-primary" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+						</tr>
+					</tboy>
+				</table>
+			<% end %>
+			<% @categories.each do |category| %>
+			    <table class="table table-bordered">
+			    	<tbody>
+			    		<tr>
+			    			<td>
+								<%= category.name %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			<% end %>
+		</div>
+	</div>
+</div>
