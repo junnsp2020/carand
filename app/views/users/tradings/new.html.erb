@@ -7,16 +7,16 @@
                 <tr>
                   <td>
                       <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
-                      <% @transactions.each do |transaction| %>
-                        <h3 class="col-xs-4">合計金額  ￥<%= transaction.product.price %></h3>
+                      <% @tradings.each do |trading| %>
+                        <h3 class="col-xs-4">合計金額  ￥<%= trading.product.price %></h3>
                       <% end %>
                   </td>
                 </tr>
-                <%= form_for(@transaction, url: product_transactions_path(@product)) do |f| %>
+                <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
                   <tr>
                     <td>
                       <%= f.label :支払方法, class: "col-xs-4" %>
-                      <%= f.select :paymethod, Transaction.paymethods.keys, class: "col-xs-8" %>
+                      <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
                     </td>
                   </tr>
                   <tr>

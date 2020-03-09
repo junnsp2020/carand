@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 namespace :administers do
 	resources :users, except: [:new, :create]
 	resources :reports, only: [:index, :show, :destroy]
-	resources :transactions, except: [:new, :create]
+	resources :tradings, except: [:new, :create]
 	resources :categories, except: [:new, :show, :destroy]
 end
 
@@ -26,10 +26,10 @@ scope module: :users do
 		resource :wishlists
 		resource :favorites
 		resource :reviews
-		resources :transactions
+		resources :tradings
 	end
-	resources :transactions, except: [:destroy] do
-		resource :transaction_messages
+	resources :tradings, except: [:destroy] do
+		resource :trading_messages
 	end
 	resources :blogs do
 		resource :blog_comments

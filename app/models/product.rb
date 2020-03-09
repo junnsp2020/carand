@@ -21,5 +21,5 @@ class Product < ApplicationRecord
     "販売中": 0,
     "売り切れ": 1,
   }
-  has_many :transactions
+  has_many :tradings
 end
