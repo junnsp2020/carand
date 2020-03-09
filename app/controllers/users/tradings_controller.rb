@@ -7,6 +7,7 @@ class Users::TradingsController < ApplicationController
   end
 
   def index
+    @tradings = Trading.all
   end
 
   def show

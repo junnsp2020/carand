@@ -1,0 +1,2 @@
+class TradingMessage < ApplicationRecord
+end
