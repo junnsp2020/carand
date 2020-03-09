@@ -7,7 +7,7 @@
 					<tboy>
 						<tr>
 							<td width="10%">
-								<%= attachment_image_tag product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
+								<%= attachment_image_tag trading.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
 							</td>
 							<td width="40%">
 								<%= link_to trading.product.name, trading_path(trading.id) %>
