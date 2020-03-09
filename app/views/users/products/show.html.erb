@@ -37,6 +37,11 @@
 								<div class="col-xs-3">送料</div><%= @product.postage %>
 							</td>
 						</tr>
+						<tr>
+							<td>
+							<%= button_to "購入ページへ進む",new_transaction_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
+							</td>
+						</tr>
 					</tboy>
 				</table>
 		</div>

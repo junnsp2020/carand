@@ -1,2 +1,40 @@
-<h1>Users::Transactions#new</h1>
-<p>Find me in app/views/users/transactions/new.html.erb</p>
+<div class="container">
+  <div class="row">
+      <div class="col-xs-10">
+        <h2>購入手続き</h2>
+          <table class="table table-bordered">
+              <tboy>
+                <tr>
+                  <td>
+                      <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
+                      <% @transactions.each do |transaction| %>
+                        <h3 class="col-xs-4">合計金額  ￥<%= transaction.product.price %></h3>
+                      <% end %>
+                  </td>
+                </tr>
+                <%= form_for(@transaction, url: product_transactions_path(@product)) do |f| %>
+                  <tr>
+                    <td>
+                      <%= f.label :支払方法, class: "col-xs-4" %>
+                      <%= f.select :paymethod, Transaction.paymethods.keys, class: "col-xs-8" %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="col-xs-3">お届け先</div><%= current_user.address_city %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tboy>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+

@@ -17,4 +17,9 @@ class Product < ApplicationRecord
     "出品者負担": 0,
     "購入者負担": 1
   }
+  enum sale_status:{
+    "販売中": 0,
+    "売り切れ": 1,
+  }
+  has_many :transactions
 end

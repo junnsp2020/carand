@@ -26,6 +26,7 @@ scope module: :users do
 		resource :wishlists
 		resource :favorites
 		resource :reviews
+		resources :transactions
 	end
 	resources :transactions, except: [:destroy] do
 		resource :transaction_messages
