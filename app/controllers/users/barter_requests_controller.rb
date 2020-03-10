@@ -30,6 +30,6 @@ class Users::BarterRequestsController < ApplicationController
 
   private
   def barter_request_params
-    params.require(:barter_request).permit(:product_id, :user_id, :name, :image, :introduction)
+    params.require(:barter_request).permit(:product_id, :user_id, :name, :image, :introduction, :comment)
   end
 end
