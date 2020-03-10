@@ -1,2 +1,41 @@
-<h1>Users::BarterRequests#index</h1>
-<p>Find me in app/views/users/barter_requests/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<h2>交換リクエスト</h2>
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= attachment_image_tag @barter_request.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h3 class="col-xs-12"><%= @barter_requests.name %></h3>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+			<% @barter_requests.each do |barter_request| %>
+			    <table class="table table-bordered">
+			    	<tbody>
+			    		<tr>
+			    			<td>
+								<%= barter_request.name %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			<% end %>
+			<%= form_for(@barter_request, url: product_barter_requests_path(@product)) do |f| %>
+			<tr>
+				<td>
+					<%= f.label :提案商品, placeholder: "交換可能な商品の名前を入力", autofocus: true, class: "col-xs-4" %>
+					<%= f.text_field :name, class: "col-xs-8" %>
+					<%= f.submit "保存する", class: "btn btn-primary" %>
+				</td>
+			</tr>
+			<% end %>
+		</div>
+	</div>
+</div>

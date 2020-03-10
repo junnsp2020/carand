@@ -18,7 +18,6 @@ scope module: :users do
 	get "users/userinfo/:id" => "users#userinfo", as: "userinfo_user"
 	resources :users, only: [:show, :edit, :update]
 	resources :reports, only: [:new, :create]
-	resources :barter_requests, except: [:new, :edit, :update]
     resources :transfers, except: [:new, :index, :destroy]
 
 	resources :products do
@@ -27,6 +26,7 @@ scope module: :users do
 		resource :favorites
 		resource :reviews
 		resources :tradings
+		resources :barter_requests, except: [:new, :edit, :update]
 	end
 	resources :tradings, except: [:destroy] do
 		resource :trading_messages
