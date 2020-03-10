@@ -1,6 +1,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10">
+			<h3>購入 取引一覧へ</h3>
+　　　　			<p>購入取引件数<%= link_to current_user.active_tradings.count, bought_tradings_path(current_user.id) %>件</p>
+
+
 			<h4>出品中</h4>
 			<% @products.each do |product| %>
 				<table class="table table-bordered">

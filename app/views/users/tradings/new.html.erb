@@ -13,6 +13,8 @@
                   </td>
                 </tr>
                 <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
+                  <%= f.hidden_field :seller_id, :value => @product.user.id %>
+                  <%= f.hidden_field :buyer_id, :value => current_user.id %>
                   <tr>
                     <td>
                       <%= f.label :支払方法, class: "col-xs-4" %>
@@ -26,7 +28,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
+                      <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
                     </td>
                   </tr>
                 <% end %>

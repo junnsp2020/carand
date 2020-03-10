@@ -20,6 +20,11 @@ class Product < ApplicationRecord
   enum sale_status:{
     "販売中": 0,
     "売り切れ": 1,
+    "交換済": 2
+  }
+  enum propriety:{
+    "交換不可": 0,
+    "交換可能": 1
   }
   has_many :tradings
   # belongs_to :buyer, class_name: "User"

@@ -15,17 +15,27 @@ class Users::TradingsController < ApplicationController
   end
 
   def create
-    buyer = current_user.active_tradings.build(seller_id: params[:user_id])
-    buyer.save
     @product = Product.find(params[:product_id])
+    @tradings = @product.tradings
+    current_user.id = params[:buyer_id]
+    @trading.user = User.find(params[:seller_id])
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
     if @trading.save
       redirect_to products_path
     else
+      @tradings = @product.tradings
       render :new
     end
+  end
+
+  def bought
+    trading = Trading.where(buyer_id: current_user.id)
+  end
+
+  def sold
+    @tradings = Trading.where(buyer_id: current_user.id)
   end
 
   def edit
@@ -36,6 +46,6 @@ class Users::TradingsController < ApplicationController
 
   private
   def trading_params
-    params.require(:trading).permit(:product_id, :user_id, :status, :price, :profit, :paymethod)
+    params.require(:trading).permit(:product_id, :user_id, :status, :price, :profit, :paymethod, :buyer_id, :seller_id)
 end
 end
