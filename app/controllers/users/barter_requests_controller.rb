@@ -1,7 +1,10 @@
 class Users::BarterRequestsController < ApplicationController
+  def new
+    @barter_request = BarterRequest.new
+  end
+
   def index
   	@product = Product.find(params[:product_id])
-  	@barter_request = BarterRequest.new
   	@barter_requests = @product.barter_requests
   end
 

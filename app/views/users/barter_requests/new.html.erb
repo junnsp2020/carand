@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<h2>交換希望リクエストです</h2>
+			<h2>あなたの自信のある商品をぶつけてみましょう！</h2>
+			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
+			<%= form_for(@barter_request, url: product_barter_requests_path) do |f| %>
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= f.label :商品名, class: "col-xs-4" %>
+								<%= f.text_field :name, class: "col-xs-8" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :カテゴリー, class: "col-xs-4" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :商品の状態, class: "col-xs-4" %>
+								<%= f.select :product_condition, BarterRequest.product_conditions.keys, class: "col-xs-8" %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+
+			<%= f.label :商品説明 %>
+			<%= f.text_area :introduction, size: "20x10", class: "col-xs-12 book_body" %>
+			<%= f.submit "リクエストを送信", class: "btn btn-primary col-xs-12" %>
+			<% end %>
+		</div>
+	</div>
+</div>
