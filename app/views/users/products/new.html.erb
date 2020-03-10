@@ -37,6 +37,12 @@
 								<%= f.select :postage_responsibility, Product.postage_responsibilities.keys %>
 							</td>
 						</tr>
+						<tr>
+							<td>
+								<%= f.label :交換の可否, class: "col-xs-4" %>
+								<%= f.select :propriety, Product.proprieties.keys, class: "col-xs-8" %>
+							</td>
+						</tr>
 					</tboy>
 				</table>
 

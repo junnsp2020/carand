@@ -44,7 +44,11 @@
 						</tr>
 						<tr>
 							<td>
+							<% if @product.propriety == "交換不可" %>
+						 	<%= button_to "この商品は交換不可です", product_path(@product.id), {method: :get, class: "btn-sm btn-success col-xs-12" } %>
+						 	<% else %>
 						 	<%= button_to "この商品は交換可能です", product_barter_requests_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12" } %>
+						 	<% end %>
 							</td>
 						</tr>
 					</tboy>
