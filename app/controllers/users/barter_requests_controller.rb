@@ -5,7 +5,9 @@ class Users::BarterRequestsController < ApplicationController
 
   def index
   	@product = Product.find(params[:product_id])
-  	@barter_requests = @product.barter_requests
+  	@barter_requests =  BarterRequest.all
+    @barter_request = BarterRequest.new
+    # @barter_requests = @product.barter_requests
   end
 
   def show
@@ -17,7 +19,7 @@ class Users::BarterRequestsController < ApplicationController
     @barter_request.product_id = @product.id
     @barter_request.user_id = current_user.id
     if @barter_request.save
-      redirect_to product_barter_requests
+      redirect_to product_barter_requests_path
     else
       render :new
     end
@@ -28,6 +30,6 @@ class Users::BarterRequestsController < ApplicationController
 
   private
   def barter_request_params
-    params.require(:barter_request).permit(:product_id, :user_id, :name, :image_id, :introduction)
+    params.require(:barter_request).permit(:product_id, :user_id, :name, :image, :introduction)
   end
 end

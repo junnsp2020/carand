@@ -1,6 +1,7 @@
 class BarterRequest < ApplicationRecord
   belongs_to :user
   belongs_to :product
+  attachment :image
   enum product_condition:{
   "新品・未使用": 0,
   "未使用に近い": 1,

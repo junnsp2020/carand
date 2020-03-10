@@ -24,6 +24,11 @@
 								<%= barter_request.name %>
 							</td>
 						</tr>
+						<tr>
+			    			<td>
+								<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "80x80", class: "center-block" %>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			<% end %>
