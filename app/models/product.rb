@@ -22,4 +22,7 @@ class Product < ApplicationRecord
     "売り切れ": 1,
   }
   has_many :tradings
+  # belongs_to :buyer, class_name: "User"
+  # belongs_to :seller, class_name: "User"
+  belongs_to :user
 end

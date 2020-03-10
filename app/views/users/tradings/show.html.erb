@@ -1,2 +1,50 @@
-<h1>Users::Transactions#show</h1>
-<p>Find me in app/views/users/transactions/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h3 class="col-xs-12"><%= @trading.product.name %></h3>
+								<h4 class="col-xs-12"><%= number_to_currency(@trading.product.price, :unit => "￥", :precision => 0) %></h4>
+								<h3 class="col-xs-12"><%= @trading.product.postage %></h3>
+								<h3 class="col-xs-12"><%= @trading.total_price %></h3>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="col-xs-3">商品の説明</div>
+						    </td>
+						</tr>
+							<td width="100%" height="300px">
+								<%= @trading.product.introduction %>
+							</td>
+						<tr>
+							<td>
+								<div class="col-xs-3">商品の状態</div><%= @trading.product.status %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="col-xs-3">送料の負担</div><%= @trading.product.postage_responsibility %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="col-xs-3">送料</div><%= @trading.product.postage %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+				<%= form_for(@trading, url: trading_path(@trading)) do |f| %>
+                  <%= f.select :status, Trading.statuses.keys %>
+                  <%= f.submit "更新", class: "btn btn-primary" %>
+                <% end %>
+		</div>
+	</div>
+</div>

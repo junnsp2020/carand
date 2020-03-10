@@ -11,15 +11,18 @@ class Users::TradingsController < ApplicationController
   end
 
   def show
+    @trading = Trading.find(params[:id])
   end
 
   def create
+    buyer = current_user.active_tradings.build(seller_id: params[:user_id])
+    buyer.save
     @product = Product.find(params[:product_id])
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
     if @trading.save
-      redirect_to product_path(@product.id)
+      redirect_to products_path
     else
       render :new
     end
