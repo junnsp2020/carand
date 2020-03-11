@@ -16,8 +16,8 @@ end
 
 scope module: :users do
 	get "users/userinfo/:id" => "users#userinfo", as: "userinfo_user"
-	get "tradings/bought/:id" => "tradings#bought", as: "bought_tradings"
-	get "tradings/sold/:id" => "tradings#sold", as: "sold_tradings"
+	get "tradings/bought" => "tradings#bought", as: "bought_tradings"
+	get "tradings/sold" => "tradings#sold", as: "sold_tradings"
 	resources :users, only: [:show, :edit, :update]
 	resources :reports, only: [:new, :create]
     resources :transfers, except: [:new, :index, :destroy]

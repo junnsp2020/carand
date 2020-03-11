@@ -29,11 +29,11 @@ class Users::TradingsController < ApplicationController
   end
 
   def bought
-    trading = Trading.where(buyer_id: current_user.id)
+    @tradings = Trading.where(buyer_id: current_user.id)
   end
 
   def sold
-    @tradings = Trading.where(buyer_id: current_user.id)
+    @tradings = Trading.where(seller_id: current_user.id)
   end
 
   def edit
