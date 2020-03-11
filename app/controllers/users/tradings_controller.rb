@@ -12,6 +12,8 @@ class Users::TradingsController < ApplicationController
 
   def show
     @trading = Trading.find(params[:id])
+    @buyer = Trading.where(buyer_id: current_user.id)
+    @seller = Trading.where(seller_id: current_user.id)
   end
 
   def create

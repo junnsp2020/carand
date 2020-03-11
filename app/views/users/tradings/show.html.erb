@@ -8,8 +8,17 @@
 								<%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
 							</td>
 						</tr>
+						<tr><td>
+							<% if @buyer == current_user  %>
+						 			<%= link_to products_path %>
+						 		<% else %>
+						 			<%= "" %>
+						 		<% end %>
+						 	</td>
+						</tr>
 						<tr>
 							<td>
+								current_user
 								<h3 class="col-xs-12"><%= @trading.product.name %></h3>
 								<h4 class="col-xs-12"><%= number_to_currency(@trading.product.price, :unit => "￥", :precision => 0) %></h4>
 								<h3 class="col-xs-12"><%= @trading.product.postage %></h3>

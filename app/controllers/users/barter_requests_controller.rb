@@ -8,6 +8,7 @@ class Users::BarterRequestsController < ApplicationController
   	@product = Product.find(params[:product_id])
   	@barter_requests =  BarterRequest.all
     @barter_request = BarterRequest.new
+    @barter_request.user_id = current_user.id
     # params[:barter_request_id]
     # params[:barter_request_id]
     # @barter_requests = @product.barter_requests
@@ -26,6 +27,15 @@ class Users::BarterRequestsController < ApplicationController
       redirect_to product_barter_requests_path
     else
       render :new
+    end
+  end
+
+  def update
+    @barter_request = BarterRequest.find(params[:id])
+    if @barter_request.update(barter_request_params)
+      redirect_to  request.referer
+    else
+      render :show
     end
   end
 

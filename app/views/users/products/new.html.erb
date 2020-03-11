@@ -8,6 +8,8 @@
 					<tboy>
 						<tr>
 							<td>
+								<%= f.label :画像を選択してください, class: "col-xs-4" %>
+								<%= f.file_field :image %>
 								<%= f.label :商品名, class: "col-xs-4" %>
 								<%= f.text_field :name, class: "col-xs-8" %>
 							</td>
@@ -39,7 +41,7 @@
 						</tr>
 						<tr>
 							<td>
-								<%= f.label :交換の可否, class: "col-xs-4" %>
+								<%= f.label :交換取引の可否, class: "col-xs-4" %>
 								<%= f.select :propriety, Product.proprieties.keys, class: "col-xs-8" %>
 							</td>
 						</tr>

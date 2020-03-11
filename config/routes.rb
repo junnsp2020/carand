@@ -28,7 +28,7 @@ scope module: :users do
 		resource :favorites
 		resource :reviews
 		resources :tradings
-		resources :barter_requests, except: [:edit, :update]
+		resources :barter_requests, except: [:edit]
 	end
 	resources :tradings, except: [:destroy] do
 		resource :trading_messages

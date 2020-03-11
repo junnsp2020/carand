@@ -34,14 +34,14 @@
 							</td>
 							<td>
 								<% if current_user == @product.user %>
-									<%= form_for(barter_request, url: product_barter_requests_path(@product)) do |f| %>
-								 	  	<%= f.select :@barter_request.propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
+									<%= form_for(barter_request, url: product_barter_request_path(@product, barter_request)) do |f| %>
+								 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
 								 	  	<%= f.submit "確定" %>
 						 	  		<% end %>
 						 		<% else %>
 						 	  		<%= "" %>
 						 		<% end %>
-						 		<% if current_user != @product.user && @barter_request.propriety = "許可する" %>
+						 		<% if @barter_request.user_id == current_user.id && @barter_request.propriety == "許可する" %>
 						 			<%= button_to "リクエストが承認されました！ 取引画面へ進んでください", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
 						 		<% else %>
 						 			<%= "" %>
@@ -51,15 +51,6 @@
 						</tr>
 					</tbody>
 				</table>
-			<% end %>
-			<%= form_for(@barter_request, url: product_barter_requests_path(@product)) do |f| %>
-			<tr>
-				<td>
-					<%= f.label :提案商品, placeholder: "交換可能な商品の名前を入力", autofocus: true, class: "col-xs-4" %>
-					<%= f.text_field :name, class: "col-xs-8" %>
-					<%= f.submit "保存する", class: "btn btn-primary" %>
-				</td>
-			</tr>
 			<% end %>
 		</div>
 	</div>
