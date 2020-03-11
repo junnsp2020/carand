@@ -6,6 +6,7 @@ class Trading < ApplicationRecord
   enum paymethod:{
   "クレジットカード": 0,
   "コンビニ払い": 1,
+  "交換": 2
   }
   enum status:{
   "入金待ち": 0,

@@ -20,10 +20,9 @@
 			    <table class="table table-bordered">
 			    	<tbody>
 			    		<tr>
-			    			<td>
-								<%= barter_request.name %>
+							<td>
+								<%= link_to barter_request.name, product_barter_request_path(@product,barter_request) %>
 							</td>
-						<tr>
 							<td>
 								<%= barter_request.comment %>
 							</td>

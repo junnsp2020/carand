@@ -17,7 +17,7 @@
                   <%= f.hidden_field :buyer_id, :value => current_user.id %>
                   <tr>
                     <td>
-                      <%= f.label :支払方法, class: "col-xs-4" %>
+                      <%= f.label :"支払方法 ※交換の方はこちらから「交換」を選択してください", class: "col-xs-12" %>
                       <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
                     </td>
                   </tr>

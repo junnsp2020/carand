@@ -17,8 +17,6 @@ class Users::TradingsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @tradings = @product.tradings
-    current_user.id = params[:buyer_id]
-    @trading.user = User.find(params[:seller_id])
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
