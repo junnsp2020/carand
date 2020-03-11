@@ -8,6 +8,8 @@ class Users::BarterRequestsController < ApplicationController
   	@product = Product.find(params[:product_id])
   	@barter_requests =  BarterRequest.all
     @barter_request = BarterRequest.new
+    # params[:barter_request_id]
+    # params[:barter_request_id]
     # @barter_requests = @product.barter_requests
   end
 

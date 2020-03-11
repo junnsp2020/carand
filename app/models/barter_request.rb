@@ -9,4 +9,8 @@ class BarterRequest < ApplicationRecord
   "傷や汚れあり": 3,
   "全体的に状態が悪い": 4
   }
+  enum propriety:{
+    "許可しない": false,
+    "許可する": true
+  }
 end

@@ -33,6 +33,22 @@
 			    			<td>
 								<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "80x80", class: "center-block" %>
 							</td>
+							<td>
+								<% if current_user == @product.user %>
+									<%= form_for(barter_request, url: product_barter_requests_path(@product)) do |f| %>
+								 	  	<%= f.select :@barter_request.propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
+								 	  	<%= f.submit "確定" %>
+						 	  		<% end %>
+						 		<% else %>
+						 	  		<%= "" %>
+						 		<% end %>
+						 		<% if current_user != @product.user && @barter_request.propriety = "許可する" %>
+						 			<%= button_to "リクエストが承認されました！ 取引画面へ進んでください", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
+						 		<% else %>
+						 			<%= "" %>
+						 		<% end %>
+							</td>
+							</td>
 						</tr>
 					</tbody>
 				</table>
