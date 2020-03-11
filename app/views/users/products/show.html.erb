@@ -11,6 +11,17 @@
 						<tr>
 							<td>
 								<h3 class="col-xs-12"><%= @product.name %></h3>
+								<% if @product.favorited_by?(current_user) %>
+		                            <%= link_to product_favorites_path(@product), method: :delete, remote: false do %>
+									<span class="glyphicon glyphicon-heart" style="color: red;"><%= @product.favorites.count %></span>いいね
+									<% end %>
+
+								<% else %>
+									<%= link_to product_favorites_path(@product), method: :post, remote: false do %>
+									<span class="glyphicon glyphicon-heart-empty"><%= @product.favorites.count %></span> いいね
+									<% end %>
+								<% end %>
+
 								<h4 class="col-xs-12"><%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h4>
 							</td>
 						</tr>

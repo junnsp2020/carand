@@ -5,6 +5,10 @@ class Product < ApplicationRecord
 		postage = 1000
 	end
 
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+
 	enum status:{
     "新品・未使用": 0,
     "未使用に近い": 1,
@@ -31,4 +35,5 @@ class Product < ApplicationRecord
   # belongs_to :seller, class_name: "User"
   belongs_to :user
   has_many :barter_requests
+  has_many :favorites, dependent: :destroy
 end
