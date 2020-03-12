@@ -11,6 +11,8 @@
 							<td>
 								<%= f.label :商品名, class: "col-xs-4" %>
 								<%= f.text_field :name, class: "col-xs-8" %>
+				                <%= f.hidden_field :seller_id, :value => @product.user.id %>
+				                <%= f.hidden_field :buyer_id, :value => current_user.id %>
 							</td>
 						</tr>
 						<tr>
