@@ -7,9 +7,7 @@
                 <tr>
                   <td>
                       <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
-                      <% @tradings.each do |trading| %>
-                        <h3 class="col-xs-4">合計金額  ￥<%= trading.product.price %></h3>
-                      <% end %>
+                        <h3 class="col-xs-4">合計金額  ￥<%= @product.price %></h3>
                   </td>
                 </tr>
                 <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>

@@ -6,7 +6,7 @@ class Users::BarterRequestsController < ApplicationController
 
   def index
   	@product = Product.find(params[:product_id])
-  	@barter_requests =  BarterRequest.all
+  	@barter_requests =  BarterRequest.where(product_id: @product.id)
     @barter_request = BarterRequest.new
     @barter_request.user_id = current_user.id
     # params[:barter_request_id]

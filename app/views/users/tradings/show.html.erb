@@ -51,9 +51,60 @@
 					</tboy>
 				</table>
 				<%= form_for(@trading, url: trading_path(@trading)) do |f| %>
-                  <%= f.select :status, Trading.statuses.keys %>
+                  <%= f.select :payment_status, Trading.payment_statuses.keys %>
                   <%= f.submit "更新", class: "btn btn-primary" %>
                 <% end %>
+
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
+                	<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
+				 	<% else %>
+				 	<%= "" %>
+				<% end %>
+
+                <% if @trading.buyer_id == current_user.id && @trading.shipment_status == "出荷報告をする" %>
+					<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
+				 	<% else %>
+				 	<%= "" %>
+				<% end %>
+
+				<% if @trading.buyer_id == current_user.id && @trading.shipment_status == "購入者を評価する" %>
+					<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
+				 	<% else %>
+				 	<%= "" %>
+				<% end %>
+
+				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
+					<%= link_to "hoge", products_path %> <!-- 後ほどpathを修正 -->
+ 				 	<% else %>
+				 	<%= "" %>
+				<% end %>
+
+
+                <% if @trading.seller_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
+					<%= "購入者からの入金待ちです　お待ちください" %>
+　　 				<% else %>
+				 	<%= ""%>
+				<% end %>
+
+                <% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする"%>
+					<%= "出品者より代金が支払われました　商品を出荷してください" %>
+					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
+　　 				<% else %>
+				 	<%= ""%>
+				<% end %>
+
+				<% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする"%>
+					<%= "出品者より代金が支払われました　商品を出荷してください" %>
+					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
+　　 				<% else %>
+				 	<%= ""%>
+				<% end %>
+
+				<% if @trading.seller_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！"%>
+					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
+　　 				<% else %>
+				 	<%= ""%>
+				<% end %>
 		</div>
 	</div>
 </div>

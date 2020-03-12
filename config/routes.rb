@@ -32,6 +32,8 @@ scope module: :users do
 	end
 	resources :tradings, except: [:destroy] do
 		resource :trading_messages
+		patch :change_payment_status
+		patch :change_shipment_status
 	end
 	resources :blogs do
 		resource :blog_comments
