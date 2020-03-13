@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_121058) do
+ActiveRecord::Schema.define(version: 2020_03_13_051615) do
 
   create_table "administers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -137,6 +137,9 @@ ActiveRecord::Schema.define(version: 2020_03_12_121058) do
     t.integer "seller_id"
     t.integer "shipment_status", default: 0
     t.integer "payment_status", default: 0
+    t.boolean "excellent_review"
+    t.boolean "good_review"
+    t.boolean "poor_review"
   end
 
   create_table "transaction_messages", force: :cascade do |t|
