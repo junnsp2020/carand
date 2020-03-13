@@ -105,6 +105,18 @@
 　　 				<% else %>
 				 	<%= ""%>
 				<% end %>
+
+
+				<%= form_for Trading.new do |f| %>
+		            <%= f.radio_button :excellent_review, :true %>
+		            <%= f.radio_button :good_review, :true %>
+		            <%= f.radio_button :poor_review, :true %>
+
+		            <%= f.fields_for :user do |i| %>
+		            <%= f.hidden_field :seller_id, :value => @product.user.id %>
+                    <%= f.hidden_field :buyer_id, :value => current_user.id %>
+                <%= f.submit "評価を確定する" %>
+                <% end %>
 		</div>
 	</div>
 </div>

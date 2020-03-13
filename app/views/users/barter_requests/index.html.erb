@@ -41,7 +41,7 @@
 						 		<% else %>
 						 	  		<%= "" %>
 						 		<% end %>
-						 		<% if @barter_request.user_id == current_user.id && @barter_request.propriety == "許可する" %>
+						 		<% if @barter_request.buyer_id == current_user.id && @barter_request.propriety == "許可する" %>
 						 			<%= button_to "リクエストが承認されました！ 取引画面へ進んでください", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
 						 		<% else %>
 						 			<%= "" %>

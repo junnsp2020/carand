@@ -1,7 +1,8 @@
 class Trading < ApplicationRecord
-   belongs_to :buyer, class_name: "User"
-   belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User"
+  belongs_to :seller, class_name: "User"
   belongs_to :product
+  belongs_to :user
 
   enum paymethod:{
   "クレジットカード": 0,

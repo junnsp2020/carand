@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :sellers, through: :passive_relationships, source: :buyer
   has_many :barter_requests
   has_many :favorites, dependent: :destroy
+  has_many :tradings
 end
