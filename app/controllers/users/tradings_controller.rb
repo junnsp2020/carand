@@ -3,7 +3,7 @@ class Users::TradingsController < ApplicationController
   before_action :shipment_status_set, only: [:show, :edit, :update, :change_shipment_status]
   def new
     @product = Product.find(params[:product_id])
-    @tradings = @product.tradings
+     trading = @product.trading
     @trading = Trading.new
     @users = User.where(user_id: current_user.id)
   end
@@ -31,7 +31,7 @@ class Users::TradingsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @product.save ##追加
-    @tradings = @product.tradings
+    @trading = @product.trading
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
@@ -86,6 +86,7 @@ class Users::TradingsController < ApplicationController
   end
 
   def update
+    binding.pry
     @trading = Trading.find(params[:id])
     if @trading.update(trading_params)
       redirect_to  request.referer

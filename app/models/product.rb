@@ -30,10 +30,15 @@ class Product < ApplicationRecord
     "交換不可": 0,
     "交換可能": 1
   }
-  has_many :tradings
+  has_one :trading, autosave: true, dependent: :destroy
   # belongs_to :buyer, class_name: "User"
   # belongs_to :seller, class_name: "User"
   belongs_to :user
   has_many :barter_requests
   has_many :favorites, dependent: :destroy
+
+  private
+    def build_child
+      build_trading
+    end
 end

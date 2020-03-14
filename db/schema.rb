@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2020_03_14_040328) do
     t.boolean "excellent_review"
     t.boolean "good_review"
     t.boolean "poor_review"
-    t.boolean "soldout"
+    t.boolean "soldout", default: false
   end
 
   create_table "transaction_messages", force: :cascade do |t|

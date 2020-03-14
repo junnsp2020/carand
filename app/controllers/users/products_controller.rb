@@ -9,8 +9,7 @@ class Users::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-     tradings = @product.tradings
-    @trading = Trading.new
+     trading = @product.build_trading
     # @trading = Trading.find(params[:trading_id])
   end
 
