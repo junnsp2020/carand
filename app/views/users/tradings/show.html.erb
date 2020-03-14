@@ -105,12 +105,22 @@
 　　 				<% else %>
 				 	<%= ""%>
 				<% end %>
-
+                <% if @trading.seller_id == current_user.id %>
 　　　　　　　　　<%= form_for (@trading) do |f| %>
 		            <%= f.radio_button :excellent_review, :true %>
 		            <%= f.radio_button :good_review, :true %>
 		            <%= f.radio_button :poor_review, :true %>
                 <%= f.submit "評価を確定する" %>
+                <% end %>
+                <% end %>
+
+                <% if @trading.buyer_id == current_user.id %>
+　　　　　　　　　<%= form_for (@trading) do |f| %>
+		            <%= f.radio_button :seller_excellent_review, :true %>
+		            <%= f.radio_button :seller_good_review, :true %>
+		            <%= f.radio_button :seller_poor_review, :true %>
+                <%= f.submit "評価を確定する" %>
+                <% end %>
                 <% end %>
 		</div>
 	</div>

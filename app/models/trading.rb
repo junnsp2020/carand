@@ -23,6 +23,10 @@ class Trading < ApplicationRecord
    "出荷報告をする": 0,
    "購入者を評価する": 1
   }
+  # enum soldout:{
+  #   "販売中": false,
+  #   "売り切れ": true
+  # }
 
   def change_payment_status!
     if 出品者へ入金報告をする?

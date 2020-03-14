@@ -10,9 +10,17 @@
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<td><%= @excellent_count %></td>
-							<td><%= @good_count %></td>
-							<td><%= @poor_count %></td>
+							<% if @tradings %>
+								<%= Trading.where(excellent_review: true, buyer_id: @user.id).count %>
+								<%= Trading.where(good_review: true, buyer_id: @user.id).count %>
+								<%= Trading.where(poor_review: true, buyer_id: @user.id).count %>
+							<% end %>
+
+                            <% if @trading %>
+								<%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %>
+								<%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %>
+								<%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %>
+							<% end %>
 						</tr>
 
 						<tr>

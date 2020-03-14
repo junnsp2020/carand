@@ -6,6 +6,9 @@ class Users::UsersController < ApplicationController
 		@excellent_count = Trading.group(:excellent_review).count(:excellent_review)
 		@good_count = Trading.group(:good_review).count(:good_review)
 		@poor_count = Trading.group(:poor_review).count(:poor_review)
+		@trading = Trading.where(buyer_id: current_user.id)
+		@tradings = @user.tradings
+		@tradings = Trading.where(seller_id: current_user.id)
 		# # @excellent_count = @user.excellent_count  #追加   #一旦コメントアウト
 		# # @good_count = @user.good_count  #追加   #一旦コメントアウト
 		# # @poor_count = @user.poor_count  #追加   #一旦コメントアウト
@@ -13,6 +16,7 @@ class Users::UsersController < ApplicationController
 		# @excellent_count = @product.excellent_count  #追加
 		# @good_count = @product.good_count  #追加
 		# @poor_count = @product.poor_count  #追加
+	    # @excellent_count = Trading.where(excellent_review: "false").where(buyer_id: current_user.id)
 	end
 
 	def userinfo
