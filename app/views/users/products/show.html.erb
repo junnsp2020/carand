@@ -50,8 +50,12 @@
 						</tr>
 						<tr>
 							<td>
+							<% if @product.tradings.soldout == false %>
 							<%= button_to "購入ページへ進む", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
-							</td>
+							<% else %>
+							<%= button_to "売り切れました", new_trading_path, {method: :get, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
+							<% end %>
+                           </td>
 						</tr>
 						<tr>
 							<td>

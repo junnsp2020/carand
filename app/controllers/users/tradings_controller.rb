@@ -106,7 +106,7 @@ class Users::TradingsController < ApplicationController
 
   private
   def trading_params
-    params.require(:trading).permit(:product_id, :user_id, :price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review)
+    params.require(:trading).permit(:product_id, :user_id, :price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout)
   end
   def payment_status_set
     @trading = Trading.find(params[:id] || params[:trading_id])

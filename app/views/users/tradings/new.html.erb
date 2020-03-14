@@ -26,6 +26,7 @@
                   </tr>
                   <tr>
                     <td>
+                      <%= f.hidden_field :soldout %>
                       <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
                     </td>
                   </tr>
