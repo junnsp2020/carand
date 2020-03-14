@@ -16,20 +16,29 @@ class Users::TradingsController < ApplicationController
     @trading = Trading.find(params[:id])
     @buyer = Trading.where(buyer_id: current_user.id)
     @seller = Trading.where(seller_id: current_user.id)
-    @excellent = Trading.new
-    @good =Trading.new
-    @poor =Trading.new
+    # @excellent = Trading.new
+    # @good = Trading.new
+    # @poor = Trading.new
+    # @product = Product.find(params[:product_id])
     # @product = Product.find(params[:product_id])  #追加→削除
     # @excellent.product_id = @product.id  #追加  undefined method `id' for nil:NilClass  →削除
-    @excellent.user_id = current_user.id  #追加
+    # @excellent.user_id = current_user.id  #追加
+    @review = Trading.new
+    # @user = @product.user
+    # @user = current_user
   end
 
   def create
     @product = Product.find(params[:product_id])
+    @product.save ##追加
     @tradings = @product.tradings
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
+    @review = Trading.new(trading_params)
+    if @review
+      @review.save ##追加
+    end
     # @excellent = @product.excellent
     # @good = @product.good
     # @poor = @product.poor
@@ -43,12 +52,13 @@ class Users::TradingsController < ApplicationController
     # @good.user_id = current_user.id
     # @poor.product_id = @product.id
     # @poor.user_id = current_user.id
-     if @trading.save
-       redirect_to trading_path(@trading)
-     else
-       @tradings = @product.tradings
-       render :new
-     end
+    if @trading.save
+      redirect_to trading_path(@trading)
+    else
+    @tradings = @product.tradings
+    render :new
+    end
+  end
 
     # @excellent = Trading.new(trading_params)
     # if @excellent
@@ -62,7 +72,7 @@ class Users::TradingsController < ApplicationController
     # if @poor
     # @poor.save
     # end
-  end
+
 
   def bought
     @tradings = Trading.where(buyer_id: current_user.id)
@@ -76,6 +86,12 @@ class Users::TradingsController < ApplicationController
   end
 
   def update
+    @trading = Trading.find(params[:id])
+    if @trading.update(trading_params)
+      redirect_to  request.referer
+    else
+      render :show
+    end
   end
 
   def change_payment_status

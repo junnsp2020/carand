@@ -9,7 +9,7 @@
 							</td>
 						</tr>
 						<tr><td>
-							<% if @buyer == current_user  %>
+							<% if @buyer == current_user %>
 						 			<%= link_to products_path %>
 						 		<% else %>
 						 			<%= "" %>
@@ -81,13 +81,13 @@
 
 
                 <% if @trading.seller_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
-					<%= "購入者からの入金待ちです　お待ちください" %>
-　　 				<% else %>
+					<%= "購入者からの入金待ちです  お待ちください" %>
+       				<% else %>
 				 	<%= ""%>
 				<% end %>
 
                 <% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする"%>
-					<%= "出品者より代金が支払われました　商品を出荷してください" %>
+					<%= "出品者より代金が支払われました  商品を出荷してください" %>
 					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
 　　 				<% else %>
 				 	<%= ""%>
@@ -106,15 +106,10 @@
 				 	<%= ""%>
 				<% end %>
 
-
-				<%= form_for Trading.new do |f| %>
+　　　　　　　　　<%= form_for (@trading) do |f| %>
 		            <%= f.radio_button :excellent_review, :true %>
 		            <%= f.radio_button :good_review, :true %>
 		            <%= f.radio_button :poor_review, :true %>
-
-		            <%= f.fields_for :user do |i| %>
-		            <%= f.hidden_field :seller_id, :value => @product.user.id %>
-                    <%= f.hidden_field :buyer_id, :value => current_user.id %>
                 <%= f.submit "評価を確定する" %>
                 <% end %>
 		</div>
