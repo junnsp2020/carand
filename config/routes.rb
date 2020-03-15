@@ -16,6 +16,7 @@ end
 
 scope module: :users do
 	get "users/userinfo/:id" => "users#userinfo", as: "userinfo_user"
+	get "users/usertransfer/:id" => "users#usertransfer", as: "usertransfer_user"
 	get "tradings/bought" => "tradings#bought", as: "bought_tradings"
 	get "tradings/sold" => "tradings#sold", as: "sold_tradings"
 	resources :users, only: [:show, :edit, :update]

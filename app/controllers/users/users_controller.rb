@@ -51,7 +51,7 @@ class Users::UsersController < ApplicationController
 		balance = 0
 		profit = 0
 		@user.products.each do |product|
-			if product.profit != nil
+			if product.profit != nil && product.sale_status == "売り切れ"
 				balance += product.profit
 			end
     	end
