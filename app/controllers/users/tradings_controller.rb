@@ -5,6 +5,7 @@ class Users::TradingsController < ApplicationController
     @product = Product.find(params[:product_id])
      trading = @product.trading
     @trading = Trading.new
+    # trading.price = @product.price
     @users = User.where(user_id: current_user.id)
   end
 
@@ -16,6 +17,7 @@ class Users::TradingsController < ApplicationController
     @trading = Trading.find(params[:id])
     @buyer = Trading.where(buyer_id: current_user.id)
     @seller = Trading.where(seller_id: current_user.id)
+    # @trading.total_price = calculate(current_user)
     # @excellent = Trading.new
     # @good = Trading.new
     # @poor = Trading.new
@@ -30,6 +32,7 @@ class Users::TradingsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
+    @product.sale_status = "売り切れ"
     @product.save ##追加
     @trading = @product.trading
     @trading = Trading.new(trading_params)
@@ -52,8 +55,8 @@ class Users::TradingsController < ApplicationController
     # @good.user_id = current_user.id
     # @poor.product_id = @product.id
     # @poor.user_id = current_user.id
-      @trading.soldout = true
-      @trading.save
+       # binding.pry
+      @trading.save(trading_params)
       redirect_to trading_path(@trading)
 
     # @tradings = @product.tradings
@@ -105,7 +108,7 @@ class Users::TradingsController < ApplicationController
 
   private
   def trading_params
-    params.require(:trading).permit(:product_id, :user_id, :price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :good_excellent_review, :poor_excellent_review)
+    params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :good_excellent_review, :poor_excellent_review)
   end
   def payment_status_set
     @trading = Trading.find(params[:id] || params[:trading_id])

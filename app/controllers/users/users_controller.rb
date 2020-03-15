@@ -20,7 +20,15 @@ class Users::UsersController < ApplicationController
 	end
 
 	def userinfo
-		@user = User.find(params[:id])
+		@user = User.find(current_user.id)
+		@balance = User.new
+		@balance = calculate(current_user)
+		@products = Product.where(user_id: current_user.id)
+	end
+
+	def create
+		@balance = User.new(user_params)
+		@balance.save
 	end
 
 	def edit
@@ -40,8 +48,15 @@ class Users::UsersController < ApplicationController
   end
 
     private
+    def calculate(current_user)
+		@balance = 0
+		@user.products.each do |product|
+		@balance += product.profit
+    	end
+  	end
+
     def user_params
-    	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :prefecture_code, :address_city, :address_street, :address_building, :phone_number, :bank_name, :account_type, :branch_code, :account_number, :account_last_name_kana, :account_first_name_kana, :buyer_id, :seller_id)
+    	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :prefecture_code, :address_city, :address_street, :address_building, :phone_number, :bank_name, :account_type, :branch_code, :account_number, :account_last_name_kana, :account_first_name_kana, :buyer_id, :seller_id, :balance)
     end
 end
 

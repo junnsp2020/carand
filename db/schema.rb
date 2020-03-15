@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_14_114249) do
+ActiveRecord::Schema.define(version: 2020_03_15_041127) do
 
   create_table "administers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(version: 2020_03_14_114249) do
     t.boolean "excellent_review"
     t.boolean "good_review"
     t.boolean "poor_review"
-    t.boolean "soldout", limit: 1, default: false
     t.boolean "seller_excellent_review"
     t.boolean "seller_good_review"
     t.boolean "seller_poor_review"
