@@ -19,7 +19,7 @@ scope module: :users do
 	get "users/usertransfer/:id" => "users#usertransfer", as: "usertransfer_user"
 	get "tradings/bought" => "tradings#bought", as: "bought_tradings"
 	get "tradings/sold" => "tradings#sold", as: "sold_tradings"
-	resources :users, only: [:show, :edit, :update]
+	resources :users, only: [:show, :edit, :update, :create]
 	resources :reports, only: [:new, :create]
     resources :transfers, except: [:new, :index, :destroy]
 

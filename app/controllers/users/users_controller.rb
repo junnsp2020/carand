@@ -27,13 +27,15 @@ class Users::UsersController < ApplicationController
 
 	def usertransfer
 		@user = User.find(current_user.id)
-		@balance = calculate(current_user)
 		@products = Product.where(user_id: current_user.id)
+		@request_amount = current_user
 	end
 
 	def create
 		@balance = User.new(user_params)
 		@balance.save
+		@request_amount = User.new(user_params)
+		@request_amount.save
 	end
 
 	def edit
@@ -44,28 +46,29 @@ class Users::UsersController < ApplicationController
 	end
 
 	def update
-	  	@user = User.find(params[:id])
-	    if @user.update(user_params)
-	  		redirect_to user_path(@user.id)
-	  	else
-	  		render :edit
-	  	end
-  end
+	  	current_user.request_amount = current_user.request_amount + user_params[:request_amount].to_i
+	  	current_user.save
+	  	redirect_to user_path(current_user.id)
+  	end
 
     private
     def calculate(current_user)
 		balance = 0
 		profit = 0
-		@user.products.each do |product|
+		request_amount = 0
+		current_user.products.each do |product|
 			if product.profit != nil && product.sale_status == "売り切れ"
 				balance += product.profit
 			end
     	end
+    	if current_user.balance != nil && current_user.request_amount != nil
+    	balance -= current_user.request_amount
+        end
     	return balance
   	end
 
     def user_params
-    	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :prefecture_code, :address_city, :address_street, :address_building, :phone_number, :bank_name, :account_type, :branch_code, :account_number, :account_last_name_kana, :account_first_name_kana, :buyer_id, :seller_id, :balance)
+    	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :prefecture_code, :address_city, :address_street, :address_building, :phone_number, :bank_name, :account_type, :branch_code, :account_number, :account_last_name_kana, :account_first_name_kana, :buyer_id, :seller_id, :balance, :request_amount)
     end
 end
 
