@@ -21,7 +21,6 @@ class Users::UsersController < ApplicationController
 
 	def userinfo
 		@user = User.find(current_user.id)
-		@balance = User.new
 		@balance = calculate(current_user)
 		@products = Product.where(user_id: current_user.id)
 	end
@@ -49,10 +48,14 @@ class Users::UsersController < ApplicationController
 
     private
     def calculate(current_user)
-		@balance = 0
+		balance = 0
+		profit = 0
 		@user.products.each do |product|
-		@balance += product.profit
+			if product.profit != nil
+				balance += product.profit
+			end
     	end
+    	return balance
   	end
 
     def user_params
