@@ -13,6 +13,7 @@
     <p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
     <p><%= link_to ' login', new_user_session_path %></p>
     <p><%= link_to ' userinfo', userinfo_user_path(current_user.id) %></p>
+    <p><%= link_to ' usertransfer', usertransfer_user_path(current_user.id) %></p>
     <%= yield %>
   </body>
 </html>

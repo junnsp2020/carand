@@ -25,6 +25,12 @@ class Users::UsersController < ApplicationController
 		@products = Product.where(user_id: current_user.id)
 	end
 
+	def usertransfer
+		@user = User.find(current_user.id)
+		@balance = calculate(current_user)
+		@products = Product.where(user_id: current_user.id)
+	end
+
 	def create
 		@balance = User.new(user_params)
 		@balance.save
