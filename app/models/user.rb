@@ -12,4 +12,5 @@ class User < ApplicationRecord
   has_many :barter_requests
   has_many :favorites, dependent: :destroy
   has_many :tradings
+  has_many :reports
 end
