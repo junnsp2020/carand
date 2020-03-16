@@ -2,12 +2,12 @@ class Users::ReportsController < ApplicationController
   def new
   	@product = Product.find(params[:product_id])
   	@report = Report.new
-  	@reports = @product.reports
   end
 
   def create
   	@product = Product.find(params[:product_id])
   	@product.save
+  	binding.pry
   	@report = Report.new(report_params)
   	@report.product_id = @product.id
     @report.user_id = current_user.id
@@ -20,6 +20,6 @@ class Users::ReportsController < ApplicationController
 
   private
   def report_params
-    params.require(:report).permit(:product_id, :user_id, :subject, :content)
+    params.require(:report).permit(:product_id, :user_id, :subject, :content, :name)
   end
 end

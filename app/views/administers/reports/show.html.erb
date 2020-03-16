@@ -1,2 +1,17 @@
-<h1>Administers::Reports#show</h1>
-<p>Find me in app/views/administers/reports/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<h2>通報詳細</h2>
+				<table class="table table-bordered">
+					<tbody>
+							<tr>
+								<td><%= @report.subject %></td>
+							</tr>
+							<tr>
+								<td><%= @report.content %></td>
+							</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>

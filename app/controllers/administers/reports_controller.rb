@@ -4,6 +4,7 @@ class Administers::ReportsController < ApplicationController
   end
 
   def show
+  	@report = Report.find(params[:id])
   end
 
   def destroy
