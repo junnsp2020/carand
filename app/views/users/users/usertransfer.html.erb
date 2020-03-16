@@ -13,9 +13,7 @@
 						<tr>
 							<td>
 								<%= f.label :入金申請額 %>
-								<%= f.text_field :request_amount, id: "request_amount" %>円 (販売手数料 10%分が差し引かれます)
-								<%= f.label :"申請後の残高", class: "col-xs-offset-1" %>
-								<%= f.text_field :balance, id: "balance" %>
+								<%= f.text_field :request_amount, value: 0 %>円
 							</td>
 						</tr>
 					</tboy>
@@ -25,15 +23,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-$('#request_amount').keyup(function() {
-  var s = $("#request_amount").val();
-  var sa = parseInt(s);
-  var sb = 0.9
-
-  var profit = sa * sb
-
-  $('#balance').val(profit)
-});
-</script>

@@ -47,11 +47,11 @@ class Users::UsersController < ApplicationController
 	end
 
 	def update
+		@user = User.find(params[:id])
+	  	@user.update(user_params)
 	  	current_user.request_amount = current_user.request_amount + user_params[:request_amount].to_i
 	  	current_user.save
 	  	redirect_to user_path(current_user.id)
-	  	@user = User.find(params[:id])
-	  	@user.update(user_params)
   	end
 
   	def delete

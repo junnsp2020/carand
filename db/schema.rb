@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_235324) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "product_id"
+    t.integer "status", default: 0
     t.integer "profit"
     t.integer "postage"
     t.integer "paymethod"
@@ -144,24 +145,6 @@ ActiveRecord::Schema.define(version: 2020_03_15_235324) do
     t.boolean "seller_excellent_review"
     t.boolean "seller_good_review"
     t.boolean "seller_poor_review"
-  end
-
-  create_table "transaction_messages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "transaction_id"
-    t.text "message"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "product_id"
-    t.integer "status"
-    t.integer "profit"
-    t.integer "postage"
-    t.integer "paymethod", default: 0
   end
 
   create_table "transfers", force: :cascade do |t|
