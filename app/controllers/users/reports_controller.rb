@@ -1,5 +1,6 @@
 class Users::ReportsController < ApplicationController
   def new
+  	@product = Product.find(params[:product_id])
   	@report = Report.new
   end
 

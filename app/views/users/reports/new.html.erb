@@ -6,7 +6,7 @@
 			<div class="col-xs-10">
 				<table class="table table-bordered">
 					<tboy>
-						<%= form_for(@report) do |f| %>
+						<%= form_for((@report), url: product_reports_path) do |f| %>
 							<tr>
 								<td>
 									<h4>不適切商品の報告</h4>
