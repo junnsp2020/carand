@@ -20,7 +20,6 @@ scope module: :users do
 	get "tradings/bought" => "tradings#bought", as: "bought_tradings"
 	get "tradings/sold" => "tradings#sold", as: "sold_tradings"
 	resources :users, only: [:show, :edit, :update, :create]
-	resources :reports, only: [:new, :create]
     resources :transfers, except: [:new, :index, :destroy]
 
 	resources :products do
@@ -30,6 +29,7 @@ scope module: :users do
 		resource :reviews
 		resources :tradings
 		resources :barter_requests, except: [:edit]
+		resources :reports, only: [:new, :create]
 	end
 	resources :tradings, except: [:destroy] do
 		resource :trading_messages
