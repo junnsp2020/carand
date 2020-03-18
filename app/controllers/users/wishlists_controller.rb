@@ -16,6 +16,10 @@ class Users::WishlistsController < ApplicationController
     redirect_to request.referer
   end
 
+  def wish
+  	@wishlists = Wishlist.where(user_id: current_user.id)
+  end
+
   private
   def wishlist_params
     params.require(:wishlist).permit(:user_id, :product_id)
