@@ -34,6 +34,7 @@ class Product < ApplicationRecord
   # belongs_to :buyer, class_name: "User"
   # belongs_to :seller, class_name: "User"
   belongs_to :user
+  belongs_to :category
   has_many :barter_requests
   has_many :favorites, dependent: :destroy
   has_many :reports

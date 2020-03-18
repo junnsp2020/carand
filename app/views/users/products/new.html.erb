@@ -17,6 +17,7 @@
 						<tr>
 							<td>
 								<%= f.label :カテゴリー, class: "col-xs-4" %>
+								<%= f.collection_select :category_id, Category.all, :id, :name, class: "col-xs-8" %>
 							</td>
 						</tr>
 						<tr>
