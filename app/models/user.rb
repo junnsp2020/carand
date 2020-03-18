@@ -20,4 +20,5 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :tradings
   has_many :reports
+  has_many :wishlists
 end

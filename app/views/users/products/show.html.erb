@@ -25,6 +25,9 @@
 								<h4 class="col-xs-12"><%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h4>
 							</td>
 							<td>
+								<%= button_to "ほしいものリスト", product_wishlists_path(@product.id), {method: :post, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
+							</td>
+							<td>
 								<%= button_to "通報", new_product_report_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
 							</td>
 						</tr>

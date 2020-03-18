@@ -37,6 +37,7 @@ class Product < ApplicationRecord
   has_many :barter_requests
   has_many :favorites, dependent: :destroy
   has_many :reports
+  has_many :wishlists
 
   private
     def build_child
