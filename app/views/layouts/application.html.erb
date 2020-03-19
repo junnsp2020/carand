@@ -10,6 +10,25 @@
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse" style="background-color:#dc143c;">
+      <nav class="nav navbar-nav navbar-left">
+        <span class="nav">
+          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
+          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
+          <span>カランド</span>
+          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
+          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
+        </span>
+      </nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to "取引一覧", products_path %></li>
+            <li><%= Trading.where(payment_status: "出品者へ入金報告をする").count %></li>
+          <% end %>
+        </ul>
+    </header>
+  </body>
+
     <p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
     <p><%= link_to ' login', new_user_session_path %></p>
     <p><%= link_to "アドミン sign_out", destroy_user_session_path, method: :delete %></p>

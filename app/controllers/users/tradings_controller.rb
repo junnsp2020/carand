@@ -56,8 +56,14 @@ class Users::TradingsController < ApplicationController
     # @poor.product_id = @product.id
     # @poor.user_id = current_user.id
        # binding.pry
-      @trading.save(trading_params)
-      redirect_to trading_path(@trading)
+    if @trading.payment_status == "出品者へ入金報告をする"
+      @trading.completed = false
+    elsif @trading.payment_status == "受取報告をする"
+      @trading.completed = false
+    end
+
+    @trading.save(trading_params)
+    redirect_to trading_path(@trading)
 
     # @tradings = @product.tradings
   end
@@ -89,6 +95,11 @@ class Users::TradingsController < ApplicationController
 
   def update
     @trading = Trading.find(params[:id])
+    if @trading.payment_status == "ご利用誠にありがとうございました！"
+    # binding.pry
+      @trading.completed = true
+      @trading.update(trading_params)
+    end
     if @trading.update(trading_params)
       redirect_to  request.referer
     else
@@ -108,7 +119,7 @@ class Users::TradingsController < ApplicationController
 
   private
   def trading_params
-    params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :good_excellent_review, :poor_excellent_review)
+    params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :good_excellent_review, :poor_excellent_review, :completed)
   end
   def payment_status_set
     @trading = Trading.find(params[:id] || params[:trading_id])
