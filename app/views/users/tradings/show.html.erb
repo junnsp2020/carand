@@ -5,7 +5,7 @@
 					<tboy>
 						<tr>
 							<td>
-								<%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
+								<%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50", class: "center-block" %>
 							</td>
 						</tr>
 						<tr><td>
@@ -123,6 +123,23 @@
                 <%= f.submit "評価を確定する" %>
                 <% end %>
                 <% end %>
+
+
+                <table class="table table-bordered">
+                	<tbody>
+                	<% @trading_messages.each do |trading_message| %>
+                    	<tr>
+                    		<td>
+                       			<%= trading_message.message %>
+                       		</td>
+                    	</tr>
+                    <% end %>
+                	</tbody>
+                </table>
+                    <%= form_for [@trading, @trading_message] do |f| %>
+				    	<%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+						<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+					<% end %>
 		</div>
 	</div>
 </div>

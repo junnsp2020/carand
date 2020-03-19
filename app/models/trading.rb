@@ -3,6 +3,7 @@ class Trading < ApplicationRecord
   belongs_to :seller, class_name: "User"
   belongs_to :product
   belongs_to :user
+  has_many :trading_messages
 
   enum paymethod:{
   "クレジットカード": 0,

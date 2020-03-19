@@ -17,6 +17,8 @@ class Users::TradingsController < ApplicationController
     @trading = Trading.find(params[:id])
     @buyer = Trading.where(buyer_id: current_user.id)
     @seller = Trading.where(seller_id: current_user.id)
+    @trading_message = TradingMessage.new
+    @trading_messages = @trading.trading_messages
     # @trading.total_price = calculate(current_user)
     # @excellent = Trading.new
     # @good = Trading.new
