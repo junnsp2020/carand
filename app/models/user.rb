@@ -22,4 +22,5 @@ class User < ApplicationRecord
   has_many :reports
   has_many :wishlists
   has_many :trading_messages
+  has_many :product_comments
 end

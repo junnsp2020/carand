@@ -51,10 +51,11 @@
 						</tr>
 					</tboy>
 				</table>
-				<%= form_for(@trading, url: trading_path(@trading)) do |f| %>
-                  <%= f.select :payment_status, Trading.payment_statuses.keys %>
-                  <%= f.submit "更新", class: "btn btn-primary" %>
-                <% end %>
+				<%#= form_for(@trading, url: trading_path(@trading)) do |f| %>
+				<%#= form_for @trading,:url => {controller: "tradings", action: "update"} do |f| %>
+                  <%#= f.select :payment_status, Trading.payment_statuses.keys %>
+                  <%#= f.submit "更新", class: "btn btn-primary" %>
+                <%# end %>
 
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
                 	<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
@@ -62,21 +63,22 @@
 				 	<%= "" %>
 				<% end %>
 
-                <% if @trading.buyer_id == current_user.id && @trading.shipment_status == "出荷報告をする" %>
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
+                <%= "入金報告をしました。出品者の発送待ちです" %>
+				 	<% else %>
+				 	<%= "" %>
+				<% end %>
+
+				<% if @trading.buyer_id == current_user.id && @trading.shipment_status == "出荷を通知しました。購入者の評価待ちです" %>
+				　　<%= "商品が発送されました　届き次第、受取評価をしてください" %>
 					<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
 				 	<% else %>
 				 	<%= "" %>
 				<% end %>
 
-				<% if @trading.buyer_id == current_user.id && @trading.shipment_status == "購入者を評価する" %>
+				<% if @trading.buyer_id == current_user.id && @trading.shipment_status == "受取報告をする" %>
 					<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
 				 	<% else %>
-				 	<%= "" %>
-				<% end %>
-
-				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
-					<%= link_to "hoge", products_path %> <!-- 後ほどpathを修正 -->
- 				 	<% else %>
 				 	<%= "" %>
 				<% end %>
 
@@ -87,26 +89,20 @@
 				 	<%= ""%>
 				<% end %>
 
-                <% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする"%>
-					<%= "出品者より代金が支払われました  商品を出荷してください" %>
+				<% if @trading.seller_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
+					<%= "購入者より代金が支払われました　商品を出荷してください" %>
 					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
 　　 				<% else %>
 				 	<%= ""%>
 				<% end %>
 
-				<% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする"%>
-					<%= "出品者より代金が支払われました　商品を出荷してください" %>
-					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
+				<% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする" %>
+				　　<%= "出荷を通知しました　購入者の受取評価をお待ちください" %>
 　　 				<% else %>
 				 	<%= ""%>
 				<% end %>
-
-				<% if @trading.seller_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！"%>
-					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
-　　 				<% else %>
-				 	<%= ""%>
-				<% end %>
-                <% if @trading.seller_id == current_user.id %>
+                <% if @trading.seller_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
+                <%= "購入者が受け取りました　購入者の評価をしてください" %>
 　　　　　　　　　<%= form_for (@trading) do |f| %>
 		            <%= f.radio_button :excellent_review, :true %>
 		            <%= f.radio_button :good_review, :true %>
@@ -115,7 +111,8 @@
                 <% end %>
                 <% end %>
 
-                <% if @trading.buyer_id == current_user.id %>
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
+                <%= "出品者の評価をしてください" %>
 　　　　　　　　　<%= form_for (@trading) do |f| %>
 		            <%= f.radio_button :seller_excellent_review, :true %>
 		            <%= f.radio_button :seller_good_review, :true %>

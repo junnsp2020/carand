@@ -79,6 +79,21 @@
 						</tr>
 					</tboy>
 				</table>
+				<table class="table table-bordered">
+                	<tbody>
+                	<% @product_comments.each do |product_comment| %>
+                    	<tr>
+                    		<td>
+                       			<%= product_comment.comment %>
+                       		</td>
+                    	</tr>
+                    <% end %>
+                	</tbody>
+                </table>
+                    <%= form_for [@product, @product_comment] do |f| %>
+				    	<%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+						<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+					<% end %>
 		</div>
 	</div>
 </div>

@@ -39,6 +39,7 @@ class Product < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :reports
   has_many :wishlists
+  has_many :product_comments
 
   private
     def build_child

@@ -1,6 +1,4 @@
 class Users::TradingsController < ApplicationController
-  before_action :payment_status_set, only: [:show, :edit, :update, :change_payment_status]
-  before_action :shipment_status_set, only: [:show, :edit, :update, :change_shipment_status]
   def new
     @product = Product.find(params[:product_id])
      trading = @product.trading
@@ -97,11 +95,6 @@ class Users::TradingsController < ApplicationController
 
   def update
     @trading = Trading.find(params[:id])
-    if @trading.payment_status == "ご利用誠にありがとうございました！"
-    # binding.pry
-      @trading.completed = true
-      @trading.update(trading_params)
-    end
     if @trading.update(trading_params)
       redirect_to  request.referer
     else
@@ -110,23 +103,39 @@ class Users::TradingsController < ApplicationController
   end
 
   def change_payment_status
-    @trading.change_payment_status!
+    @trading = Trading.find(params[:trading_id])
+    # @trading.change_payment_status!
+    # if @trading.payment_status == "出品者へ入金報告をする"
+    if @trading.payment_status == "出品者へ入金報告をする"
+      @trading.payment_status = "入金報告をしました。出品者の発送待ちです"
+      @trading.shipment_status = "出荷報告をする"
+      # @trading.shipment_status = "出荷報告をする"
+      # @trading.payment_status = "受取報告をする"
+    elsif @trading.payment_status == "受取報告をする"
+      @trading.payment_status = "ご利用誠にありがとうございました！"
+      @trading.shipment_status = "購入者を評価する"
+      @trading.completed = true
+    end
+    @trading.save
     redirect_to  request.referer
   end
 
   def change_shipment_status
-    @trading.change_shipment_status!
+    @trading = Trading.find(params[:trading_id])
+    # @trading.change_shipment_status!
+    if @trading.shipment_status == "出荷報告をする"
+      @trading.shipment_status = "出荷を通知しました。購入者の評価待ちです"
+      @trading.payment_status = "受取報告をする"
+    # elsif @trading.shipment_status ==
+    #   @trading.payment_status = "受取報告をする"
+    #   @trading.shipment_status == "出荷を通知しました。購入者の評価待ちです"
+    end
+    @trading.save
     redirect_to  request.referer
   end
 
   private
   def trading_params
     params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :good_excellent_review, :poor_excellent_review, :completed)
-  end
-  def payment_status_set
-    @trading = Trading.find(params[:id] || params[:trading_id])
-  end
-  def shipment_status_set
-    @trading = Trading.find(params[:id] || params[:trading_id])
   end
 end

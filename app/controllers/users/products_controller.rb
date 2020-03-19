@@ -15,6 +15,8 @@ class Users::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
      trading = @product.build_trading
+    @product_comment = ProductComment.new
+    @product_comments = @product.product_comments
     # @trading = Trading.find(params[:trading_id])
   end
 
