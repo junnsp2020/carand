@@ -16,7 +16,7 @@ namespace :administers do
 end
 
 scope module: :users do
-	root "products#index"
+	root "homes#top"
 	get "users/userinfo/:id" => "users#userinfo", as: "userinfo_user"
 	get "users/usertransfer/:id" => "users#usertransfer", as: "usertransfer_user"
 	get "tradings/bought" => "tradings#bought", as: "bought_tradings"

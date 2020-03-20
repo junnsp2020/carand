@@ -18,11 +18,46 @@
 @import "bootstrap";
 
 header {
-			font-weight: bold;
-				span {
-					color:#fff;
-						font-size: 26px;
-							font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
-							text-shadow: 3px 3px 0 #4169e1,
+  font-weight: bold;
+	.title {
+	  font-size: 26px;
+	  font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
+	  color:#fff;
+	  text-shadow: 3px 3px 0 #4169e1
 }
+}
+body {
+	margin-top: 70px;
+}
+.hoge {
+	color: white;
+	margin-bottom: 10px;
+}
+.content1{
+  	position: absolute;
+	top: 100px;
+	left: 600px;
+	font-size: 30px;
+	color:#4169e1;
+	font-weight: bold;
+		.word{
+			color:#f79428;
+}
+}
+.content2{
+  	position: absolute;
+	top: 200px;
+	left: 300px;
+	font-size: 70px;
+	color:pink;
+	font-weight: bold;
+	text-shadow: 3px 3px 0 #4169e1
+}
+
+.main-visual{
+	position: rerative;
+}
+
+body {
+    background: #f8f8f8;
 }
