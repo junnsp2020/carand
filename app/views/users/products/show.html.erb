@@ -24,9 +24,13 @@
 
 								<h4 class="col-xs-12"><%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h4>
 							</td>
+						<% if @product.wished_by?(current_user) %>
+							<%= link_to "ほしいものリストにから削除", product_wishlists_path(@product.id), method: :delete, class: "btn-sm btn-success" %>
+						<% else %>
 							<td>
 								<%= button_to "ほしいものリストに追加", product_wishlists_path(@product.id), {method: :post, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
 							</td>
+						<% end %>
 							<td>
 								<%= button_to "通報", new_product_report_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
 							</td>

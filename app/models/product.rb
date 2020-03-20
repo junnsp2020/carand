@@ -9,6 +9,10 @@ class Product < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
+  def wished_by?(user)
+    wishlists.where(user_id: user.id).exists?
+  end
+
 	enum status:{
     "新品・未使用": 0,
     "未使用に近い": 1,
