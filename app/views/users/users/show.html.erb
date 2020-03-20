@@ -14,17 +14,24 @@
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<% if @tradings %>
-								<%= Trading.where(excellent_review: true, buyer_id: @user.id).count %>
-								<%= Trading.where(good_review: true, buyer_id: @user.id).count %>
-								<%= Trading.where(poor_review: true, buyer_id: @user.id).count %>
-							<% end %>
-
-                            <% if @trading %>
-								<%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %>
-								<%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %>
-								<%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %>
-							<% end %>
+							<td>購入</td>
+							<td>販売</td>
+						</tr>
+						<tr>
+							<td>
+								<% if @tradings %>
+									<P>良い評価<%= Trading.where(excellent_review: true, buyer_id: @user.id).count %></P>
+									<p>ふつう評価<%= Trading.where(good_review: true, buyer_id: @user.id).count %></p>
+									<p>悪い評価<%= Trading.where(poor_review: true, buyer_id: @user.id).count %></p>
+								<% end %>
+							</td>
+							<td>
+	                            <% if @trading %>
+									<%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %>
+									<%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %>
+									<%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %>
+								<% end %>
+							</td>
 						</tr>
 
 						<tr>

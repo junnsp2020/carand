@@ -15,7 +15,9 @@
         <span class="nav">
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
-          <span class="title">カランド</span>
+          <%= link_to root_path do %>
+              <span class="title">カランド</span>
+          <% end %>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="center-block"><%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
@@ -27,16 +29,17 @@
       </nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to "取引一覧", tradings_path %></li>
+            <li><%= link_to "ほしいもの一覧", wish_wishlists_path %></li>
             <li>
               <%= link_to "買った！", tradings_path %>
-              <span class="badge"><%= Trading.where(completed: false, buyer_id: current_user.id).count %></span>
+              <span class="badge", style="color: white;"><%= Trading.where(completed: false, buyer_id: current_user.id).count %></span>
             </li>
               <!-- ("completed = false?, buyer_id =current_user.id?" or "completed = false, seller_id =current_user.id") -->
             <li>
                 <span><%= link_to "売った！", tradings_path %></span>
-                <span class="badge"><%= Trading.where(completed: false, seller_id: current_user.id).count %></span>
+                <span class="badge", style="color: white;"><%= Trading.where(completed: false, seller_id: current_user.id).count %></span>
             </li>
+            <li><%= link_to "マイページ", user_path(current_user) %></li>
           <% end %>
         <span class="hoge" style="color: white;"><%= link_to "sign_out", destroy_user_session_path, method: :delete %></span>
         <span><%= link_to ' login', new_user_session_path %></span>
