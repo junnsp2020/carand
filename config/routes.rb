@@ -24,6 +24,7 @@ scope module: :users do
 	get "wishlists/wish" => "wishlists#wish", as: "wish_wishlists"
 	resources :users, only: [:show, :edit, :update, :create, :delete]
     resources :transfers, except: [:new, :index, :destroy]
+    get "/products_search" => "products#search" ,as: "product_search"
 
 	resources :products do
 		resource :product_comments

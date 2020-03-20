@@ -26,13 +26,17 @@
             <li><%= Trading.where(payment_status: "出品者へ入金報告をする").count %></li>
           <% end %>
         </ul>
+        <%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
+          <%= f.text_field :name %>
+          <%= f.submit :search %>
+        <% end %>
+        <span><%= link_to "sign_out", destroy_user_session_path, method: :delete %></span>
+        <span><%= link_to ' login', new_user_session_path %></span>
+        <span><%= link_to "アドミン sign_out", destroy_user_session_path, method: :delete %></span>
+        <span><%= link_to 'アドミン login', new_user_session_path %></span>
     </header>
   </body>
 
-    <p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
-    <p><%= link_to ' login', new_user_session_path %></p>
-    <p><%= link_to "アドミン sign_out", destroy_user_session_path, method: :delete %></p>
-    <p><%= link_to 'アドミン login', new_user_session_path %></p>
     <%= yield %>
   </body>
 </html>

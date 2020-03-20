@@ -8,7 +8,7 @@
 							<% if current_user == @user %>
 								<p><%= link_to"個人情報詳細", userinfo_user_path, class: "btn btn-success col-xs-4 col-xs-offset-4" %></p>
 								<p><%= link_to current_user.active_tradings.count, bought_tradings_path %></p>
-								<p><%= Trading.where(completed: false, buyer_id: @user.id).count %>
+								<p><span class="badge"><%= Trading.where(completed: false, buyer_id: @user.id).count %></span>
 							<% end %>
 							<p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
 				<table class="table table-bordered">

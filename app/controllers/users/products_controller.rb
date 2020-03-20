@@ -46,6 +46,14 @@ class Users::ProductsController < ApplicationController
   def destroy
   end
 
+  def search
+    if params[:name].present?
+      @products = Product.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @products = Product.all
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(:category_id, :user_id, :name, :image, :introduction, :status, :price, :profit, :postage, :postage_responsibility, :sale_status, :propriety)

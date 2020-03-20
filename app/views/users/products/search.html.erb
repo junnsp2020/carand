@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9">
+      <h3>検索結果 一覧</h3>
+        <% @products.each do |product| %>
+          <div class="col-xs-3">
+            <%= link_to product_path(product.id) do %>
+            <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size:'150x150' %>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
