@@ -8,11 +8,11 @@
 				        <div class="col-xs-3">
 								<%= link_to product_path(product.id) do %>
 								<div class="hoge2">
-									<%= attachment_image_tag product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-								</div>
-								<% if product.sale_status != "販売中" %>
 								<div class="hoge3">
 									<%= link_to "売切", product_path(product.id), class: "btn-sm btn-danger" %>
+								</div>
+									<%= attachment_image_tag product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+								<% if product.sale_status != "販売中" %>
 								</div>
 								<% end %>
 								<% end %>

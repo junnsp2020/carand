@@ -49,13 +49,21 @@
           <% if user_signed_in? %>
             <li><%= link_to "ほしいもの一覧", wish_wishlists_path %></li>
             <li>
-              <%= link_to "買った！", bought_tradings_path %>
-              <span class="badge", style="color: white;"><%= Trading.where(completed: false, buyer_id: current_user.id).count %></span>
+              <span class="trading-list">
+                <%= link_to "買った！", bought_tradings_path %>
+                <span class="badge", style="color: white;">
+                  <%= Trading.where(completed: false, buyer_id: current_user.id).count %>
+                </span>
+              </span>
             </li>
               <!-- ("completed = false?, buyer_id =current_user.id?" or "completed = false, seller_id =current_user.id") -->
             <li>
-                <span><%= link_to "売った！", sold_tradings_path %></span>
-                <span class="badge", style="color: white;"><%= Trading.where(completed: false, seller_id: current_user.id).count %></span>
+                <span class="trading-list">
+                  <%= link_to "売った！", sold_tradings_path %>
+                  <span class="badge", style="color: white;">
+                    <%= Trading.where(completed: false, seller_id: current_user.id).count %>
+                  </span>
+                </span>
             </li>
             <li><%= link_to "マイページ", user_path(current_user) %></li>
           <% else %>
@@ -88,7 +96,9 @@
   </body>
 
     <%= yield %>
-    <div class="camera"><%= link_to "", new_product_path, class: "btn btn-default glyphicon glyphicon-camera rounded-circle p-0" %></div>
+    <div class="camera">
+      <%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+    </div>
   </body>
 </html>
 http://localhost:3000/products/16
