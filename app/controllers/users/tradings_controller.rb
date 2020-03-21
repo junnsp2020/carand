@@ -129,6 +129,8 @@ class Users::TradingsController < ApplicationController
     # elsif @trading.shipment_status ==
     #   @trading.payment_status = "受取報告をする"
     #   @trading.shipment_status == "出荷を通知しました。購入者の評価待ちです"
+    elsif @trading.shipment_status == "購入者を評価する"
+      @trading.shipment_status = "取引完了"
     end
     @trading.save
     redirect_to  request.referer

@@ -19,7 +19,8 @@ class Trading < ApplicationRecord
   enum shipment_status:{
    "出荷報告をする": 0,
    "出荷を通知しました。購入者の評価待ちです": 1,
-   "購入者を評価する": 2
+   "購入者を評価する": 2,
+   "取引完了": 3
   }
 
   def total_price

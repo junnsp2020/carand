@@ -27,7 +27,7 @@ header {
 }
 }
 body {
-	margin-top: 70px;
+	margin-top: 90px;
 }
 .hoge {
 	color: white;
@@ -80,9 +80,23 @@ body {
 	border-radius: 50%;
 }
 .trading-list{
-	padding-top: 15px;
+	padding-top: 30px;
 	padding-bottom: 15px;
 	display: block;
+	font-size: 20px;
+	padding-right: 10px;
+}
+.wishlists{
+	padding-top: 17px;
+	display: block;
+	font-size: 20px;
+	padding-right: 10px;
+}
+.mypage{
+	padding-top: 17px;
+	display: block;
+	font-size: 20px;
+	padding-right: 10px;
 }
 .btn-circle.btn-lg {
   position: fixed;
