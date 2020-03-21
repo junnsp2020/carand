@@ -13,11 +13,18 @@
 								<% end %>
 							</td>
 							</td>
-								<td width="40%">
+								<td width="30%">
 								<%= link_to product.name, product_path(product.id) %>
 							</td>
-							<td width="40%">
+							<td width="30%">
 								<%= number_to_currency(product.price, :unit => "￥", :precision => 0) %>
+							</td>
+							<td>
+								<% if product.sale_status == "販売中" %>
+									<%= link_to "販売中", product_path(product.id), class: "btn-sm btn-info" %>
+								<% else %>
+									<span class="button1"><%= link_to "売却済", product_path(product.id), class: "btn-sm btn-danger" %></span>
+								<% end %>
 							</td>
 							<td width="10%">
 								<%= product.created_at.strftime('%Y-%m-%d') %>
