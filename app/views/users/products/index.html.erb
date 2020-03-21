@@ -6,15 +6,17 @@
 			<h3>商品一覧  全<%= Product.all.count %>件</h3>
 			<% @products.each do |product| %>
 				        <div class="col-xs-3">
-								<%= link_to product_path(product.id) do %>
 								<div class="hoge2">
 								<div class="hoge3">
+								<%= link_to product_path(product.id) do %>
 									<% if product.sale_status != "販売中" %>
 										<%= link_to "売切", product_path(product.id), class: "btn-sm btn-danger" %>
 									<% else %>
 										<%= link_to "販売中", product_path(product.id), class: "btn-sm btn-info" %>
 									<% end %>
+								<% end %>
 								</div>
+								<%= link_to product_path(product.id) do %>
 									<%= attachment_image_tag product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
 								</div>
 								<% end %>

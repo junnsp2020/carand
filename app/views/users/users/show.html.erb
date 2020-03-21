@@ -1,55 +1,65 @@
 <div class="container">
-	<div class="row">
-		<div class="col-xs-2">
-			<h3>メニューバー</h3>
-		</div>
-			<div class="col-xs-10">
-			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
-							<% if current_user == @user %>
-								<p><%= link_to"個人情報詳細", userinfo_user_path, class: "btn btn-success col-xs-4 col-xs-offset-4" %></p>
-								<p><%= link_to current_user.active_tradings.count, bought_tradings_path %></p>
-								<p><span class="badge"><%= Trading.where(completed: false, buyer_id: @user.id).count %></span>
+		<div class="col-xs-2 sidebar">
+	        <ul class="nav nav-sidebar navbar-light">
+	            <li><%= link_to "入金", usertransfer_user_path %></li>
+	            <ul class="nav nav-sidebar navbar-light">
+	            	<h5>マイページメニュー</h5>
+						<li class="list-group-item"><%= link_to "ほしいものリスト", wish_wishlists_path %></li>
+					<h5>商品を出品する</h5>
+						<li class="list-group-item"><%=link_to "商品を出品する", new_product_path %></li>
+						<li class="list-group-item"><%=link_to "出品した商品", my_product_products_path %></li>
+					<h5>購入した商品</h5>
+						<li class="list-group-item"><%=link_to "購入した商品", bought_tradings_path %></li>
+				</ul>
+	        </ul>
+    	</div>
+		<div class="col-xs-10">
+		<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
+			<% if current_user == @user %>
+				<p><%= link_to"個人情報詳細", userinfo_user_path, class: "btn btn-success col-xs-4 col-xs-offset-4" %></p>
+				<p><%= link_to current_user.active_tradings.count, bought_tradings_path %></p>
+			<% end %>
+			<p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>購入</td>
+						<td>販売</td>
+					</tr>
+					<tr>
+						<td>
+							<% if @tradings %>
+								<P>良い評価 <%= Trading.where(excellent_review: true, buyer_id: @user.id).count %></P>
+								<p>ふつう評価 <%= Trading.where(good_review: true, buyer_id: @user.id).count %></p>
+								<p>悪い評価 <%= Trading.where(poor_review: true, buyer_id: @user.id).count %></p>
 							<% end %>
-							<p><%= link_to "sign_out", destroy_user_session_path, method: :delete %></p>
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							<td>購入</td>
-							<td>販売</td>
-						</tr>
-						<tr>
-							<td>
-								<% if @tradings %>
-									<P>良い評価<%= Trading.where(excellent_review: true, buyer_id: @user.id).count %></P>
-									<p>ふつう評価<%= Trading.where(good_review: true, buyer_id: @user.id).count %></p>
-									<p>悪い評価<%= Trading.where(poor_review: true, buyer_id: @user.id).count %></p>
-								<% end %>
-							</td>
-							<td>
-	                            <% if @trading %>
-									<%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %>
-									<%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %>
-									<%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %>
-								<% end %>
-							</td>
-						</tr>
+						</td>
+						<td>
+                            <% if @trading %>
+								<P>良い評価 <%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %></P>
+								<p>ふつう評価 <%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %></p>
+								<P>悪い評価 <%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %></P>
+								<%= link_to "入金", usertransfer_user_path %>
+							<% end %>
+						</td>
+					</tr>
 
-						<tr>
-							<td colspan="2">取引</td>
-							<td><%= link_to "出品した商品", my_product_products_path %></td>
-						</tr>
-						<tr>
-							<td rowspan="2">マイブログ</td>
-							<td>いいね一覧</td>
-						</tr>
-						<tr>
-							<td>交換希望リスト</td>
-							<td><%= link_to "ほしいもの一覧へ", wish_wishlists_path %></td>
-						</tr>
-						<tr>
-							<td>交換希望リスト</td>
-						</tr>
-					</tbody>
-				</table>
-	</div>
+					<tr>
+						<!-- <td colspan="2"> --><td>取引</td>
+						<td><%= link_to "出品した商品", my_product_products_path %></td>
+					</tr>
+					<tr>
+						<!-- <td rowspan="2"> --><td>マイブログ</td>
+						<td>いいね一覧</td>
+					</tr>
+					<tr>
+						<td>交換希望リスト</td>
+						<td><%= link_to "ほしいもの一覧へ", wish_wishlists_path %></td>
+					</tr>
+					<tr>
+						<td>交換希望リスト</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 </div>

@@ -61,6 +61,9 @@ body {
 body {
     background: #f8f8f8;
 }
+.glyphicon-star{
+	color: #fff;
+}
 .badge1{
 	.badge{
 		background: block;
@@ -92,8 +95,8 @@ body {
 }
 .camera{
 	position: fixed;
-	bottom: 0;
-	right: 0;
+	bottom: 10%;
+	right: 5%;
 }
 .trading-list{
 	padding-top: 30px;

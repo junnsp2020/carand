@@ -12,14 +12,14 @@
   <body>
     <header class="navbar navbar-fixed-top" style="background-color:#f79428;">
       <nav class="nav navbar-nav navbar-left">
-          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
-          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
+          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 11px"></span>
+          <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 11px"></span>
           <%= link_to root_path do %>
               <span class="title">カランド</span>
           <% end %>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
-          <span class="center-block">
+          <span class="center-block justify-content-center">
             <%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
               <%= f.text_field :name , placeholder: "何をお探しですか？"%>
             <%= f.submit :🔍 %>
@@ -47,7 +47,7 @@
       </nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li class="wishlists"><%= link_to "ほしいもの一覧", wish_wishlists_path %></li>
+            <li class="wishlists"><%= link_to "ほしいものリスト", wish_wishlists_path %></li>
             <li>
               <span class="trading-list">
                 <%= link_to "買った！", bought_tradings_path %>
@@ -94,26 +94,6 @@
     <div class="camera">
       <%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
     </div>
-    <div class="col-xs-2 sidebar">
-        <ul class="nav nav-sidebar">
-            <li class="active"><a href="">hoge</a></li>
-            <li><a href="">hoge</a></li>
-            <li><a href="">hoge</a></li>
-            <li><a href="/questionnaire">hoge</a></li>
-        </ul>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Category <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <td><%= link_to '全て', products_path %></td>
-            </li>
-            <%= Category.all.count %>
-              <td><%#= link_to category.name, "/products?category_id=#{category.id}" %></td>
-        </li>
-          </ul>
-        </li>
-    </div>
-
     <%= yield %>
   </body>
 </html>
