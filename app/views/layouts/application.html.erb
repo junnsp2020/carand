@@ -12,7 +12,7 @@
   <body>
     <header class="navbar navbar-fixed-top" style="background-color:#f79428;">
       <nav class="nav navbar-nav navbar-left">
-        <span class="nav">
+        <!-- <span class="nav"> -->
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <%= link_to root_path do %>
@@ -23,9 +23,27 @@
           <span class="center-block"><%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
             <%= f.text_field :name , placeholder: "何をお探しですか？"%>
             <%= f.submit :🔍 %>
-          <% end %>
           </span>
-        </span>
+          <% end %>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              カテゴリーからもお探しできます
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to "全て", products_path %>
+              </li>
+              <li>
+                <% Category.all.each do |category| %>
+              </li>
+              <li>
+                <%= link_to category.name, products_path(category_id: category.id) %>
+              </li>
+                <% end %>
+            </ul>
+          </div>
+        <!-- </span> -->
       </nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
@@ -70,5 +88,7 @@
   </body>
 
     <%= yield %>
+    <div class="camera"><%= link_to "", new_product_path, class: "btn btn-default glyphicon glyphicon-camera rounded-circle p-0" %></div>
   </body>
 </html>
+http://localhost:3000/products/16
