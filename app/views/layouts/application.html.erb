@@ -82,6 +82,9 @@
           <% end %>
         </ul>
     </header>
+    <div class="camera">
+      <%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+    </div>
     <div class="col-xs-2 sidebar">
         <ul class="nav nav-sidebar">
             <li class="active"><a href="">hoge</a></li>
@@ -97,16 +100,11 @@
             </li>
             <%= Category.all.count %>
               <td><%#= link_to category.name, "/products?category_id=#{category.id}" %></td>
-            </li>
+        </li>
           </ul>
         </li>
     </div>
-  </body>
 
     <%= yield %>
-    <div class="camera">
-      <%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
-    </div>
   </body>
 </html>
-http://localhost:3000/products/16

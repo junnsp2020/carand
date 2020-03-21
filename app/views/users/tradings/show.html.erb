@@ -101,24 +101,28 @@
 　　 				<% else %>
 				 	<%= ""%>
 				<% end %>
-                <% if @trading.seller_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
-                <%= "購入者が受け取りました　購入者の評価をしてください" %>
-　　　　　　　　　<%= form_for (@trading) do |f| %>
-		            <%= f.radio_button :excellent_review, :true %>
-		            <%= f.radio_button :good_review, :true %>
-		            <%= f.radio_button :poor_review, :true %>
-                <%= f.submit "評価を確定する" %>
-                <% end %>
+                <% if @trading.seller_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+	                <%= "購入者が受け取りました　購入者の評価をしてください" %>
+	　　　　　　　　　<%= form_for (@trading) do |f| %>
+			            <%= f.radio_button :excellent_review, :true %>
+			            <%= f.radio_button :good_review, :true %>
+			            <%= f.radio_button :poor_review, :true %>
+	                <%= f.submit "評価を確定する" %>
+	                <% end %>
+	            <% elsif @trading.seller_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
+	            	<%= "ご利用誠にありがとうございました！" %>
                 <% end %>
 
-                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" && @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
                 <%= "出品者の評価をしてください" %>
-　　　　　　　　　<%= form_for (@trading) do |f| %>
-		            <%= f.radio_button :seller_excellent_review, :true %>
-		            <%= f.radio_button :seller_good_review, :true %>
-		            <%= f.radio_button :seller_poor_review, :true %>
-                <%= f.submit "評価を確定する" %>
-                <% end %>
+	　　　　　　　　　<%= form_for (@trading) do |f| %>
+			            <%= f.radio_button :seller_excellent_review, :true %>
+			            <%= f.radio_button :seller_good_review, :true %>
+			            <%= f.radio_button :seller_poor_review, :true %>
+	                <%= f.submit "評価を確定する" %>
+	                <% end %>
+                <% elsif @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" %>
+	            	<%= "ご利用誠にありがとうございました！" %>
                 <% end %>
 
 
