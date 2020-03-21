@@ -31,20 +31,21 @@
           <% if user_signed_in? %>
             <li><%= link_to "ほしいもの一覧", wish_wishlists_path %></li>
             <li>
-              <%= link_to "買った！", tradings_path %>
+              <%= link_to "買った！", bought_tradings_path %>
               <span class="badge", style="color: white;"><%= Trading.where(completed: false, buyer_id: current_user.id).count %></span>
             </li>
               <!-- ("completed = false?, buyer_id =current_user.id?" or "completed = false, seller_id =current_user.id") -->
             <li>
-                <span><%= link_to "売った！", tradings_path %></span>
+                <span><%= link_to "売った！", sold_tradings_path %></span>
                 <span class="badge", style="color: white;"><%= Trading.where(completed: false, seller_id: current_user.id).count %></span>
             </li>
             <li><%= link_to "マイページ", user_path(current_user) %></li>
+          <% else %>
+            <span class="hoge" style="color: white;"><%= link_to "sign_out", destroy_user_session_path, method: :delete %></span>
+            <span><%= link_to ' login', new_user_session_path %></span>
+            <span><%= link_to "アドミン sign_out", destroy_user_session_path, method: :delete %></span>
+            <span><%= link_to 'アドミン login', new_user_session_path %></span>
           <% end %>
-        <span class="hoge" style="color: white;"><%= link_to "sign_out", destroy_user_session_path, method: :delete %></span>
-        <span><%= link_to ' login', new_user_session_path %></span>
-        <span><%= link_to "アドミン sign_out", destroy_user_session_path, method: :delete %></span>
-        <span><%= link_to 'アドミン login', new_user_session_path %></span>
         </ul>
     </header>
     <div class="col-xs-2 sidebar">

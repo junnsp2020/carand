@@ -43,6 +43,10 @@ class Users::ProductsController < ApplicationController
     end
   end
 
+  def my_product
+    @products = Product.where(user_id: current_user.id)
+  end
+
   def destroy
   end
 
