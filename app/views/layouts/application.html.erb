@@ -12,7 +12,6 @@
   <body>
     <header class="navbar navbar-fixed-top" style="background-color:#f79428;">
       <nav class="nav navbar-nav navbar-left">
-        <!-- <span class="nav"> -->
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <%= link_to root_path do %>
@@ -52,26 +51,36 @@
             <li>
               <span class="trading-list">
                 <%= link_to "買った！", bought_tradings_path %>
-                <span class="badge", style="color: white;">
-                  <%#= Trading.where(payment_status: "受取報告をする", payment_status: "出品者へ入金報告をする", buyer_id: current_user.id).count %>
-                  <%#= Trading.where("{(payment_status = ?) OR (payment_status = ?)} AND (buyer_id = ?)", "受取報告をする", "出品者へ入金報告をする", current_user.id).count %>
-                  <%#= Trading.where("(payment_status = ?) OR (payment_status = ?)" )AND (buyer_id = ?)", (("受取報告をする", "出品者へ入金報告をする"), current_user.id).count %>
-                  <%#= Trading.where("(payment_status = ?) OR (payment_status = ?) AND (buyer_id = ?)", 0, 2, current_user.id).count %>   <!-- #エラーは出ない -->
-                  <%#= Trading.where(seller_id: current_user.id).("(payment_status = ?) OR (payment_status = ?) AND (buyer_id = ?)", "受取報告をする", "出品者へ入金報告をする", current_user.id).count %>
-                  <%= Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where(buyer_id: current_user.id).count %>
-                </span>
-              </span>
-            </li>
-              <!-- ("completed = false?, buyer_id =current_user.id?" or "completed = false, seller_id =current_user.id") -->
-            <li>
-                <span class="trading-list">
-                  <%= link_to "売った！", sold_tradings_path %>
-                  <span class="badge", style="color: white;">
-                    <%#= Trading.where(completed: false, seller_id: current_user.id).count %>
-                  <%#= Trading.where("(shipment_status = ?) OR (shipment_status = ?) AND (seller_id = ?)", 0, 2, current_user.id).count %>
-                  <%= Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2,).where(seller_id: current_user.id).count %>
+                  <% if Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where(buyer_id: current_user.id).count == 0 %>
+                    <span class="badge1">
+                      <span class="badge", style="color: white;">
+                      <%= Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where(buyer_id: current_user.id).count %>
+                      </span>
                   </span>
-                </span>
+                    <% else %>
+                    <span class="badge2">
+                      <span class="badge", style="color: white;">
+                        <%= Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where(buyer_id: current_user.id).count %>
+                      </span>
+                    </span>
+                  <% end %>
+            </li>
+            <li>
+              <span class="trading-list">
+                <%= link_to "売った！", sold_tradings_path %>
+                  <% if Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2).where(seller_id: current_user.id).count == 0 %>
+                    <span class="badge3">
+                      <span class="badge", style="color: white;">
+                      <%= Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2,).where(seller_id: current_user.id).count %>
+                      </span>
+                    </span>
+                  <% else %>
+                    <span class="badge4">
+                      <span class="badge", style="color: white;">
+                      <%= Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2).where(seller_id: current_user.id).count %>
+                      </span>
+                    </span>
+                  <% end %>
             </li>
             <li class="mypage"><%= link_to "マイページ", user_path(current_user) %></li>
           <% else %>

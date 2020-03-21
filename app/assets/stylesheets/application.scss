@@ -61,8 +61,25 @@ body {
 body {
     background: #f8f8f8;
 }
-.badge{
-	background: red;
+.badge1{
+	.badge{
+		background: block;
+}
+}
+.badge2{
+	.badge{
+		background: red;
+}
+}
+.badge3{
+	.badge{
+		background: block;
+}
+}
+.badge4{
+	.badge{
+		background: red;
+}
 }
 .hoge2{
 	position: relative;
