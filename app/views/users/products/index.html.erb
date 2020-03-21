@@ -9,16 +9,17 @@
 								<%= link_to product_path(product.id) do %>
 								<div class="hoge2">
 								<div class="hoge3">
-									<%= link_to "売切", product_path(product.id), class: "btn-sm btn-danger" %>
+									<% if product.sale_status != "販売中" %>
+										<%= link_to "売切", product_path(product.id), class: "btn-sm btn-danger" %>
+									<% else %>
+										<%= link_to "販売中", product_path(product.id), class: "btn-sm btn-info" %>
+									<% end %>
 								</div>
 									<%= attachment_image_tag product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-								<% if product.sale_status != "販売中" %>
 								</div>
-								<% end %>
 								<% end %>
 						</div>
 			<% end %>
-			<%= @count %>
 		</div>
 	</div>
 </div>
