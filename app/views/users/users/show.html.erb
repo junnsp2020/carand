@@ -21,7 +21,7 @@
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<td class="balance">残高 <span><%= @balance %></span>円</td>
+					<td class="balance">残高 <span><%= number_to_currency(@balance, :unit => "￥", :precision => 0) %></span></td>
 				</tr>
 				<tr>
 					<td><%= link_to "振込申請する", usertransfer_user_path(current_user) %></td>

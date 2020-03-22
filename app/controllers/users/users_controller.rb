@@ -10,6 +10,7 @@ class Users::UsersController < ApplicationController
 		@trading = Trading.where(buyer_id: current_user.id)
 		@tradings = @user.tradings
 		@tradings = Trading.where(seller_id: current_user.id)
+		@balance = calculate(current_user)
 		# # @excellent_count = @user.excellent_count  #追加   #一旦コメントアウト
 		# # @good_count = @user.good_count  #追加   #一旦コメントアウト
 		# # @poor_count = @user.poor_count  #追加   #一旦コメントアウト
