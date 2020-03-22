@@ -25,6 +25,14 @@
             <%= f.submit :🔍 %>
           </span>
           <% end %>
+
+          <% if Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where(buyer_id: current_user.id).count == 0 && Product.where(notice: true).count == 0 %>
+                      <% end %>
+
+          <% if Product.where(user_id: current_user.id).count != 0 && BarterRequest.where(notice: true).count != 0 %>
+            <%= "hoge" %>
+          <% end %>
+
           <div class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               カテゴリーからもお探しできます

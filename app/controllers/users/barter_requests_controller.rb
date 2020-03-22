@@ -26,6 +26,8 @@ class Users::BarterRequestsController < ApplicationController
     @barter_request = BarterRequest.new(barter_request_params)
     @barter_request.product_id = @product.id
     @barter_request.user_id = current_user.id
+    @barter_request.notice = false
+    # @product.notice = true
     if @barter_request.save
       redirect_to product_barter_requests_path
     else
@@ -45,9 +47,17 @@ class Users::BarterRequestsController < ApplicationController
   def my_request
     # @product = Product.find(params[:product_id])
     # @barter_requests =  @product.barter_requests
-    @barter_requests = BarterRequest.where(user_id: current_user.id )
+    @barter_requests = BarterRequest.where(user_id: current_user.id)
     # @barter_request.product_id = @product.id
     # @barter_request.user_id = current_user.id
+  end
+
+  def requested
+    @product = Product.find_by(user_id: current_user.id)
+    # barter_requests = BarterRequest.all
+    @barter_requests = BarterRequest.where(product_id: @product.id)
+    @barter_requests = @product.barter_requests
+    # @product.barter_requests.product_id = @product.id
   end
 
   def destroy

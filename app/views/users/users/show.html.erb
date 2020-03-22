@@ -11,7 +11,7 @@
 						<li class="list-group-item"><%=link_to "購入した商品", bought_tradings_path %></li>
 					<h5>交換</h5>
 						<li class="list-group-item"><%=link_to "交換リクエスト【 送った 】", my_request_barter_requests_path(current_user.id) %></li>
-						<li class="list-group-item"><%=link_to "交換リクエスト【 もらった 】", bought_tradings_path %></li>
+						<li class="list-group-item"><%=link_to "交換リクエスト【 もらった 】", requested_barter_requests_path %></li>
 					<h5>設定・その他</h5>
 						<li class="list-group-item"><%= link_to "個人情報詳細", userinfo_user_path %></li>
 						<li class="list-group-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
