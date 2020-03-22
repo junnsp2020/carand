@@ -26,8 +26,8 @@ class Users::BarterRequestsController < ApplicationController
     @barter_request = BarterRequest.new(barter_request_params)
     @barter_request.product_id = @product.id
     @barter_request.user_id = current_user.id
-    @barter_request.notice = false
-    # @product.notice = true
+    @product.notice = false
+    @product.save
     if @barter_request.save
       redirect_to product_barter_requests_path
     else

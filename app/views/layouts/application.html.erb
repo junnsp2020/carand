@@ -26,11 +26,11 @@
           </span>
           <% end %>
 
-          <% if Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where(buyer_id: current_user.id).count == 0 && Product.where(notice: true).count == 0 %>
-                      <% end %>
-
-          <% if Product.where(user_id: current_user.id).count != 0 && BarterRequest.where(notice: true).count != 0 %>
-            <%= "hoge" %>
+          <%# if Product.where(user_id: current_user.id).count != 0 && BarterRequest.where(notice: true).count != 0 %>
+            <%#= "hoge" %>
+          <%# end %>
+          <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
+            <%= link_to "交換リクエストがきています　内容を除いてみましょう", requested_barter_requests_path %>
           <% end %>
 
           <div class="dropdown">
