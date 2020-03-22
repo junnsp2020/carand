@@ -36,6 +36,7 @@ scope module: :users do
 		resources :barter_requests, except: [:edit]
 		resources :reports, only: [:new, :create]
 	end
+	get "my_barter_requests/:user_id" => "barter_requests#my_request", as: "my_request_barter_requests"
 	resources :tradings, except: [:destroy] do
 		resource :trading_messages
 		patch :change_payment_status

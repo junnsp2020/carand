@@ -11,14 +11,9 @@ class Users::UsersController < ApplicationController
 		@tradings = @user.tradings
 		@tradings = Trading.where(seller_id: current_user.id)
 		@balance = calculate(current_user)
-		# # @excellent_count = @user.excellent_count  #追加   #一旦コメントアウト
-		# # @good_count = @user.good_count  #追加   #一旦コメントアウト
-		# # @poor_count = @user.poor_count  #追加   #一旦コメントアウト
-		# @product = Product.where(user_id: current_user.id) #追加
-		# @excellent_count = @product.excellent_count  #追加
-		# @good_count = @product.good_count  #追加
-		# @poor_count = @product.poor_count  #追加
-	    # @excellent_count = Trading.where(excellent_review: "false").where(buyer_id: current_user.id)
+		# @product = Product.find(params[:product_id])
+		@barter_requests = BarterRequest.where(user_id: current_user.id )
+		# product = Product.find(params[:product_id])
 	end
 
 	def userinfo
