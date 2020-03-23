@@ -102,10 +102,24 @@ class Users::TradingsController < ApplicationController
     else
       render :show
     end
-    if @trading.shipment_status == "購入者を評価する"
+    if @trading.payment_status == "受取報告をする"
+      @trading.payment_status = "ご利用誠にありがとうございました！"
+      @trading.shipment_status = "購入者を評価する"
+      @trading.save
+    end
+    if @trading.shipment_status == "購入者を評価する" && @trading.excellent_review == true
       @trading.shipment_status = "取引完了"
       @trading.save
     end
+    if @trading.shipment_status == "購入者を評価する" && @trading.good_review == true
+      @trading.shipment_status = "取引完了"
+      @trading.save
+    end
+    if @trading.shipment_status == "購入者を評価する" && @trading.poor_review == true
+      @trading.shipment_status = "取引完了"
+      @trading.save
+    end
+
   end
 
   def change_payment_status
