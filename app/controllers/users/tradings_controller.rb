@@ -12,6 +12,7 @@ class Users::TradingsController < ApplicationController
   end
 
   def show
+    # @product = Product.find(params[:product_id])
     @trading = Trading.find(params[:id])
     @buyer = Trading.where(buyer_id: current_user.id)
     @seller = Trading.where(seller_id: current_user.id)
@@ -56,10 +57,15 @@ class Users::TradingsController < ApplicationController
     # @poor.product_id = @product.id
     # @poor.user_id = current_user.id
        # binding.pry
-    if @trading.payment_status == "出品者へ入金報告をする"
+    if @product.barter_approval != true && @trading.payment_status == "出品者へ入金報告をする"
       @trading.completed = false
     elsif @trading.payment_status == "受取報告をする"
       @trading.completed = false
+    end
+
+    if @product.barter_approval == true
+      @trading.payment_status = "交換(購入者)"
+      @trading.shipment_status = "交換(出品者)"
     end
 
     @trading.save(trading_params)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_063219) do
+ActiveRecord::Schema.define(version: 2020_03_23_060136) do
 
   create_table "administers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_063219) do
     t.integer "sale_status", default: 0
     t.integer "propriety", default: 0
     t.boolean "notice"
+    t.boolean "barter_approval"
   end
 
   create_table "reports", force: :cascade do |t|

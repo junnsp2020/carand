@@ -57,7 +57,9 @@
                   <%#= f.submit "更新", class: "btn btn-primary" %>
                 <%# end %>
 
-                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
+                <%# if @product.barter_approval != true %>
+
+				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
                 	<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
 				 	<% else %>
 				 	<%= "" %>
@@ -151,6 +153,13 @@
                 <% elsif @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" && @trading.seller_poor_review == true %>
                 	<%= "ご利用誠にありがとうございました！" %>
                 <% end %>
+
+                <%# else %>
+
+                <%# "hoge" %>
+
+                <%# end %>
+
 
 
                 <table class="table table-bordered">

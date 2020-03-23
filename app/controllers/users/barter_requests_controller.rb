@@ -37,7 +37,10 @@ class Users::BarterRequestsController < ApplicationController
 
   def update
     @barter_request = BarterRequest.find(params[:id])
+    @product = Product.find(params[:product_id])
     if @barter_request.update(barter_request_params)
+      @product.barter_approval = true
+      @product.save
       redirect_to  request.referer
     else
       render :show
@@ -65,6 +68,6 @@ class Users::BarterRequestsController < ApplicationController
 
   private
   def barter_request_params
-    params.require(:barter_request).permit(:product_id, :user_id, :name, :image, :introduction, :comment, :product_condition, :propriety, :buyer_id, :seller_id)
+    params.require(:barter_request).permit(:product_id, :user_id, :name, :image, :introduction, :comment, :product_condition, :propriety, :buyer_id, :seller_id, :notice)
   end
 end

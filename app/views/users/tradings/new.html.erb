@@ -26,7 +26,12 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
+                      <%#= f.hidden_field :product_id, :value => @product.id %>
+                      <% if @product.barter_approval != true %>
+                        <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
+                      <% else %>
+                        <%= f.submit "交換取引を確定する", {method: :post, class: "btn-sm btn-success col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
+                      <% end %>
                     </td>
                   </tr>
                 <% end %>
