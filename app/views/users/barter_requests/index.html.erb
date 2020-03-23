@@ -38,9 +38,11 @@
 								 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
 								 	  	<%= f.submit "確定" %>
 						 	  		<% end %>
-						 		<% else %>
-						 	  		<%= "" %>
-						 		<% end %>
+						 	  	<% end %>
+						 	  	<% if current_user == @product.user && barter_request.propriety == "許可する" %>
+						 	  		<span class="propriety"><%= "リクエストを許可しました" %></span>
+						 	  	<% end %>
+
 						 		<% if barter_request.buyer_id == current_user.id && barter_request.propriety == "許可する" %>
 						 			<%= button_to "リクエストが承認されました！ 取引画面へ進んでください", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
 						 		<% else %>

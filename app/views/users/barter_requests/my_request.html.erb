@@ -12,20 +12,25 @@
 									<%= attachment_image_tag barter_request.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
 								<% end %>
 							</td>
-							<td width="30%">
+							<td width="15%">
 								<%= link_to barter_request.product.name, product_path(barter_request.product.id) %>
 							</td>
 							<td width="10%">
 									<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
 							</td>
-							<td width="30%">
+							<td width="15%">
 								<%= link_to barter_request.name, product_barter_request_path(barter_request.product, barter_request)  %>
 							</td>
-							<td>
+							<td width="20%">
+								<% if barter_request.propriety == "許可する" %>
+									<%= link_to "リクエストが許可されました！", product_barter_requests_path(barter_request.product.id), class: "btn btn-success" %>
+								<% end %>
+							</td>
+							<td width="20%">
 								<% if barter_request.product.sale_status == "販売中" %>
 									<%= link_to "販売中", product_path(barter_request.product.id), class: "btn-sm btn-info" %>
 								<% else %>
-									<span class="button1"><%= link_to "売却済", product_path(barter_request.product.id), class: "btn-sm btn-danger" %></span>
+									<span class="button1"><%= link_to "売り切れました", product_path(barter_request.product.id), class: "btn-sm btn-danger" %></span>
 								<% end %>
 							</td>
 							<td width="10%">
