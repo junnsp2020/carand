@@ -64,21 +64,26 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<% if @product.sale_status == "販売中" %>
-									<%= button_to "購入ページへ進む", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
+							<td><% if @product.user_id != current_user.id %>
+									<% if @product.sale_status == "販売中" %>
+										<%= button_to "購入ページへ進む", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
+									<% else %>
+										<%= link_to "売り切れました", product_path(@product.id), class: "btn-sm btn-info col-xs-12", style: "text-align: center" %>
+									<% end %>
 								<% else %>
-									<%= link_to "売り切れました", product_path(@product.id), class: "btn-sm btn-info col-xs-12", style: "text-align: center" %>
+									<button type="button" class="btn btn-warning col-xs-12"><%= @product.user.first_name %>さんが出品した商品です</button>
 								<% end %>
                            </td>
 						</tr>
 						<tr>
 							<td>
-								<% if @product.propriety == "交換可能" && @product.sale_status == "販売中" %>
-							 		<%= button_to "この商品は交換可能です", new_product_barter_request_path(@product.id), {method: :get, class: "btn-sm btn-success col-xs-12" } %>
-							 	<% else %>
-							 		<%= button_to "この商品は交換不可です", product_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12" } %>
-							 	<% end %>
+								<% if @product.user_id != current_user.id %>
+									<% if @product.propriety == "交換可能" && @product.sale_status == "販売中" %>
+								 		<%= button_to "この商品は交換可能です", new_product_barter_request_path(@product.id), {method: :get, class: "btn-sm btn-success col-xs-12" } %>
+								 	<% else %>
+								 		<%= button_to "この商品は交換不可です", product_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12" } %>
+								 	<% end %>
+								<% end %>
 							</td>
 						</tr>
 					</tboy>
