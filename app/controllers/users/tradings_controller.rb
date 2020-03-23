@@ -33,8 +33,11 @@ class Users::TradingsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
+    if @product.notice == false
+    @product.notice = true
+    end
     @product.sale_status = "売り切れ"
-    @product.save ##追加
+    # @product.save ##追加
     @trading = @product.trading
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
@@ -63,12 +66,14 @@ class Users::TradingsController < ApplicationController
       @trading.completed = false
     end
 
-    if @product.barter_approval == false
+    if @product.barter_approval == true
       @trading.payment_status = "交換(購入者)"
       @trading.shipment_status = "交換(出品者)"
     end
 
     @trading.save(trading_params)
+    @product.barter_approval = false
+    @product.save
     redirect_to trading_path(@trading)
 
     # @tradings = @product.tradings
