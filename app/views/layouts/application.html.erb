@@ -55,6 +55,9 @@
             <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
               <%= link_to "交換リクエストがきています　内容を除いてみましょう", requested_barter_requests_path %>
             <% end %>
+            <% if Trading.where(seller_id: current_user.id, payment_status: "出品者へ入金報告をする").count != 0 %>
+              <%= link_to "商品が購入されました　入金を待っています", requested_barter_requests_path %>
+            <% end %>
             <li class="wishlists"><%= link_to "ほしいものリスト", wish_wishlists_path %></li>
             <li>
               <span class="trading-list">
@@ -76,16 +79,16 @@
             <li>
               <span class="trading-list">
                 <%= link_to "売った！", sold_tradings_path %>
-                  <% if Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2).where(seller_id: current_user.id).count == 0 %>
+                  <% if Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2).where(seller_id: current_user.id).count == 0 %>
                     <span class="badge3">
                       <span class="badge", style="color: white;">
-                      <%= Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2,).where(seller_id: current_user.id).count %>
+                      <%= Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2,).where(seller_id: current_user.id).count %>
                       </span>
                     </span>
                   <% else %>
                     <span class="badge4">
                       <span class="badge", style="color: white;">
-                      <%= Trading.where("(shipment_status = ?) OR (shipment_status = ?) ", 0, 2).where(seller_id: current_user.id).count %>
+                      <%= Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2).where(seller_id: current_user.id).count %> <!-- 81行目から91行目　ship → payに変更　0 → 1に変更 -->
                       </span>
                     </span>
                   <% end %>
