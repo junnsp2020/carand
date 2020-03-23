@@ -63,7 +63,7 @@ class Users::TradingsController < ApplicationController
       @trading.completed = false
     end
 
-    if @product.barter_approval == true
+    if @product.barter_approval == false
       @trading.payment_status = "交換(購入者)"
       @trading.shipment_status = "交換(出品者)"
     end

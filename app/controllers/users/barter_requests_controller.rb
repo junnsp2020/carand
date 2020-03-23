@@ -18,7 +18,11 @@ class Users::BarterRequestsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:product_id])
+    @barter_requests =  @product.barter_requests
+    # @barter_request = BarterRequest.new
     @barter_request = BarterRequest.find(params[:id])
+    # @barter_requests = BarterRequest.new
   end
 
   def create
@@ -56,10 +60,10 @@ class Users::BarterRequestsController < ApplicationController
   end
 
   def requested
-    @product = Product.find_by(user_id: current_user.id)
+    @product = Product.where(user_id: current_user.id)
     # barter_requests = BarterRequest.all
-    @barter_requests = BarterRequest.where(product_id: @product.id)
-    @barter_requests = @product.barter_requests
+    @barter_requests = BarterRequest.where(product_id: @product)
+    # @barter_requests = @product.barter_requests
     # @product.barter_requests.product_id = @product.id
   end
 

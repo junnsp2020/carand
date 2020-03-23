@@ -2,23 +2,25 @@
 	<div class="row">
 		<div class="col-xs-10">
 			<h4>交換リクエスト【もらった】 一覧</h4>
-			<% @barter_requests.each do |barter_request| %>
 				<table class="table table-bordered">
 					<tboy>
-						<tr>
-							<td width="10%">
-								<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
-							</td>
-							<td width="40%">
-								<%= link_to barter_request.name, product_barter_request_path(barter_request.product.id, barter_request) %>
-							</td>
-							<td width="10%">
-								<%= barter_request.created_at.strftime('%Y-%m-%d') %>
-							</td>
-						</tr>
+						<% @barter_requests.each do |barter_request| %>
+							<tr>
+								<td width="10%">
+									<%= link_to product_barter_request_path(barter_request.product.id, barter_request) do %>
+										<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
+									<% end %>
+								</td>
+								<td width="40%">
+									<%= link_to barter_request.name, product_barter_request_path(barter_request.product.id, barter_request) %>
+								</td>
+								<td width="10%">
+									<%= barter_request.created_at.strftime('%Y-%m-%d') %>
+								</td>
+							</tr>
+						<% end %>
 					</tboy>
 				</table>
-			<% end %>
 		</div>
 	</div>
 </div>

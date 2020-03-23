@@ -17,13 +17,13 @@ class Users::UsersController < ApplicationController
 	end
 
 	def userinfo
-		@user = User.find(current_user)
-		@balance = calculate(current_user)
+		@user = User.find(current_user.id)
+		@balance = calculate(current_user.id)
 		@products = Product.where(user_id: current_user.id)
 	end
 
 	def usertransfer
-		@user = User.find(current_user)
+		@user = User.find(current_user.id)
 		@products = Product.where(user_id: current_user.id)
 		@request_amount = current_user
 	end
