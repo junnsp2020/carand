@@ -4,17 +4,32 @@
 			<h4>交換リクエスト【もらった】 一覧</h4>
 				<table class="table table-bordered">
 					<tboy>
-						<% @barter_requests.each do |barter_request| %>
 							<tr>
-								<td width="10%">
+								<td>あなたが出品した商品</td>
+								<td></td>
+								<td>相手の提案商品</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<% @barter_requests.each do |barter_request| %>
+							<tr>
+								<td width="20%">
+									<%= link_to product_path(barter_request.product.id) do %>
+										<%= attachment_image_tag barter_request.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
+									<% end %>
+								</td>
+								<td width="20%">
+									<%= link_to barter_request.product.name, product_path(barter_request.product.id) %>
+								</td>
+								<td width="20%">
 									<%= link_to product_barter_request_path(barter_request.product.id, barter_request) do %>
 										<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
 									<% end %>
 								</td>
-								<td width="40%">
+								<td width="20%">
 									<%= link_to barter_request.name, product_barter_request_path(barter_request.product.id, barter_request) %>
 								</td>
-								<td width="10%">
+								<td width="20%">
 									<%= barter_request.created_at.strftime('%Y-%m-%d') %>
 								</td>
 							</tr>
