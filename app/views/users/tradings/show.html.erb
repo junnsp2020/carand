@@ -160,6 +160,39 @@
 
                 <%# end %>
 
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
+	                <%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %>
+	                <%= link_to "確認完了(※必ずお互いの番号を確認してから押してください)", trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
+                <% end %>
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "番号確認完了(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
+                	<%= "交換者の評価をお願いします" %>
+	                <%= form_for (@trading) do |f| %>
+			            <%= f.radio_button :seller_excellent_review, :true %>
+			            <%= f.radio_button :seller_good_review, :true %>
+			            <%= f.radio_button :seller_poor_review, :true %>
+	                <%= f.submit "評価を確定する" %>
+	                <% end %>
+                <% end %>
+                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換お疲れ様でした(購入者)" %>
+                	<%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %>
+                <% end %>
+                <% if @trading.seller_id == current_user.id && @trading.shipment_status == "交換(出品者)" &&  @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+	                <%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %>
+	                <%= link_to "確認完了(※必ずお互いの番号を確認してから押してください)", trading_change_shipment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
+                <% end %>
+                <% if @trading.seller_id == current_user.id && @trading.shipment_status == "番号確認完了(出品者)" &&  @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+                	<%= "交換者の評価をお願いします" %>
+	                <%= form_for (@trading) do |f| %>
+			            <%= f.radio_button :excellent_review, :true %>
+			            <%= f.radio_button :good_review, :true %>
+			            <%= f.radio_button :poor_review, :true %>
+	                <%= f.submit "評価を確定する" %>
+	                <% end %>
+                <% end %>
+                <% if @trading.seller_id == current_user.id && @trading.shipment_status == "交換お疲れ様でした(出品者)" %>
+                	<%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %>
+                <% end %>
+
 
 
                 <table class="table table-bordered">

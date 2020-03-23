@@ -125,7 +125,14 @@ class Users::TradingsController < ApplicationController
       @trading.shipment_status = "取引完了"
       @trading.save
     end
-
+    if @trading.payment_status == "番号確認完了(購入者)"
+      @trading.payment_status = "交換お疲れ様でした(購入者)"
+      @trading.save
+    end
+    if @trading.shipment_status == "番号確認完了(出品者)"
+      @trading.shipment_status = "交換お疲れ様でした(出品者)"
+      @trading.save
+    end
   end
 
   def change_payment_status
@@ -142,6 +149,9 @@ class Users::TradingsController < ApplicationController
       @trading.shipment_status = "購入者を評価する"
       @trading.completed = true
     end
+    if @trading.payment_status == "交換(購入者)"
+      @trading.payment_status = "番号確認完了(購入者)"
+    end
     @trading.save
     redirect_to  request.referer
   end
@@ -155,6 +165,9 @@ class Users::TradingsController < ApplicationController
     # elsif @trading.shipment_status ==
     #   @trading.payment_status = "受取報告をする"
     #   @trading.shipment_status == "出荷を通知しました。購入者の評価待ちです"
+    end
+    if @trading.shipment_status == "交換(出品者)"
+      @trading.shipment_status = "番号確認完了(出品者)"
     end
     @trading.save
     redirect_to  request.referer
