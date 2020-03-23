@@ -17,13 +17,13 @@ class Users::UsersController < ApplicationController
 	end
 
 	def userinfo
-		@user = User.find(current_user.id)
+		@user = User.find(current_user)
 		@balance = calculate(current_user)
 		@products = Product.where(user_id: current_user.id)
 	end
 
 	def usertransfer
-		@user = User.find(current_user.id)
+		@user = User.find(current_user)
 		@products = Product.where(user_id: current_user.id)
 		@request_amount = current_user
 	end
@@ -45,8 +45,15 @@ class Users::UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 	  	@user.update(user_params)
-	  	current_user.request_amount = current_user.request_amount + user_params[:request_amount].to_i
+	  	if current_user.request_amount
+	  		current_user.request_amount += user_params[:request_amount].to_i
+	  	else
+	  		current_user.request_amount = user_params[:request_amount].to_i
+	  	end
+	  	# current_user.request_amount = current_user.request_amount + user_params[:request_amount].to_i
+	  	# binding.pry
 	  	current_user.save
+	  	# binding.pry
 	  	redirect_to user_path(current_user.id)
   	end
 

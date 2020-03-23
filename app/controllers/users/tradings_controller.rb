@@ -84,10 +84,12 @@ class Users::TradingsController < ApplicationController
 
   def bought
     @tradings = Trading.where(buyer_id: current_user.id)
+    @buyer = Trading.where(buyer_id: current_user.id)
   end
 
   def sold
     @tradings = Trading.where(seller_id: current_user.id)
+    @seller = Trading.where(seller_id: current_user.id)
   end
 
   def edit

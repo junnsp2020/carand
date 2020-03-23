@@ -29,9 +29,6 @@
           <%# if Product.where(user_id: current_user.id).count != 0 && BarterRequest.where(notice: true).count != 0 %>
             <%#= "hoge" %>
           <%# end %>
-          <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
-            <%= link_to "交換リクエストがきています　内容を除いてみましょう", requested_barter_requests_path %>
-          <% end %>
 
           <div class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -55,6 +52,9 @@
       </nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
+              <%= link_to "交換リクエストがきています　内容を除いてみましょう", requested_barter_requests_path %>
+            <% end %>
             <li class="wishlists"><%= link_to "ほしいものリスト", wish_wishlists_path %></li>
             <li>
               <span class="trading-list">

@@ -10,7 +10,7 @@
 								<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
 							</td>
 							<td width="40%">
-								<%= link_to barter_request.name %>
+								<%= link_to barter_request.name, product_barter_request_path(barter_request.product.id, barter_request) %>
 							</td>
 							<td width="10%">
 								<%= barter_request.created_at.strftime('%Y-%m-%d') %>

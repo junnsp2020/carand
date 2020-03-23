@@ -7,15 +7,28 @@
 					<tboy>
 						<tr>
 							<td width="10%">
-								<%= attachment_image_tag trading.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
+								<%= link_to trading_path(trading.id) do %>
+									<%= attachment_image_tag trading.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
+								<% end %>
 							</td>
-							<td width="40%">
+							<td width="30%">
 								<%= link_to trading.product.name, trading_path(trading.id) %>
 							</td>
-							<td width="40%">
+							<td width="20%">
 								<%= number_to_currency(trading.product.price, :unit => "￥", :precision => 0) %>
 							</td>
-							<td width="10%">
+							<td width="20%">
+								<% if trading.seller_id == current_user.id && trading.payment_status == "出品者へ入金報告をする" %>
+									<button type="button" class="btn btn-info">入金待ち</button>
+								<% end %>
+								<% if trading.seller_id == current_user.id && trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
+									<%= link_to "出荷してください", trading_path(trading.id), class: "btn btn-danger" %>
+								<% end %>
+								<% if trading.seller_id == current_user.id && trading.payment_status == "受取報告をする" %>
+				　　					<button type="button" class="btn btn-info">受取待ち</button>
+								<% end %>
+							</td>
+							<td width="20%">
 								<%= trading.product.created_at.strftime('%Y-%m-%d') %>
 							</td>
 						</tr>
