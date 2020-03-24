@@ -36,15 +36,13 @@
 						</tr>
 						<tr>
 							<td>
-								<%# if current_user == @product.user %>
-									<%#= form_for(@barter_request, url: product_barter_request_path(@product, @barter_request), method: :patch) do |f| %>
+								<% if current_user == @product.user %>
+									<%= form_for(@barter_request, url: product_barter_request_path(@product, @barter_request), method: :patch) do |f| %>
 									<%#= form_with url: product_barter_request_path(@product, @barter_request, method: :patch, data: {remote: false} do |f| %>
-						              <%#= f.text_field :name , placeholder: "何をお探しですか？"%>
-						            <%#= f.submit :🔍 %>
-								 	  	<%#= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
-								 	<%#= f.submit "確定" %>
-						 	  		<%# end %>
-							 	<%# end %>
+								 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
+								 	<%= f.submit "確定" %>
+						 	  		<% end %>
+							 	<% end %>
 							 	<% if current_user == @product.user && @barter_request.propriety == "許可する" %>
 						 	  		<span class="propriety"><%= "リクエストを許可しました" %></span>
 						 	  	<% end %>
