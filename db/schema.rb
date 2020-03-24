@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_060136) do
+ActiveRecord::Schema.define(version: 2020_03_23_184707) do
 
   create_table "administers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 2020_03_23_060136) do
     t.integer "trading_id"
     t.text "message"
     t.integer "user_id"
+    t.boolean "buyer_notice"
+    t.boolean "seller_notice"
   end
 
   create_table "tradings", force: :cascade do |t|
