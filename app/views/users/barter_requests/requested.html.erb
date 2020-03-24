@@ -33,15 +33,15 @@
 										<%= barter_request.created_at.strftime('%Y-%m-%d') %>
 									</td>
 	                                <td>
-									<% if current_user == barter_request.product.user %>
-										<%= form_for(barter_request, url: product_barter_request_path(barter_request.product, barter_request)) do |f| %>
-									 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
-									 	  	<%= f.submit "確定" %>
-							 	  		<% end %>
-							 	  	<% end %>
-							 	  	<% if current_user == barter_request.product.user && barter_request.propriety == "許可する" %>
-						 	  			<span class="propriety"><%= "リクエストを許可しました" %></span>
-						 	  	    <% end %>
+										<% if current_user == barter_request.product.user %>
+											<%= form_for(barter_request, url: product_barter_request_path(barter_request.product, barter_request)) do |f| %>
+										 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
+										 	  	<%= f.submit "確定" %>
+								 	  		<% end %>
+								 	  	<% end %>
+								 	  	<% if current_user == barter_request.product.user && barter_request.propriety == "許可する" %>
+							 	  			<span class="propriety"><%= "リクエストを許可しました" %></span>
+							 	  	    <% end %>
 							 	    </td>
 								</tr>
 							<% end %>
