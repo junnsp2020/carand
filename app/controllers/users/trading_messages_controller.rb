@@ -27,9 +27,11 @@ class Users::TradingMessagesController < ApplicationController
     # if @seller == @seller.id
     # if @seller.seller_id == current_user.id
     # if @trading_message.user_id == @seller.id
-    if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
-      @trading_message.seller_notice = false
-      @trading_message.buyer_notice = true
+    if @buyer.nil? == false
+      if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+        @trading_message.seller_notice = false
+        @trading_message.buyer_notice = true
+      end
     end
     @trading_message.save
     redirect_to trading_path(@trading)

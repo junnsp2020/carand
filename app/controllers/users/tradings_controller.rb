@@ -94,13 +94,21 @@ class Users::TradingsController < ApplicationController
 
 
   def bought
-    @tradings = Trading.where(buyer_id: current_user.id)
+    # @tradings = Trading.where(buyer_id: current_user.id)
+    @tradings = Trading.where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(buyer_id: current_user.id)
     @buyer = Trading.where(buyer_id: current_user.id)
   end
 
   def sold
-    @tradings = Trading.where(seller_id: current_user.id)
+    # @tradings = Trading.where(seller_id: current_user.id)
+    @tradings = Trading.where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(seller_id: current_user.id)
     @seller = Trading.where(seller_id: current_user.id)
+  end
+
+  def barter
+    @tradings = Trading.where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).where(paymethod: 2)
+    @seller = Trading.where(seller_id: current_user.id)
+    @buyer = Trading.where(buyer_id: current_user.id)
   end
 
   def edit

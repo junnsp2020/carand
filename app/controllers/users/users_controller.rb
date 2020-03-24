@@ -18,20 +18,25 @@ class Users::UsersController < ApplicationController
 
 	def userinfo
 		@user = current_user
-		@balance = calculate(@user.id)
+		@balance = calculate(current_user)
 		@products = Product.where(user_id: @user.id)
 	end
 
 	def usertransfer
-		@user = current_user
-		@products = Product.where(user_id: @user.id)
-		@balance = calculate(@user.id)
-		# @request_amount = User.new
-		@request_amount = params[:request_amount].to_i
-		if @user.request_amount && @user.balance
-			@user.balance -= @request_amount
-		end
-		@user.save
+		@user = User.find(current_user.id)
+		@products = Product.where(user_id: current_user.id)
+		@request_amount =  calculate(current_user.id)
+		@balance = calculate(current_user.id)
+		# @user = current_user
+		# @products = Product.where(user_id: @user.id)
+		# @balance = calculate(current_user)
+		# # @request_amount = User.new
+
+		# @user.request_amount = params[:request_amount].to_i
+		# if @user.request_amount && @balance
+		# 	@balance -= @user.request_amount
+		# end
+		# @user.save
 		# if current_user.request_amount
 	 #  		current_user.request_amount += user_params[:request_amount].to_i
 	 #  	else
@@ -91,9 +96,9 @@ class Users::UsersController < ApplicationController
 				balance += product.profit
 			end
     	end
-    	 if current_user.balance != nil && current_user.request_amount != nil
-    		 balance -= current_user.request_amount
-         end
+    	if current_user.balance != nil && current_user.request_amount != nil
+    		balance -= current_user.request_amount
+        end
     	return balance
   	end
 
