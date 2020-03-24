@@ -17,23 +17,34 @@ class Users::UsersController < ApplicationController
 	end
 
 	def userinfo
-		@user = User.find(current_user.id)
-		@balance = calculate(current_user.id)
-		@products = Product.where(user_id: current_user.id)
+		@user = current_user
+		@balance = calculate(@user.id)
+		@products = Product.where(user_id: @user.id)
 	end
 
 	def usertransfer
-		@user = User.find(current_user.id)
-		@products = Product.where(user_id: current_user.id)
-		@request_amount =  calculate(current_user.id)
-		@balance = calculate(current_user.id)
+		@user = current_user
+		@products = Product.where(user_id: @user.id)
+		@balance = calculate(@user.id)
+		# @request_amount = User.new
+		@request_amount = params[:request_amount].to_i
+		if @user.request_amount && @user.balance
+			@user.balance -= @request_amount
+		end
+		@user.save
+		# if current_user.request_amount
+	 #  		current_user.request_amount += user_params[:request_amount].to_i
+	 #  	else
+	 #  		current_user.request_amount = user_params[:request_amount].to_i
+	 #  	end
+		# @balance = calculate(@user)
 	end
 
 	def create
 		@balance = User.new(user_params)
-		@balance.save
 		@request_amount = User.new(user_params)
 		@request_amount.save
+		@balance.save
 	end
 
 	def edit
@@ -45,18 +56,20 @@ class Users::UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-	  	@user.update(user_params)
-	  	if current_user.request_amount
-	  		current_user.request_amount += user_params[:request_amount].to_i
-	  	else
-	  		current_user.request_amount = user_params[:request_amount].to_i
-	  	end
-	  	# current_user.request_amount = current_user.request_amount + user_params[:request_amount].to_i
-	  	# binding.pry
-	  	current_user.save
-	  	# binding.pry
+		@user.update(user_params)
+		# @user.balance = calculate(@user)
+		# if current_user.request_amount
+	 # 	   current_user.request_amount += user_params[:request_amount].to_i
+	 #    else
+	 #  	   current_user.request_amount = user_params[:request_amount].to_i
+	 # 	end
+		# @balance = calculate(@user)
+	if @user.save
 	  	redirect_to user_path(current_user.id)
-  	end
+	else
+			render :show
+	end
+	end
 
   	def delete
   		user = User.find(current_user.id)
@@ -66,7 +79,10 @@ class Users::UsersController < ApplicationController
   	end
 
     private
-    def calculate(current_user)
+  #   def calculate(user)
+		# user.balance -= user.request_amount
+  # 	end
+  	def calculate(user)
 		balance = 0
 		profit = 0
 		request_amount = 0
@@ -75,9 +91,9 @@ class Users::UsersController < ApplicationController
 				balance += product.profit
 			end
     	end
-    	if current_user.balance != nil && current_user.request_amount != nil
-    	balance -= current_user.request_amount
-        end
+    	 if current_user.balance != nil && current_user.request_amount != nil
+    		 balance -= current_user.request_amount
+         end
     	return balance
   	end
 

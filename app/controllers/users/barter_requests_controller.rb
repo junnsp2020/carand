@@ -52,11 +52,12 @@ class Users::BarterRequestsController < ApplicationController
   end
 
   def my_request
-    # @product = Product.find(params[:product_id])
+     # @product = Product.find(params[:product_id])
     # @barter_requests =  @product.barter_requests
-    @barter_requests = BarterRequest.where(user_id: current_user.id)
+    @barter_requests = BarterRequest.where(user_id: params[:user_id])
     # @barter_request.product_id = @product.id
     # @barter_request.user_id = current_user.id
+    # @barter_request = BarterRequest.find(params[:id])
   end
 
   def requested

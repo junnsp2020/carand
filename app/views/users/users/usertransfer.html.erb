@@ -7,13 +7,14 @@
 				<h4>残高</h4>
 				<h4><%= @balance %></h4>
 
-                <%= form_for(@request_amount, url: user_path(current_user.id)) do |f| %>
+                <%#= form_for(@request_amount, url: user_path(current_user.id)) do |f| %>
+                <%= form_with(url:user_path(current_user), model: @user, local: false) do |f| %>
 				<table class="table table-bordered">
 					<tboy>
 						<tr>
 							<td>
 								<%= f.label :入金申請額 %>
-								<%= f.text_field :request_amount, value: 0 %>円
+								<%= f.number_field :request_amount, value: 0 %>円
 							</td>
 						</tr>
 					</tboy>

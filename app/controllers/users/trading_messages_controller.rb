@@ -7,25 +7,27 @@ class Users::TradingMessagesController < ApplicationController
     @trading_message.trading_id = @trading.id
     # @trading_messages = @buyer.trading_messages  undefined method `trading_messages' for nil:NilClass #2
     # @trading_messages = @seller.trading_messages  undefined method `trading_messages' for nil:NilClass #2
-    # @trading_message.user_id = @buyer.id   undefined method `id' find_by でもwhereでも同じ
+    #1 @trading_message.user_id = @buyer.id   undefined method `id' find_by でもwhereでも同じ
     # @trading_message.user_id = @seller.id  undefined method `id'
     @trading_message.save
     # if @buyer.buyer_id == @buyer.id
     # if @buyer.buyer_id == current_user.id
     # if @trading_message.user_id == @buyer.id  undefined method `id' for nil:NilClass と出たため #1を記入したが
     #   undefined method `save' for nil:NilClass と出てしまった
-    @buyer.save  #3をもって記入したが、undefined method `save' for nil:NilClass
-    #@seller.save  #3をもって記入したが、undefined method `save' for nil:NilClass
-    if @trading_message.user_id == @buyer.buyer_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
-    # @seller = Trading.find_by(seller_id: current_user.id)
-    # if @buyer.id == current_user.id
-      @trading_message.buyer_notice = false
-      @trading_message.seller_notice = true
+    # @buyer.save  #3をもって記入したが、undefined method `save' for nil:NilClass
+    #2 @seller.save  #3をもって記入したが、undefined method `save' for nil:NilClass
+    if @buyer.nil? == false
+      if @trading_message.user_id == @buyer.buyer_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+      # @seller = Trading.find_by(seller_id: current_user.id)
+      #2 if @buyer.id == current_user.id
+        @trading_message.buyer_notice = false
+        @trading_message.seller_notice = true
+      end
     end
     # if @seller == @seller.id
     # if @seller.seller_id == current_user.id
     # if @trading_message.user_id == @seller.id
-     if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+    if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
       @trading_message.seller_notice = false
       @trading_message.buyer_notice = true
     end
