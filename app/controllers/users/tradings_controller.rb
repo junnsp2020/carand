@@ -188,6 +188,6 @@ class Users::TradingsController < ApplicationController
 
   private
   def trading_params
-    params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :seller_good_review, :seller_poor_review, :completed)
+    params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :seller_good_review, :seller_poor_review, :completed, :buyer_notice, :seller_notice)
   end
 end

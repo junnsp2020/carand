@@ -94,11 +94,12 @@
             </li>
             <li>
               <span class="trading-list">
-                <%= link_to "交換！", sold_tradings_path %>
-                  <% if Trading.where(payment_status: 4, paymethod: 2).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count == 0 %>
+                <%= link_to "交換！", barter_tradings_path %>
+                  <%# if Trading.where(payment_status: 4, paymethod: 2).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count == 0 %>
+                  <% if TradingMessage.where("((user_id = ?)AND(buyer_notice = ?)) OR ((user_id = ?) AND (seller_notice = ?)) ", current_user.id, true, current_user.id, true).count == 0 %>
                     <span class="badge3">
                       <span class="badge", style="color: white;">
-                      <%= Trading.where(payment_status: 4, paymethod: 2).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count %>
+                      <%= Trading.where(payment_status: 4, paymethod: 2).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count + TradingMessage.where("((user_id = ?)AND(buyer_notice = ?)) OR ((user_id = ?) AND (seller_notice = ?)) ", current_user.id, true, current_user.id, true).count %>
                       </span>
                     </span>
                   <% else %>

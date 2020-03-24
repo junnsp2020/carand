@@ -20,8 +20,8 @@ class Users::TradingMessagesController < ApplicationController
       if @trading_message.user_id == @buyer.buyer_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
       # @seller = Trading.find_by(seller_id: current_user.id)
       #2 if @buyer.id == current_user.id
-        @trading_message.buyer_notice = false
-        @trading_message.seller_notice = true
+        @trading.buyer_notice = false
+        @trading.seller_notice = true
       end
     end
     # if @seller == @seller.id
@@ -29,11 +29,12 @@ class Users::TradingMessagesController < ApplicationController
     # if @trading_message.user_id == @seller.id
     if @buyer.nil? == false
       if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
-        @trading_message.seller_notice = false
-        @trading_message.buyer_notice = true
+        @trading.seller_notice = false
+        @trading.buyer_notice = true
       end
     end
     @trading_message.save
+    @trading.save
     redirect_to trading_path(@trading)
   end
 
