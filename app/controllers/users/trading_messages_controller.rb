@@ -27,7 +27,7 @@ class Users::TradingMessagesController < ApplicationController
     # if @seller == @seller.id
     # if @seller.seller_id == current_user.id
     # if @trading_message.user_id == @seller.id
-    if @buyer.nil? == false
+    if @seller.nil? == false
       if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
         @trading.seller_notice = false
         @trading.buyer_notice = true
@@ -36,6 +36,9 @@ class Users::TradingMessagesController < ApplicationController
     @trading_message.save
     @trading.save
     redirect_to trading_path(@trading)
+  end
+
+  def update
   end
 
   def destroy

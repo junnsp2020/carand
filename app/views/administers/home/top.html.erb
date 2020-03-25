@@ -6,7 +6,14 @@
 					<tbody>
 						<tr>
 							<td>
-								<%= link_to @reports_count, administers_reports_path %>
+								<h4><span><%= link_to "通報一覧へ", administers_reports_path, class: "btn btn-danger col-xs-4 col-xs-offset-4" %></span>
+								<span class="col-xs-4 col-xs-offset-4"> 現在 <%= link_to @reports_count, administers_reports_path %>件</span></h4>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h4><span><%= link_to "カテゴリー追加", administers_categories_path, class: "btn btn-success col-xs-4 col-xs-offset-4" %></span>
+								<span class="col-xs-4 col-xs-offset-4"> 現在 <%= link_to @categories_count, administers_categories_path %>件</span></h4>
 							</td>
 						</tr>
 					</tbody>

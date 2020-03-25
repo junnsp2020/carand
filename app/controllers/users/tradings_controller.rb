@@ -116,6 +116,13 @@ class Users::TradingsController < ApplicationController
 
   def update
     @trading = Trading.find(params[:id])
+    @buyer = Trading.find_by(buyer_id: current_user.id) #追加
+    @seller = Trading.find_by(seller_id: current_user.id) #追加
+    # @trading_message = current_user.trading_messages.new(trading_message_params) #追加
+    # @trading_message.trading_id = @trading.id #追加
+    # @trading_message.save
+    @trading_message = TradingMessage.new
+    @trading_messages = @trading.trading_messages
     if @trading.update(trading_params)
       redirect_to  request.referer
     else
@@ -145,6 +152,22 @@ class Users::TradingsController < ApplicationController
     if @trading.shipment_status == "番号確認完了(出品者)"
       @trading.shipment_status = "交換お疲れ様でした(出品者)"
       @trading.save
+    end
+    if @seller.nil? == false
+      if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+        @trading.seller_notice = false
+        @trading.buyer_notice = true
+        @trading.save
+      end
+    end
+    if @buyer.nil? == false
+      if @trading_message.user_id == @buyer.buyer_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+      # @seller = Trading.find_by(seller_id: current_user.id)
+      #2 if @buyer.id == current_user.id
+        @trading.buyer_notice = false
+        @trading.seller_notice = true
+        @trading.save
+      end
     end
   end
 
