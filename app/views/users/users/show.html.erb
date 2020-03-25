@@ -6,7 +6,8 @@
 						<li class="list-group-item"><%= link_to "ほしいものリスト", wish_wishlists_path %></li>
 					<h5>商品を出品する</h5>
 						<li class="list-group-item"><%=link_to "商品を出品する", new_product_path %></li>
-						<li class="list-group-item"><%=link_to "出品した商品", my_product_products_path %></li>
+						<li class="list-group-item"><%=link_to "出品中の商品", my_product_products_path %></li>
+						<li class="list-group-item"><%=link_to "売れた商品", sold_tradings_path %></li>
 					<h5>購入した商品</h5>
 						<li class="list-group-item"><%=link_to "購入した商品", bought_tradings_path %></li>
 					<h5>交換</h5>
@@ -61,7 +62,7 @@
 
 					<tr>
 						<!-- <td colspan="2"> --><td>取引</td>
-						<td><%= link_to "出品した商品", my_product_products_path %></td>
+						<td><%= link_to "出品した商品 - 出品中", my_product_products_path %></td>
 					</tr>
 					<tr>
 						<!-- <td rowspan="2"> --><td>マイブログ</td>

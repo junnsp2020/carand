@@ -28,6 +28,9 @@
 									</td>
 									<td width="20%">
 										<%= link_to barter_request.name, product_barter_request_path(barter_request.product.id, barter_request) %>
+										<% if barter_request.propriety == "許可する" && barter_request.product.sale_status == "売り切れ" %>
+												<%= link_to "取引ページへ", trading_path(Trading.find_by(product_id: barter_request.product.id)), class: "btn-sm btn-success col-xs-12" %>
+										<% end %>
 									</td>
 									<td width="20%">
 										<%= barter_request.created_at.strftime('%Y-%m-%d') %>

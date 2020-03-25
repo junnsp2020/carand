@@ -13,13 +13,18 @@
 								<% end %>
 							</td>
 							</td>
-								<td width="30%">
+								<td width="20%">
 								<%= link_to product.name, product_path(product.id) %>
 							</td>
-							<td width="30%">
+							<td width="10%">
 								<%= number_to_currency(product.price, :unit => "￥", :precision => 0) %>
 							</td>
-							<td>
+							<td width="15%">
+								<% if product.sale_status == "売り切れ" %>
+									<%= link_to "取引ページへ", trading_path(Trading.find_by(product_id: product.id)), class: "btn-sm btn-success col-xs-12" %>
+								<% end %>
+							</td>
+							<td width="10%">
 								<% if product.sale_status == "販売中" %>
 									<%= link_to "販売中", product_path(product.id), class: "btn-sm btn-info" %>
 								<% else %>
