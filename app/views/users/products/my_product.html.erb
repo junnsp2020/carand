@@ -19,16 +19,14 @@
 							<td width="10%">
 								<%= number_to_currency(product.price, :unit => "￥", :precision => 0) %>
 							</td>
-							<td width="15%">
-								<% if product.sale_status == "売り切れ" %>
-									<%= link_to "取引ページへ", trading_path(Trading.find_by(product_id: product.id)), class: "btn-sm btn-success col-xs-12" %>
+							<td width="10%">
+								<% if product.sale_status == "販売中" %>
+									<%= link_to "商品の編集", edit_product_path(product.id), class: "btn-sm btn-success" %>
 								<% end %>
 							</td>
 							<td width="10%">
 								<% if product.sale_status == "販売中" %>
 									<%= link_to "販売中", product_path(product.id), class: "btn-sm btn-info" %>
-								<% else %>
-									<span class="button1"><%= link_to "売却済", product_path(product.id), class: "btn-sm btn-danger" %></span>
 								<% end %>
 							</td>
 							<td width="10%">
