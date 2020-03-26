@@ -17,6 +17,7 @@ class Users::ProductsController < ApplicationController
      # trading = @product.build_trading
     @product_comment = ProductComment.new
     @product_comments = @product.product_comments
+    @tradings = Trading.where(product_id: @product.id)
     # @trading = Trading.find(params[:trading_id])
   end
 
@@ -59,6 +60,17 @@ class Users::ProductsController < ApplicationController
   end
 
   private
+#   def calculate(user)
+#     balance = 0
+#     profit = 0
+#   products.each do |product|
+#   if product.profit != nil && product.sale_status == "売り切れ"
+#   product.user.balance += product.profit
+#   # binding.pry
+#   product.user.balance.save
+#   end
+#   end
+# end
   def product_params
     params.require(:product).permit(:category_id, :user_id, :name, :image, :introduction, :status, :price, :profit, :postage, :postage_responsibility, :sale_status, :propriety, :notice, :barter_propriety)
 end

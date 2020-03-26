@@ -21,6 +21,10 @@
 						</td>
 					</tr>
 					<tr>
+						<td><%= f.label :"ニックネーム(フリマ内で使用)" %></td>
+						<td><%= f.text_field :nickname, placeholder: "ニックネームを入力", class: "col-xs-6" %></td>
+					<tr>
+					<tr>
 				        <td><%= f.label :"郵便番号(ハイフンなし7桁)" %></td>
 						<td><%= f.text_field :postcode, placeholder: "郵便番号(ハイフンなし7桁)を入力", class: "col-xs-12" %></td>
 					</tr>
@@ -43,6 +47,10 @@
 					<tr>
 						<td><%= f.label :"電話番号" %></td>
 						<td><%= f.text_field :phone_number, placeholder: "電話番号を入力", class: "col-xs-12" %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :"プロフィール写真" %></td>
+						<td><%= f.file_field :image, class: "col-xs-12" %></td>
 					</tr>
 				</tbody>
 			</table>

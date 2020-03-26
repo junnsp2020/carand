@@ -99,23 +99,23 @@ body {
 	right: 5%;
 }
 .trading-list{
-	padding-top: 30px;
-	padding-bottom: 15px;
+	padding-top: 8px;
+	padding-bottom: 8px;
 	display: block;
 	font-size: 20px;
 	padding-right: 10px;
 }
 .wishlists{
-	padding-top: 17px;
+	padding-top: 2px;
 	display: block;
 	font-size: 20px;
 	padding-right: 10px;
 }
 .mypage{
-	padding-top: 17px;
 	display: block;
 	font-size: 20px;
-	padding-right: 10px;
+	padding-top: 2px;
+	padding-right: 20px
 }
 .btn-circle.btn-lg {
   font-size: 100px;
@@ -129,7 +129,7 @@ body {
 	width: 60%;
 	position: absolute;
 	left: 13%;
-	top: 170px;
+	top: 190px;
 }
 .image-user-show{
 	width: 120px;
@@ -165,3 +165,51 @@ h5{
 	color: red;
 	font-weight: bold;
 }
+.product-name{
+	font-weight: bold;
+}
+.product-price{
+	font-weight: bold;
+	color: red;
+}
+.product-introduction{
+	font-weight: bold;
+}
+.bought-list{
+	font-weight: bold;
+}
+.no-bought{
+	position: absolute;
+	top: 100px;
+}
+.sold-list{
+	font-weight: bold;
+}
+.no-sold{
+	position: absolute;
+	top: 100px;
+}
+.order-confirm{
+font-weight: bold;
+}
+.postage-button{
+	background: #dc143c;
+}
+.alert{
+	padding: 2px;
+	margin-bottom: 0px;
+}
+.mypage{
+	padding-top: 2px;
+	padding-right: 20px
+}
+.navbar-nav > li > a{
+	line-height: 11px;
+}
+input#name{
+	width: 330px;
+	mrgin-top: 6px;
+}
+
+
+

@@ -1,13 +1,16 @@
 <div class="container">
   <div class="row">
       <div class="col-xs-10">
-        <h2>購入手続き</h2>
+        <h2 class="order-confirm">購入内容の確認</h2>
           <table class="table table-bordered">
               <tboy>
                 <tr>
                   <td>
-                      <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
-                        <h3 class="col-xs-4">合計金額  ￥<%= @product.price %></h3>
+                      <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+                        <h3>合計金額  ￥<%= @product.price %></h3>
+                        <button type="button" background-color="red"; class="btn btn-secondary col-xs-2">
+                          送料 / <%= @product.postage_responsibility %>
+                        </button>
                   </td>
                 </tr>
                 <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
