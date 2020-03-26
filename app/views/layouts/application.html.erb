@@ -134,10 +134,8 @@
             <li class="mypage"><%= link_to "マイページ", user_path(current_user) %></li>
           <% else %>
           <ul class="nav navbar-nav navbar-right">
-            <li class="hoge" style="color: white;"><%= link_to "sign_out", destroy_user_session_path, method: :delete %></li>
-            <span><%= link_to ' login', new_user_session_path %></span>
-            <span><%= link_to "アドミン sign_out", destroy_user_session_path, method: :delete %></span>
-            <span><%= link_to 'アドミン login', new_user_session_path %></span>
+            <li class="sign_in"><%= link_to 'ログイン', new_user_session_path %></li>
+            <li class="sign_up"><%= link_to '新規会員登録', new_user_session_path %></li>
           <% end %>
         </ul>
     </header>
