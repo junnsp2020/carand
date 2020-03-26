@@ -136,6 +136,15 @@ class Users::TradingsController < ApplicationController
     if @trading.shipment_status == "購入者を評価する" && @trading.excellent_review == true
       @trading.shipment_status = "取引完了"
       @trading.save
+      @seller = User.find(@trading.seller_id)
+      if @seller.balance == nil
+        @seller.balance = 0
+        @seller.save
+      end
+      # puts @seller.to_json
+      @seller.balance += @trading.product.profit
+      # puts @seller.to_json
+      @seller.save
     end
     if @trading.shipment_status == "購入者を評価する" && @trading.good_review == true
       @trading.shipment_status = "取引完了"
@@ -153,22 +162,22 @@ class Users::TradingsController < ApplicationController
       @trading.shipment_status = "交換お疲れ様でした(出品者)"
       @trading.save
     end
-    if @seller.nil? == false
-      if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
-        @trading.seller_notice = false
-        @trading.buyer_notice = true
-        @trading.save
-      end
-    end
-    if @buyer.nil? == false
-      if @trading_message.user_id == @buyer.buyer_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
-      # @seller = Trading.find_by(seller_id: current_user.id)
-      #2 if @buyer.id == current_user.id
-        @trading.buyer_notice = false
-        @trading.seller_notice = true
-        @trading.save
-      end
-    end
+    # if @seller.nil? == false
+    #   if @trading_message.user_id == @seller.user_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+    #     @trading.seller_notice = false
+    #     @trading.buyer_notice = true
+    #     @trading.save
+    #   end
+    # end
+    # if @buyer.nil? == false
+    #   if @trading_message.user_id == @buyer.buyer_id  #3 undefined method `user_id' for nil:NilClass と出てしまう
+    #   # @seller = Trading.find_by(seller_id: current_user.id)
+    #   #2 if @buyer.id == current_user.id
+    #     @trading.buyer_notice = false
+    #     @trading.seller_notice = true
+    #     @trading.save
+    #   end
+    # end
   end
 
   def change_payment_status

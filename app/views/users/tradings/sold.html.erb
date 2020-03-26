@@ -24,25 +24,25 @@
 											<% if trading.seller_id == current_user.id && trading.payment_status == "出品者へ入金報告をする" %>
 												<%= link_to "入金待ち", trading_path(trading.id), class: "btn btn-info" %>
 												<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 												<% end %>
 											<% end %>
 											<% if trading.seller_id == current_user.id && trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
 												<%= link_to "出荷してください", trading_path(trading.id), class: "btn btn-danger" %>
 												<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 												<% end %>
 											<% end %>
 											<% if trading.seller_id == current_user.id && trading.payment_status == "受取報告をする" %>
 							　　					<%= link_to "受取待ち", trading_path(trading.id), class: "btn btn-info" %>
 												<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 												<% end %>
 											<% end %>
 											<% if trading.seller_id == current_user.id && trading.shipment_status == "購入者を評価する" %>
 							　　					<%= link_to "購入者の評価をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
 												<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 												<% end %>
 											<% end %>
 											<% if trading.seller_id == current_user.id && trading.shipment_status == "取引完了" %>

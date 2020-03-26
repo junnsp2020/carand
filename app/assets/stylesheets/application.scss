@@ -19,6 +19,7 @@
 
 header {
   font-weight: bold;
+  position: relative;
 	.title {
 	  font-size: 26px;
 	  font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
@@ -28,6 +29,9 @@ header {
 }
 body {
 	margin-top: 90px;
+	position: absolute;
+	top: 70px;
+	left: 70px
 }
 .hoge {
 	color: white;
@@ -60,6 +64,9 @@ body {
 	font-size: 25px;
 	padding-right: 10px;
 }
+.user_sign_in{
+	font-weight: bold;
+}
 .sign_up{
 	padding-top: 8px;
 	padding-bottom: 8px;
@@ -67,7 +74,20 @@ body {
 	font-size: 25px;
 	padding-right: 65px;
 }
-
+.administer-menu{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	display: block;
+	font-size: 25px;
+	padding-right: 35px;
+}
+.administer-sign_out{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	display: block;
+	font-size: 15px;
+	padding-right: 35px;
+}
 .main-visual{
 	position: rerative;
 }
@@ -204,7 +224,7 @@ h5{
 	top: 100px;
 }
 .order-confirm{
-font-weight: bold;
+	font-weight: bold;
 }
 .postage-button{
 	background: #dc143c;
@@ -224,6 +244,20 @@ input#name{
 	width: 330px;
 	mrgin-top: 6px;
 }
-
-
-
+.list-group-item{
+	padding: 2px 8px;
+}
+.sidebar{
+	position: relative;
+	margin-top: 10px;
+}
+.trading-show{
+	font-weight:bold;
+}
+.notice{
+	font-size: 20px;
+}
+.message-area{
+	position:relative;
+	margin-top: 30px;
+}

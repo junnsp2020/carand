@@ -60,17 +60,11 @@ class Users::ProductsController < ApplicationController
   end
 
   private
-#   def calculate(user)
-#     balance = 0
-#     profit = 0
-#   products.each do |product|
-#   if product.profit != nil && product.sale_status == "売り切れ"
-#   product.user.balance += product.profit
-#   # binding.pry
-#   product.user.balance.save
-#   end
-#   end
-# end
+  # def calculate(user_id)
+  #   products = Product.where(sale_status: 1, user_id: user_id)
+  #   puts products.to_json
+  #   # products.balance += user.product.profit
+  # end
   def product_params
     params.require(:product).permit(:category_id, :user_id, :name, :image, :introduction, :status, :price, :profit, :postage, :postage_responsibility, :sale_status, :propriety, :notice, :barter_propriety)
 end

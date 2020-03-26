@@ -24,19 +24,19 @@
 										<% if trading.buyer_id == current_user.id && trading.payment_status == "出品者へ入金報告をする" %>
 											<%= link_to "入金してください", trading_path(trading.id), class: "btn btn-danger" %>
 											<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 											<% end %>
 										<% end %>
 										<% if trading.buyer_id == current_user.id && trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
 											<%= link_to "発送待ち", trading_path(trading.id), class: "btn btn-info" %>
 											<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 											<% end %>
 										<% end %>
 										<% if trading.buyer_id == current_user.id && trading.payment_status == "受取報告をする" %>
 						　　					<%= link_to "商品到着後、受取評価してください", trading_path(trading.id), class: "btn btn-danger" %>
 											<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-													<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+													<div><%= link_to "メッセージがきています", trading_path(trading.id), :style=>"font-weight:bold; color:orange" %></div>
 											<% end %>
 										<% end %>
 										<% if trading.buyer_id == current_user.id && trading.payment_status == "ご利用誠にありがとうございました！" %>

@@ -1,69 +1,13 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-10">
-				<table class="table table-bordered">
-					<tboy>
-						<tr>
-							<td>
-								<%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50", class: "center-block" %>
-							</td>
-						</tr>
-						<tr><td>
-							<% if @buyer == current_user %>
-						 			<%= link_to products_path %>
-						 		<% else %>
-						 			<%= "" %>
-						 		<% end %>
-						 	</td>
-						</tr>
-						<tr>
-							<td>
-								current_user
-								<h3 class="col-xs-12"><%= @trading.product.name %></h3>
-								<h4 class="col-xs-12"><%= number_to_currency(@trading.product.price, :unit => "￥", :precision => 0) %></h4>
-								<h3 class="col-xs-12"><%= @trading.product.postage %></h3>
-								<h3 class="col-xs-12"><%= @trading.total_price %></h3>
-								<h3><%= @trading.total_price %></h3>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="col-xs-3">商品の説明</div>
-						    </td>
-						</tr>
-							<td width="100%" height="300px">
-								<%= @trading.product.introduction %>
-							</td>
-						<tr>
-							<td>
-								<div class="col-xs-3">商品の状態</div><%= @trading.product.status %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="col-xs-3">送料の負担</div><%= @trading.product.postage_responsibility %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="col-xs-3">送料</div><%= @trading.product.postage %>
-							</td>
-						</tr>
-					</tboy>
-				</table>
-				<%#= form_for(@trading, url: trading_path(@trading)) do |f| %>
-				<%#= form_for @trading,:url => {controller: "tradings", action: "update"} do |f| %>
-                  <%#= f.select :payment_status, Trading.payment_statuses.keys %>
-                  <%#= f.submit "更新", class: "btn btn-primary" %>
-                <%# end %>
+		<div class="col-xs-9">
+			<h2 class="trading-show">取引画面</h2>
 
-                <%# if @product.barter_approval != true %>
 
-				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
-                	<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
-				 	<% else %>
-				 	<%= "" %>
-				<% end %>
+		    <% if @trading.buyer_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
+		    		<p class="notice"><%= "取引がスタートしました。入金後、出品者へ報告してください。" %>
+                	<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
+			<% end %>
 
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
                 <%= "入金報告をしました。出品者の発送待ちです" %>
@@ -92,8 +36,8 @@
 				<% end %>
 
 				<% if @trading.seller_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
-					<%= "購入者より代金が支払われました　商品を出荷してください" %>
-					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch %>
+					<p class="notice"><%= "購入者より代金が支払われました　商品を出荷してください" %></p>
+					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
 　　 				<% else %>
 				 	<%= ""%>
 				<% end %>
@@ -194,22 +138,91 @@
                 <% end %>
 
 
-
+                <div class="message-area">
                 <table class="table table-bordered">
-                	<tbody>
-                	<% @trading_messages.each do |trading_message| %>
-                    	<tr>
-                    		<td>
-                       			<%= trading_message.message %>
-                       		</td>
-                    	</tr>
-                    <% end %>
-                	</tbody>
-                </table>
+            	<tbody>
+            	<% @trading_messages.each do |trading_message| %>
+                	<tr>
+                		<td>
+                   			<%= trading_message.message %>
+                   		</td>
+                	</tr>
+                <% end %>
+            	</tbody>
+            	</table>
+            	</div>
                     <%= form_for [@trading, @trading_message] do |f| %>
 				    	<%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-						<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+						<%= f.submit "取引メッセージを送る", class: "btn btn-lg btn-base-1 mt-20 pull-right", :style=>"font-weight:bold; background: #999999;" %>
 					<% end %>
 		</div>
+
+		<div class="col-xs-3">
+			<h4 class="trading-show">取引情報</h4>
+
+
+
+
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td>
+								<%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="trading-product">商品名 <%= link_to @trading.product.name, product_path(@trading.product.id), :style=>"font-weight:bold; font-size: 25px;" %></span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="trading-postage">送料 (<%= @trading.product.postage_responsibility %>)</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<% if @trading.buyer_id == current_user.id && @trading.paymethod != 2 %>
+									<span class="trading-price">購入価格 (<%= @trading.product.price %>)</span>
+								<% elsif @trading.buyer_id == current_user.id && @trading.paymethod == 2 %>
+									<%= 交換取引によって入手する %>
+								<% else %>
+									<span class="trading-price">販売利益 (<%= number_to_currency(@trading.product.price, :unit => "￥", :precision => 0) %>)</span>
+								<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								購入日時 <%= @trading.created_at.strftime('%Y年%m月%d日') %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+				<table class="table table-bordered">
+					<tboy>
+						<tr>
+							<td class="trading-person" style="font-weight:bold;">
+								取引相手
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<% if @trading.buyer_id == current_user.id %>
+									<%= attachment_image_tag @trading.product.user, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
+									<%= @trading.product.user.nickname %>
+								<% end %>
+							</td>
+						</tr>
+					</tboy>
+				</table>
+			</div>
 	</div>
 </div>
+				<%#= form_for(@trading, url: trading_path(@trading)) do |f| %>
+				<%#= form_for @trading,:url => {controller: "tradings", action: "update"} do |f| %>
+                  <%#= f.select :payment_status, Trading.payment_statuses.keys %>
+                  <%#= f.submit "更新", class: "btn btn-primary" %>
+                <%# end %>
+
+                <%# if @product.barter_approval != true %>
+

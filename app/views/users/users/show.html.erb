@@ -3,19 +3,19 @@
 	        <ul class="nav nav-sidebar navbar-light">
 	            <ul class="nav nav-sidebar navbar-light">
 	            	<h5>マイページメニュー</h5>
-						<li class="list-group-item"><%= link_to "ほしいものリスト", wish_wishlists_path %></li>
+						<li class="list-group-item"><%= link_to "ほしいものリスト", wish_wishlists_path, :style=>"color:black; text-align:center;" %></li>
 					<h5>商品を出品する</h5>
-						<li class="list-group-item"><%=link_to "商品を出品する", new_product_path %></li>
-						<li class="list-group-item"><%=link_to "出品中の商品", my_product_products_path %></li>
-						<li class="list-group-item"><%=link_to "売れた商品", sold_tradings_path %></li>
+						<li class="list-group-item"><%=link_to "商品を出品する", new_product_path, :style=>"color:black; text-align:center;" %></li>
+						<li class="list-group-item"><%=link_to "出品中の商品", my_product_products_path, :style=>"color:black; text-align:center;" %></li>
+						<li class="list-group-item"><%=link_to "売れた商品", sold_tradings_path, :style=>"color:black; text-align:center;" %></li>
 					<h5>購入した商品</h5>
-						<li class="list-group-item"><%=link_to "購入した商品", bought_tradings_path %></li>
+						<li class="list-group-item"><%=link_to "購入した商品", bought_tradings_path, :style=>"color:black; text-align:center;" %></li>
 					<h5>交換</h5>
-						<li class="list-group-item"><%=link_to "交換リクエスト【 送った 】", my_request_barter_requests_path(current_user.id) %></li>
-						<li class="list-group-item"><%=link_to "交換リクエスト【 もらった 】", requested_barter_requests_path %></li>
+						<li class="list-group-item"><%=link_to "交換リクエスト 【 送った 】", my_request_barter_requests_path(current_user.id), :style=>"color:black; text-align:center;" %></li>
+						<li class="list-group-item"><%=link_to "交換リクエスト 【 もらった 】", requested_barter_requests_path, :style=>"color:black; text-align:center; " %></li>
 					<h5>設定・その他</h5>
-						<li class="list-group-item"><%= link_to "個人情報詳細", userinfo_user_path %></li>
-						<li class="list-group-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+						<li class="list-group-item"><%= link_to "個人情報詳細", userinfo_user_path, :style=>"color:black; text-align:center;" %></li>
+						<li class="list-group-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:black; text-align:center;" %></li>
 				</ul>
 	        </ul>
     	</div>
@@ -25,7 +25,10 @@
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<td class="balance">残高 <span><%= number_to_currency(@balance, :unit => "￥", :precision => 0) %></span></td>
+					<%= @user.nickname %> さん
+				</tr>
+				<tr>
+					<td class="balance">残高 <%= @user.balance %> <span><%= number_to_currency(@balance, :unit => "￥", :precision => 0) %></span></td>
 				</tr>
 				<tr>
 					<td><%= link_to "振込申請する", usertransfer_user_path(current_user) %></td>
@@ -58,22 +61,6 @@
 								<P>悪い評価 <%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %></P>
 							<% end %>
 						</td>
-					</tr>
-
-					<tr>
-						<!-- <td colspan="2"> --><td>取引</td>
-						<td><%= link_to "出品した商品 - 出品中", my_product_products_path %></td>
-					</tr>
-					<tr>
-						<!-- <td rowspan="2"> --><td>マイブログ</td>
-						<td>いいね一覧</td>
-					</tr>
-					<tr>
-						<td>交換希望リスト</td>
-						<td><%= link_to "ほしいもの一覧へ", wish_wishlists_path %></td>
-					</tr>
-					<tr>
-						<td>交換希望リスト</td>
 					</tr>
 				</tbody>
 			</table>

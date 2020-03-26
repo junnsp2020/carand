@@ -132,12 +132,18 @@
               </span>
             </li>
             <li class="mypage"><%= link_to "マイページ", user_path(current_user) %></li>
+          <% elsif administer_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="administer-menu"><%= link_to "通報", administers_reports_path %></li>
+              <li class="administer-menu"><%= link_to "カテゴリー", administers_categories_path %></li>
+              <li class="administer-sign_out"><%= link_to "ログアウト", destroy_administer_session_path, method: :delete, :style=>"color:black;" %></li>
+            </ul>
           <% else %>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="sign_in"><%= link_to 'ログイン', new_user_session_path %></li>
-            <li class="sign_up"><%= link_to '新規会員登録', new_user_session_path %></li>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="sign_in"><%= link_to 'ログイン', new_user_session_path %></li>
+              <li class="sign_up"><%= link_to '新規会員登録', new_user_session_path %></li>
+            </ul>
           <% end %>
-        </ul>
     </header>
     <div class="camera">
       <%#= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
