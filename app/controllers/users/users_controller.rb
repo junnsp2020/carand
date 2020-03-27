@@ -127,8 +127,11 @@ class Users::UsersController < ApplicationController
   #   	return balance
     	products = Product.where(sale_status: 1, user_id: user_id)
     	sum = 0
+    	profit = 0
     	products.each do |product|
-    	  sum += product.profit
+    		if product.profit != nil
+    	  		sum += product.profit
+    		end
     	end
     	return sum
     # puts products.to_json

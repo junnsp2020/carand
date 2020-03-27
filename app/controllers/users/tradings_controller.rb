@@ -44,8 +44,10 @@ class Users::TradingsController < ApplicationController
     @trading.user_id = current_user.id
     @review = Trading.new(trading_params)
     @barter_request = BarterRequest.find_by(user_id: current_user.id)
-    @barter_request.notice = false
-    @barter_request.save
+    if @barter_request
+      @barter_request.notice = false
+      @barter_request.save
+    end
     # if @review
     #   @review.save ##追加
     # end

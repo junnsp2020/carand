@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-10">
 			<h2>商品の編集</h2>
-			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
+			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", size: "170x170", class: "center-block" %>
 			<%= form_for(@product) do |f| %>
 				<table class="table table-bordered">
 					<tboy>
