@@ -17,20 +17,23 @@
 
 								<% else %>
 									<%= link_to product_favorites_path(@product), method: :post, remote: false do %>
-									<span class="glyphicon glyphicon-heart-empty"><%= @product.favorites.count %></span> いいね
+									<span class="glyphicon glyphicon-heart-empty" style="font-size: 20px;">
+										<%= @product.favorites.count %>
+									</span> いいね
 									<% end %>
 								<% end %>
 							</td>
 							<td>
 								<% if @product.wished_by?(current_user) %>
-										<%= link_to "ほしいものリストから削除", product_wishlists_path(@product.id), method: :delete, class: "btn-sm btn-success" %>
+										<%= link_to "ほしいものリストから削除", product_wishlists_path(@product.id), method: :delete, class: "btn-sm btn-success col-xs-12", :style=>"text-align: center;" %>
 								<% else %>
 									<%= button_to "ほしいものリストに追加", product_wishlists_path(@product.id), {method: :post, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
 
 								<% end %>
 							</td>
 							<td>
-								<%= button_to "通報", new_product_report_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12", params:{product_id: @product.id}} %>
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="font-size: 25px;"></span>
+								<span><%= button_to "通報", new_product_report_path(@product.id), {method: :get, class: "btn-sm btn-defalt", params:{product_id: @product.id}} %></span>
 							</td>
 						</tr>
 					</tboy>
@@ -81,7 +84,7 @@
 										<%= link_to "売り切れました", product_path(@product.id), class: "btn-sm btn-info col-xs-12", style: "text-align: center" %>
 									<% end %>
 								<% else %>
-									<button type="button" class="btn btn-warning col-xs-12"><%= @product.user.first_name %>さんが出品した商品です</button>
+									<button type="button" class="btn btn-warning col-xs-12"><%= @product.user.nickname %>さんが出品した商品です</button>
 								<% end %>
                            </td>
 						</tr>
@@ -91,7 +94,7 @@
 									<% if @product.propriety == "交換可能" && @product.sale_status == "販売中" %>
 								 		<%= button_to "この商品は交換可能です", new_product_barter_request_path(@product.id), {method: :get, class: "btn-sm btn-success col-xs-12" } %>
 								 	<% else %>
-								 		<%= button_to "この商品は交換不可です", product_path(@product.id), {method: :get, class: "btn-sm btn-info col-xs-12" } %>
+								 		<%= button_to "この商品は交換不可です", product_path(@product.id), {method: :get, class: "btn-sm col-xs-12", :style=>"font-weight:bold; background: #999999;" } %>
 								 	<% end %>
 							</td>
 						</tr>

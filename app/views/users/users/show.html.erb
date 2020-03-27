@@ -20,18 +20,20 @@
 	        </ul>
     	</div>
 		<div class="col-xs-10">
-		<div class="image-user-show"><%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130" %></div>
+		<div class="image-user-show"><%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", size: "200x200" %></div>
 		<div class="table-user-show">
 		<table class="table table-bordered">
-			<tbody>
+			<tr>
+					<td style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;">
+						<h5><%= @user.nickname %> さん</h5>
+					</td>
+			</tr>
+			<tbody style="border: 2px #808080 solid;">
 				<tr>
-					<%= @user.nickname %> さん
+					<td class="balance"  bgcolor="#fff">残高 <%= number_to_currency(@user.balance, :unit => "￥", :precision => 0) %></td>
 				</tr>
 				<tr>
-					<td class="balance">残高 <%= @user.balance %> <span><%= number_to_currency(@balance, :unit => "￥", :precision => 0) %></span></td>
-				</tr>
-				<tr>
-					<td><%= link_to "振込申請する", usertransfer_user_path(current_user) %></td>
+					<td  bgcolor="#fff"><%= link_to "振込申請する", usertransfer_user_path(current_user) %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -41,24 +43,42 @@
 			<% end %>
 			<div class="final">
 			<table class="table table-bordered">
-				<tbody>
+				<tbody style="border: 2px #808080 solid;">
 					<tr>
-						<td width="30px">購入</td>
-						<td width="30px">販売</td>
+						<td class="boought-review" width="30px" bgcolor="#fff">購入</td>
+						<td class="sold-review" width="30px" bgcolor="#fff">販売</td>
 					</tr>
 					<tr>
-						<td>
+						<td bgcolor="#fff">
 							<% if @tradings %>
 								<P>良い評価 <%= Trading.where(excellent_review: true, buyer_id: @user.id).count %></P>
 								<p>ふつう評価 <%= Trading.where(good_review: true, buyer_id: @user.id).count %></p>
 								<p>悪い評価 <%= Trading.where(poor_review: true, buyer_id: @user.id).count %></p>
 							<% end %>
 						</td>
-						<td>
+						<td bgcolor="#fff">
                             <% if @trading %>
 								<P>良い評価 <%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %></P>
 								<p>ふつう評価 <%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %></p>
 								<P>悪い評価 <%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %></P>
+							<% end %>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered">
+				<tbody style="border: 2px #808080 solid;">
+					<tr>
+						<td class="introduction" bgcolor="#fff">
+							自己紹介
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor="#fff">
+							<% if @user.introduction %>
+								<%= @user.introduction %>
+							<% else %>
+								<%= "自己紹介は登録されていません" %>
 							<% end %>
 						</td>
 					</tr>

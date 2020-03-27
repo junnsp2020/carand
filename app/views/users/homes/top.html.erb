@@ -7,6 +7,10 @@
 	</div>
 	<div style="background-image: url(img/treasure.jpg)"></div>
 	<div class="camera">
-      <%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+		<% if user_signed_in? %>
+      		<%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+      	<% else %>
+      		<%= link_to "", new_user_session_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+      	<% end %>
     </div>
 </div>

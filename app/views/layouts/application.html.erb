@@ -25,7 +25,7 @@
           <ul class="nav navbar-nav navbar-center">
             <span class="search"><%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
               <%= f.text_field :name , placeholder: "何をお探しですか？"%></span>
-            <%= f.submit :🔍 %>
+              <button type="submit" class="btn btn-default glyphicon glyphicon-zoom-in"></button>
             <% end %>
             <div class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -49,10 +49,10 @@
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <% if BarterRequest.where(buyer_id: current_user.id, notice: true).count != 0 %>
-              <%= link_to "リクエストが許可されました", my_request_barter_requests_path(current_user.id) %>
+              <div class="alert alert-info" role="alert"><%= link_to "リクエストが許可されました", my_request_barter_requests_path(current_user.id) %></div>
             <% end %>
             <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
-              <%= link_to "交換リクエストがきています　内容を覗いてみましょう", requested_barter_requests_path %>
+              <div class="alert alert-info" role="alert"><%= link_to "交換リクエストがきています　内容を覗いてみましょう", requested_barter_requests_path %></div>
             <% end %>
             <!-- 以下追加 -->
 
@@ -140,6 +140,7 @@
             </ul>
           <% else %>
             <ul class="nav navbar-nav navbar-right">
+              <li class="about_us"><%= link_to 'カランドって何？', about_us_homes_path %></li>
               <li class="sign_in"><%= link_to 'ログイン', new_user_session_path %></li>
               <li class="sign_up"><%= link_to '新規会員登録', new_user_session_path %></li>
             </ul>

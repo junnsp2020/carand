@@ -6,7 +6,7 @@
 		<div class="col-xs-10">
 			<table class="table table-bordered">
 				<h4>残高</h4>
-				<h4><%= @balance %></h4>
+				<h4><%= number_to_currency(@user.balance, :unit => "￥", :precision => 0) %></h4>
 				<h4>登録情報</h4>
 				<tbody>
 					<tr>
@@ -63,6 +63,19 @@
 							<td><%= @user.account_last_name_kana %></td>
 							<td>口座名義 (メイ)</td>
 							<td><%= @user.account_first_name_kana %></td>
+						</tr>
+					</tbody>
+			</table>
+			<table class="table table-bordered">
+				<h4>自己紹介</h4>
+					<tbody>
+						<tr>
+							<td><% if @user.introduction %>
+									<%= @user.introduction %>
+								<% else %>
+									<%= "自己紹介は登録されていません" %>
+								<% end %>
+							</td>
 						</tr>
 					</tbody>
 			</table>

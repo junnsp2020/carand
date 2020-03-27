@@ -2,19 +2,19 @@
 	<div class="row">
 		<div class="col-xs-10">
 
-			<h4>交換リクエスト【送った】 一覧</h4>
+			<h4 class="my-request-page">交換リクエスト【送った】 一覧</h4>
 				<table class="table table-bordered">
 					<tboy>
 						<tr>
-							<td>ほしい商品</td>
+							<td class="my-request-page">ほしい商品</td>
 							<td></td>
-							<td>提案した商品</td>
+							<td class="my-request-page">提案した商品</td>
 							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<% @barter_requests.each do |barter_request| %>
-							<tr>
+							<tr style="border: 3px #808080 solid;">
 								<td width="10%">
 									<%= link_to product_path(barter_request.product.id) do %>
 										<%= attachment_image_tag barter_request.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
@@ -22,7 +22,7 @@
 								</td>
 								<td width="20%">
 									<%#= link_to barter_request.product.name, product_path(barter_request.product.id) %>
-									<span><%= link_to "ライバルが送ったリクエスト", product_barter_requests_path(barter_request.product.id) %></span>
+									<span><%= link_to "ライバルが送ったリクエスト", product_barter_requests_path(barter_request.product.id), :style=>"font-weight:bold;" %></span>
 								</td>
 								<td width="10%">
 									<%= link_to product_barter_request_path(barter_request.product, barter_request) do %>

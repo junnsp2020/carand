@@ -107,7 +107,7 @@
                 <%# end %>
 
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
-	                <%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %>
+	                <p class="notice"><%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %></p>
 	                <%= link_to "確認完了(※必ずお互いの番号を確認してから押してください)", trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
                 <% end %>
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "番号確認完了(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
@@ -123,10 +123,10 @@
 	                <% end %>
                 <% end %>
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換お疲れ様でした(購入者)" %>
-                	<%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %>
+                	<p class="notice"><%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %></p>
                 <% end %>
                 <% if @trading.seller_id == current_user.id && @trading.shipment_status == "交換(出品者)" &&  @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
-	                <%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %>
+	                <p class="notice"><%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %></p>
 	                <%= link_to "番号の確認完了(※必ずお互いの番号を確認してから押してください)", trading_change_shipment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
                 <% end %>
                 <% if @trading.seller_id == current_user.id && @trading.shipment_status == "番号確認完了(出品者)" &&  @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
@@ -142,7 +142,7 @@
 	                <% end %>
                 <% end %>
                 <% if @trading.seller_id == current_user.id && @trading.shipment_status == "交換お疲れ様でした(出品者)" %>
-                	<%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %>
+                	<p class="notice"><%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %></p>
                 <% end %>
 
 

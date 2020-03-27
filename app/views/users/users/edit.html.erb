@@ -52,6 +52,10 @@
 						<td><%= f.label :"プロフィール写真" %></td>
 						<td><%= f.file_field :image, class: "col-xs-12" %></td>
 					</tr>
+					<tr>
+						<td><%= f.label :"自己紹介" %></td>
+						<td><%= f.text_field :introduction, placeholder: "自己紹介文を入力", class: "col-xs-12", :style=>"height: 100px;" %></td>
+					</tr>
 				</tbody>
 			</table>
 			<table class="table table-bordered">

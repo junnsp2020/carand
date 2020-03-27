@@ -23,6 +23,7 @@ end
 
 scope module: :users do
 	root "homes#top"
+	get "homes/about_us" => "homes#about_us", as: "about_us_homes"
 	get "users/userinfo/:id" => "users#userinfo", as: "userinfo_user"
 	get "users/usertransfer/:id" => "users#usertransfer", as: "usertransfer_user"
 	get "products/my_product" => "products#my_product", as: "my_product_products"

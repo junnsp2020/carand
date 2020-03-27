@@ -8,7 +8,7 @@
 					<% @tradings.each do |trading| %>
 						<table class="table table-bordered">
 							<tboy>
-								<tr>
+								<tr style="border: 2px #808080 solid;">
 									<td width="10%">
 										<%= link_to trading_path(trading.id) do %>
 											<%= attachment_image_tag trading.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>

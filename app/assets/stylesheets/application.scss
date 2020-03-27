@@ -163,7 +163,7 @@ body {
 	width: 60%;
 	position: absolute;
 	left: 13%;
-	top: 190px;
+	top: 286px;
 }
 .image-user-show{
 	width: 120px;
@@ -175,7 +175,7 @@ body {
 	width: 300px;
 	position: absolute;
 	top: 60px;
-	left: 30%;
+	left: 42%;
 }
 .userinfo-path{
 	width: 400px;
@@ -265,8 +265,9 @@ h5{
 	line-height: 11px;
 }
 input#name{
-	width: 330px;
-	mrgin-top: 6px;
+	width: 380px;
+	margin-top: 9px;
+	margin-left: 10px
 }
 .list-group-item{
 	padding: 2px 8px;
@@ -300,4 +301,70 @@ td.product-outline{
 }
 .about-barter{
 	font-weight: bold;
+	color: red;
+}
+.report{
+	font-weight: bold;
+}
+.request{
+	font-weight: bold;
+}
+.request-barter{
+	color: green;
+	font-weight: bold;
+}
+.barter-details{
+	color: blue;
+	font-weight: bold;
+}
+a.dropdown-toggle{
+	color: green;
+	font-weight: bold;
+}
+.boought-review{
+	font-weight: bold;
+}
+.sold-review{
+	font-weight: bold;
+}
+li.about_us{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-right: 120px;
+	display: block;
+	font-size: 25px;
+	padding-right: 10px;
+}
+.final2{
+	position: absolute;
+	margin-top: 5px;
+}
+.about_carand{
+	font-size: 25px;
+	font-weight: bold;
+}
+.carand_introduction{
+	font-weight: bold;
+	font-size: 16px;
+}
+.introduction{
+	font-weight: bold;
+}
+.requested-page{
+	font-weight: bold;
+}
+h4.requested-page{
+	margin-bottom: 40px
+}
+.my-request-page{
+	font-weight: bold;
+}
+h4.my-request-page{
+	margin-bottom: 40px
+}
+.my-product-page{
+	font-weight: bold;
+}
+h3.my-product-page{
+	margin-bottom: 30px
 }

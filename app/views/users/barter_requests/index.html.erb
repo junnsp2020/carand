@@ -1,36 +1,39 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-10">
-			<h2>交換リクエスト</h2>
-				<table class="table table-bordered">
+		<div class="col-xs-10 col-xs-offset-1">
+			<h3 class="request">交換リクエスト</h3	>
+			<br></br>
+				<table class="table table-bordered" style="border: 4px black solid;">
 					<tboy>
-						<tr>
+						<tr bgcolor="#f0e68c">
 							<td>
-								<%= attachment_image_tag @barter_request.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "center-block" %>
+								<h1 class="request" style="text-align: center; color: black; font-size: 55px; text-shadow: 5px 5px 0 #fff">WANTED !</h1>
 							</td>
 						</tr>
-						<tr>
+						<tr bgcolor="#f0e68c">
 							<td>
-								<h3 class="col-xs-12"><%= @barter_requests.name %></h3>
+								<%= attachment_image_tag @barter_request.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "150x150", class: "center-block" %>
 							</td>
 						</tr>
 					</tboy>
 				</table>
-			<% @barter_requests.each do |barter_request| %>
+				<br></br>
+			<h4><span class="request-barter"><%= @barter_request.product.name %></span> に投稿されたリクエスト一覧</h4>
+				<br></br>
 			    <table class="table table-bordered">
 			    	<tbody>
-			    		<tr>
+			    		<% @barter_requests.each do |barter_request| %>
+			    		<tr style="border: 2px #808080 solid;">
 							<td>
 								<%= link_to barter_request.name, product_barter_request_path(@product,barter_request) %>
 							</td>
+			    			<td>
+			    				<%= link_to product_barter_request_path(@product,barter_request) do %>
+									<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "80x80", class: "center-block" %>
+								<% end %>
+							</td>
 							<td>
 								<%= barter_request.comment %>
-							</td>
-                        </tr>
-						</tr>
-						<tr>
-			    			<td>
-								<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "80x80", class: "center-block" %>
 							</td>
 							<td>
 								<% if current_user == @product.user %>
@@ -38,6 +41,8 @@
 								 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
 								 	  	<%= f.submit "確定" %>
 						 	  		<% end %>
+						 	  	<% else %>
+						 	  		<%= barter_request.created_at.strftime('%Y年%m月%d日') %>
 						 	  	<% end %>
 						 	  	<% if current_user == @product.user && barter_request.propriety == "許可する" %>
 						 	  		<span class="propriety"><%= "リクエストを許可しました" %></span>
@@ -49,11 +54,10 @@
 						 			<%= "" %>
 						 		<% end %>
 							</td>
-							</td>
 						</tr>
+						<% end %>
 					</tbody>
 				</table>
-			<% end %>
 		</div>
 	</div>
 </div>

@@ -14,10 +14,16 @@
               </td>
             </tr>
             <tr>
-              <td>お名前  (カナ)</td>
+              <td>お名前 (カナ)</td>
               <td>
                 <%= f.text_field :last_name_kana, placeholder: "姓(カナ)を入力", class: "col-xs-6" %>
                 <%= f.text_field :first_name_kana, placeholder: "名(カナ)を入力", class: "col-xs-6" %>
+              </td>
+            </tr>
+            <tr>
+              <td>ニックネーム (カランド内で使用します)</td>
+              <td>
+                <%= f.text_field :nickname, placeholder: "ニックネームを入力(後から変更可能です)", autofocus: true, class: "col-xs-12" %>
               </td>
             </tr>
             <tr>
