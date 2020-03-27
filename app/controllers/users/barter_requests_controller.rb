@@ -32,6 +32,7 @@ class Users::BarterRequestsController < ApplicationController
     @barter_request.user_id = current_user.id
     @product.notice = false
     @product.save
+    @barter_request.notice = false
     if @barter_request.save
       redirect_to product_barter_requests_path
     else
@@ -42,6 +43,7 @@ class Users::BarterRequestsController < ApplicationController
   def update
     @barter_request = BarterRequest.find(params[:id])
     @product = Product.find(params[:product_id])
+    @barter_request.notice = true
     if @barter_request.update(barter_request_params)
       @product.barter_approval = true
       @product.save

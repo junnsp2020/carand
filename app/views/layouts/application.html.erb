@@ -48,7 +48,7 @@
           </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <% if Product.where(barter_approval: true).count != 0 && BarterRequest.where(buyer_id: current_user.id, propriety: true).count != 0 %>
+            <% if BarterRequest.where(buyer_id: current_user.id, notice: true).count != 0 %>
               <%= link_to "リクエストが許可されました", my_request_barter_requests_path(current_user.id) %>
             <% end %>
             <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
@@ -112,20 +112,20 @@
               <span class="trading-list">
                 <%= link_to "交換！", barter_tradings_path %>
                   <%# if Trading.where(payment_status: 4).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count == 0 %>
-                  <% if Trading.where("((payment_status = ?)OR(payment_status = ?)) OR ((shipment_status = ?) OR (shipment_status = ?))", 4, 5, 4, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count == 0 %>
+                  <% if Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count == 0 %>
                   <%# if Trading.where("((payment_status = ?)OR(payment_status = ?)) OR ((shipment_status = ?) OR (shipment_status = ?))", 4, 5, 4, 5).where("((buyer_id = ?)AND(buyer_notice = ?)) OR ((seller_id = ?) AND (seller_notice = ?)) ", current_user.id, true, current_user.id, true).count == 0 %>
                     <span class="badge3">
                       <span class="badge", style="color: white;">
                       <%#= Trading.where(payment_status: 4).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count %>
                        <%#Trading.where("((buyer_id = ?)AND(buyer_notice = ?)) OR ((seller_id = ?) AND (seller_notice = ?)) ", current_user.id, true, current_user.id, true).count %>
-                  <%= Trading.where("((payment_status = ?)OR(payment_status = ?)) OR ((shipment_status = ?) OR (shipment_status = ?))", 4, 5, 4, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
+                  <%= Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
                       </span>
                     </span>
                   <% else %>
                     <span class="badge4">
                       <span class="badge", style="color: white;">
                       <%#= Trading.where(payment_status: 4, paymethod: 2).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count %>
-                      <%= Trading.where("((payment_status = ?)OR(payment_status = ?)) OR ((shipment_status = ?) OR (shipment_status = ?))", 4, 5, 4, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
+                      <%= Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
                       </span>
                     </span>
                   <% end %>

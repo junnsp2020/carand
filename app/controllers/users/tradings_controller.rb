@@ -43,6 +43,9 @@ class Users::TradingsController < ApplicationController
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
     @review = Trading.new(trading_params)
+    @barter_request = BarterRequest.find_by(user_id: current_user.id)
+    @barter_request.notice = false
+    @barter_request.save
     # if @review
     #   @review.save ##追加
     # end
@@ -107,6 +110,9 @@ class Users::TradingsController < ApplicationController
 
   def barter
     @tradings = Trading.where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).where(paymethod: 2)
+    # @trading = Trading.find_by(seller_id: current_user.id)
+    # @tradings = Trading.where(paymethod: 2, buyer_id: params[:user_id])
+    # ("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count
     @seller = Trading.where(seller_id: current_user.id)
     @buyer = Trading.where(buyer_id: current_user.id)
   end
