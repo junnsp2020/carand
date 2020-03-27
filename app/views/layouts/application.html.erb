@@ -48,7 +48,7 @@
           </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <% if Product.where(barter_approval: true).count != 0 && BarterRequest.where(user_id: current_user.id).count != 0 %>
+            <% if Product.where(barter_approval: true).count != 0 && BarterRequest.where(buyer_id: current_user.id, propriety: true).count != 0 %>
               <%= link_to "リクエストが許可されました", my_request_barter_requests_path(current_user.id) %>
             <% end %>
             <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>

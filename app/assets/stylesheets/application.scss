@@ -30,7 +30,7 @@ header {
 body {
 	margin-top: 90px;
 	position: absolute;
-	top: 70px;
+	top: 30px;
 	left: 70px
 }
 .hoge {
@@ -39,7 +39,7 @@ body {
 }
 .content1{
   	position: absolute;
-	top: 100px;
+	top: 30px;
 	left: 600px;
 	font-size: 30px;
 	color:#4169e1;
@@ -223,6 +223,30 @@ h5{
 	position: absolute;
 	top: 100px;
 }
+.barter-list{
+	font-weight: bold;
+}
+.no-barter{
+	position: absolute;
+	top: 100px;
+}
+.wish-list{
+	font-weight: bold;
+}
+.no-wish-list{
+	position: absolute;
+	top: 130px;
+}
+.see-products{
+	position: absolute;
+	top: 195px;
+	font-weight: bold;
+	font-size: 20px;
+}
+.all-products{
+	font-weight: bold;
+	font-size: 30px;
+}
 .order-confirm{
 	font-weight: bold;
 }
@@ -256,8 +280,24 @@ input#name{
 }
 .notice{
 	font-size: 20px;
+	margin-bottom: 50px;
 }
 .message-area{
 	position:relative;
 	margin-top: 30px;
+}
+.radio-button{
+	margin-right: 20px;
+}
+.review{
+	margin-bottom: 25px;
+}
+td.product-outline{
+	height: 40px;
+}
+.exhibition{
+	font-weight: bold;
+}
+.about-barter{
+	font-weight: bold;
 }

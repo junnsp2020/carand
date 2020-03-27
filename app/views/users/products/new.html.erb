@@ -1,8 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10">
-			<h2>出品</h2>
-			<%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", class: "center-block" %>
+			<h2 class="exhibition">出品</h2>
 			<%= form_for(@product) do |f| %>
 				<table class="table table-bordered">
 					<tboy>
@@ -42,8 +41,10 @@
 						</tr>
 						<tr>
 							<td>
-								<span><%= f.label :交換取引の可否, class: "col-xs-4" %></span><span class="barter-propriety">(必須) </span><span>「交換可能」 に設定しておくと思わぬお宝が提案されるかもしれません</span>
-								<span><%= f.select :propriety, Product.proprieties.keys, class: "col-xs-8" %></span>
+								<span><%= f.label :交換取引の可否, class: "col-xs-2" %></span>
+									<span><%= f.select :propriety, Product.proprieties.keys, class: "col-xs-8" %></span>
+								<span class="barter-propriety">(必須) </span>
+								<span class> <span class="about-barter">「交換可能」</span> に設定しておくと思わぬお宝が提案されるかもしれません !</span>
 							</td>
 						</tr>
 					</tboy>

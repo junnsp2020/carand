@@ -7,8 +7,8 @@
                 <tr>
                   <td>
                       <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-                        <h3>合計金額  ￥<%= @product.price %></h3>
-                        <button type="button" background-color="red"; class="btn btn-secondary col-xs-2">
+                        <h3>合計金額 <%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h3>
+                        <button type="button" background-color="red"; class="btn btn-secondary col-xs-2" style="font-weight:bold; background: #999999;">
                           送料 / <%= @product.postage_responsibility %>
                         </button>
                   </td>
@@ -18,7 +18,7 @@
                   <%= f.hidden_field :buyer_id, :value => current_user.id %>
                   <tr>
                     <td>
-                      <%= f.label :"支払方法 ※交換の方はこちらから「交換」を選択してください", class: "col-xs-12" %>
+                      <%= f.label :"支払方法", class: "col-xs-12" %><span> ※交換の方は必ず「交換」を選択してください</span>
                       <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
                     </td>
                   </tr>

@@ -1,68 +1,71 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10">
-			<h4>交換取引 一覧</h4>
-			<% @tradings.each do |trading| %>
-				<table class="table table-bordered">
-					<tboy>
-						<tr>
-							<td width="10%">
-								<%= link_to trading_path(trading.id) do %>
-									<%= attachment_image_tag trading.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
-								<% end %>
-							</td>
-							<td width="30%">
-								<%= link_to trading.product.name, trading_path(trading.id) %>
-							</td>
-							<td width="35%">
-								<% if trading.buyer_id == current_user.id && trading.payment_status == "交換(購入者)" %>
-									<%= link_to "出荷(送り状番号通知)をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
-									<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+			<h3 class="barter-list">交換取引 一覧</h3>
+				<% if @tradings.blank? %>
+	        		<h4 class="no-barter">交換した商品はありません</h4>
+	      		<% end %>
+				<% @tradings.each do |trading| %>
+					<table class="table table-bordered">
+						<tboy>
+							<tr>
+								<td width="10%">
+									<%= link_to trading_path(trading.id) do %>
+										<%= attachment_image_tag trading.product, :image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
 									<% end %>
-									<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+								</td>
+								<td width="30%">
+									<%= link_to trading.product.name, trading_path(trading.id) %>
+								</td>
+								<td width="35%">
+									<% if trading.buyer_id == current_user.id && trading.payment_status == "交換(購入者)" %>
+										<%= link_to "出荷(送り状番号通知)をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
+										<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
+										<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
+									<% elsif trading.seller_id == current_user.id && trading.shipment_status == "交換(出品者)" %>
+										<%= link_to "出荷(送り状番号通知)をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
+										<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
+										<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
 									<% end %>
-								<% elsif trading.seller_id == current_user.id && trading.shipment_status == "交換(出品者)" %>
-									<%= link_to "出荷(送り状番号通知)をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
-									<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+									<% if trading.buyer_id == current_user.id && trading.payment_status == "番号確認完了(購入者)" %>
+										<%= link_to "交換者の評価をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
+										<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
+										<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
+									<% elsif trading.seller_id == current_user.id && trading.shipment_status == "番号確認完了(出品者)" %>
+										<%= link_to "交換者の評価をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
+										<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
+										<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
+											<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+										<% end %>
 									<% end %>
-									<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
+									<% if trading.buyer_id == current_user.id && trading.payment_status == "交換お疲れ様でした(購入者)" %>
+					　　					<%= link_to "取引済", trading_path(trading.id), class: "btn btn-default" %>
+									<% elsif trading.seller_id == current_user.id && trading.shipment_status == "交換お疲れ様でした(出品者)" %>
+					　　					<%= link_to "取引済", trading_path(trading.id), class: "btn btn-default" %>
 									<% end %>
-								<% end %>
-								<% if trading.buyer_id == current_user.id && trading.payment_status == "番号確認完了(購入者)" %>
-									<%= link_to "交換者の評価をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
-									<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
-									<% end %>
-									<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
-									<% end %>
-								<% elsif trading.seller_id == current_user.id && trading.shipment_status == "番号確認完了(出品者)" %>
-									<%= link_to "交換者の評価をお願いします", trading_path(trading.id), class: "btn btn-danger" %>
-									<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
-									<% end %>
-									<% if trading.seller_id == current_user.id && trading.seller_notice == true %>
-										<div><%= link_to "メッセージがきています", trading_path(trading.id) %></div>
-									<% end %>
-								<% end %>
-								<% if trading.buyer_id == current_user.id && trading.payment_status == "交換お疲れ様でした(購入者)" %>
-				　　					<%= link_to "取引済", trading_path(trading.id), class: "btn btn-default" %>
-								<% elsif trading.seller_id == current_user.id && trading.shipment_status == "交換お疲れ様でした(出品者)" %>
-				　　					<%= link_to "取引済", trading_path(trading.id), class: "btn btn-default" %>
-								<% end %>
-							</td>
-							</td>
-							<td width="20%">
-								<%= trading.product.created_at.strftime('%Y-%m-%d') %>
-							</td>
-						</tr>
-					</tboy>
-				</table>
-			<% end %>
+								</td>
+								</td>
+								<td width="20%">
+									<%= trading.product.created_at.strftime('%Y-%m-%d') %>
+								</td>
+							</tr>
+						</tboy>
+					</table>
+				<% end %>
 		</div>
 	</div>
 </div>
