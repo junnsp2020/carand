@@ -8,7 +8,7 @@
 ruby 2.5.7
 Rails 5.2.4.1
 
-## 機能一覧:
+## 取扱説明:
 
 ### A. 出品 → 売れた場合の流れ    
 **(1) 「マイページ」 → 「商品を出品する or カメラマーク をクリック」**
@@ -23,11 +23,18 @@ Rails 5.2.4.1
 **(3) 出品処理は以上です**  
 自分が出品した商品には「～さんが出品した商品です」と表示され
 購入はできません。
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818465-e779ea00-7115-11ea-93db-c12f926965aa.png">
-<br>　　
-**(4) 商品が売れた場合**
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818465-e779ea00-7115-11ea-93db-c12f926965aa.png">  
+**(4)商品が売れた場合**  
 「商品が購入されました」とメッセージが表示されます。購入者の入金完了まで待機してください。
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819424-20b65800-711e-11ea-9afb-bc47613bbe1e.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819424-20b65800-711e-11ea-9afb-bc47613bbe1e.png">  
+**(5)購入者が入金を終えた場合**
+出品者のヘッダーにある「売れた！」に数字が表示されます。  
+この数字は出品者がやるべきことの数字を表しています。クリックして発送通知をしてください。  
+(ヘッダーの詳細については～を参照してください)
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819457-552a1400-711e-11ea-8966-16dd08b91b31.png">  
+**(6)購入者が受取確認を終えた場合**
+購入者が受取評価を終えると、出品者はお相手の評価ができます。これにて取引は完了です。  
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819479-77239680-711e-11ea-93d6-54532f6c739b.png">
 ### B. 商品を検索する    
 **(1)「ヘッダーの検索窓 or カテゴリーからもお探しできます をクリック」**  
 (検索窓にキーワードを入れないで虫眼鏡マークを押すと、全ての商品を検索できます)
