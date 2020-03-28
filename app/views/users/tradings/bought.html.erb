@@ -20,7 +20,7 @@
 									<td width="15%">
 										<%= number_to_currency(trading.product.price, :unit => "￥", :precision => 0) %>
 									</td>
-									<td width="35%">
+									<td width="25%">
 										<% if trading.buyer_id == current_user.id && trading.payment_status == "出品者へ入金報告をする" %>
 											<%= link_to "入金してください", trading_path(trading.id), class: "btn btn-danger" %>
 											<% if trading.buyer_id == current_user.id && trading.buyer_notice == true %>
