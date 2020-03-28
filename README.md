@@ -27,13 +27,14 @@ Rails 5.2.4.1
 **(4)商品が売れた場合**  
 「商品が購入されました」とメッセージが表示されます。購入者の入金完了まで待機してください。
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819424-20b65800-711e-11ea-9afb-bc47613bbe1e.png">  
-**(5)購入者が入金を終えた場合**
+**(5)購入者が入金を終えた場合**  
 出品者のヘッダーにある「売れた！」に数字が表示されます。  
-この数字は出品者がやるべきことの数字を表しています。クリックして発送通知をしてください。  
+この数字は出品者がやるべきことの数字を表しています。クリックして出荷報告をしてください。  
 (ヘッダーの詳細については～を参照してください)
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819457-552a1400-711e-11ea-8966-16dd08b91b31.png">  
-**(6)購入者が受取確認を終えた場合**
-購入者が受取評価を終えると、出品者はお相手の評価ができます。これにて取引は完了です。  
+**(6)購入者が受取確認を終えた場合**  
+購入者が受取評価を終えると、出品者はお相手の評価ができます。  
+これにて取引は完了です。  
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819479-77239680-711e-11ea-93d6-54532f6c739b.png">
 ### B. 商品を検索する    
 **(1)「ヘッダーの検索窓 or カテゴリーからもお探しできます をクリック」**  
@@ -45,28 +46,22 @@ Rails 5.2.4.1
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819362-a38ae300-711d-11ea-88ee-2561bb3a848c.png">
 
 ### C. 購入 or 交換 → 取引の流れ
-####B-1.「購入する場合]**
+####B-1.「購入する場合]  
 **(1)「購入ページへ進む」をクリックし取引確定画面へ進んでください。**
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819386-ca491980-711d-11ea-85b2-4a8622cd8dc8.png">
 
 **(2)「購入を確定する」をクリック**
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819393-df25ad00-711d-11ea-8baa-5dbbc8bd7594.png">  
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77820480-f9638900-7125-11ea-901e-0816af461435.jpg">  
 **(3)入金報告をしてください**
-入金報告完了後、商品は発送されます
+入金報告完了後、出品者は発送の手続きに入ります  
 
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819410-03818980-711e-11ea-91d9-9bfcc30915e7.png">
- ↓
-「出品者の出荷報告」
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819424-20b65800-711e-11ea-9afb-bc47613bbe1e.png">
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819457-552a1400-711e-11ea-8966-16dd08b91b31.png">
-
-
-
- ↓
-「購入者が受取評価をし、その後出品者の方も評価できる」
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819410-03818980-711e-11ea-91d9-9bfcc30915e7.png">  
+**(4)出品者より出荷報告があった場合**  
+ヘッダーの「買った！」に数字が表示されます。  
+この数字は購入者がやるべきことの数字を表しています。クリックして受取評価をしてください。  
+(ヘッダーの詳細については～を参照してください)  
+これにて取引は完了です。
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819477-6ecb5b80-711e-11ea-95f6-5784c71c6d26.png">
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819479-77239680-711e-11ea-93d6-54532f6c739b.png">
-
 
 という流れです。後述しますが、自分がやるべきことが
 ある場合は、ヘッダーに表示されます。
