@@ -28,20 +28,38 @@ Rails 5.2.4.1
 ### B. 購入 or 交換 → 取引の流れ    
 **「(1)ヘッダーの検索窓 or カテゴリーからもお探しできます をクリック」**  
 (検索窓にキーワードを入れないで虫眼鏡マークを押すと、全ての商品を検索できます)
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819318-60307480-711d-11ea-8910-7d6e989adb1f.png">
+
 
 **商品一覧には、「販売中」「交換可」「売切」のタグが設定してあります。**
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819362-a38ae300-711d-11ea-88ee-2561bb3a848c.png">
 
 
-・ A.「販売中」の商品を購入する場合
+・ B-1.「販売中」の商品を購入する場合
 「購入ページへ進む」をクリックし取引確定画面へ進んでください。
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819386-ca491980-711d-11ea-85b2-4a8622cd8dc8.png">
+
 その後は
 「購入を確定する」
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819393-df25ad00-711d-11ea-8baa-5dbbc8bd7594.PNG">
+
  ↓
 「購入者の入金報告」
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819424-20b65800-711e-11ea-9afb-bc47613bbe1e.png">
+
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819410-03818980-711e-11ea-91d9-9bfcc30915e7.png">
+
  ↓
 「出品者の出荷報告」
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819457-552a1400-711e-11ea-8966-16dd08b91b31.png">
+
+
+
  ↓
 「購入者が受取評価をし、その後出品者の方も評価できる」
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819477-6ecb5b80-711e-11ea-95f6-5784c71c6d26.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819479-77239680-711e-11ea-93d6-54532f6c739b.png">
+
 
 という流れです。後述しますが、自分がやるべきことが
 ある場合は、ヘッダーに表示されます。
