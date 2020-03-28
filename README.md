@@ -20,10 +20,11 @@ Rails 5.2.4.1
 交換リクエストがくる可能性があります。
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77818455-c618fe00-7115-11ea-83bc-1c72330056df.png">
       
-**(3) 以上で出品は完了です**  
+**(3) 出品処理は以上です**  
 自分が出品した商品には「～さんが出品した商品です」と表示され
 購入はできません。
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77818465-e779ea00-7115-11ea-93db-c12f926965aa.png">
+<br>　　
 **(4) 商品が売れた場合**
 「商品が購入されました」とメッセージが表示されます。購入者の入金完了まで待機してください。
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819424-20b65800-711e-11ea-9afb-bc47613bbe1e.png">
@@ -42,7 +43,7 @@ Rails 5.2.4.1
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819386-ca491980-711d-11ea-85b2-4a8622cd8dc8.png">
 
 **(2)「購入を確定する」をクリック**
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819393-df25ad00-711d-11ea-8baa-5dbbc8bd7594.PNG">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819393-df25ad00-711d-11ea-8baa-5dbbc8bd7594.png">  
 **(3)入金報告をしてください**
 入金報告完了後、商品は発送されます
 
