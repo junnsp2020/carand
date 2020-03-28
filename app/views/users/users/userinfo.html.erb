@@ -67,6 +67,19 @@
 					</tbody>
 			</table>
 			<table class="table table-bordered">
+				<h4>ニックネーム</h4>
+					<tbody>
+						<tr>
+							<td><% if @user.nickname %>
+									<%= @user.nickname %>
+								<% else %>
+									<%= "ニックネームは登録されていません" %>
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+			<table class="table table-bordered">
 				<h4>自己紹介</h4>
 					<tbody>
 						<tr>
