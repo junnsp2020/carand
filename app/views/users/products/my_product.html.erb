@@ -3,6 +3,9 @@
 		<div class="col-xs-10">
 
 			<h3 class="my-product-page">出品した商品</h3>
+			<% if @products.blank? %>
+	        	<h4 class="no-barter">出品した商品はありません</h4>
+	      	<% end %>
 			<% @products.each do |product| %>
 				<table class="table table-bordered" style="border: 2px #808080 solid;">
 					<tboy>
