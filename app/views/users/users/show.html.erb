@@ -30,7 +30,7 @@
 			</tr>
 			<tbody style="border: 2px #808080 solid;">
 				<tr>
-					<td class="balance"  bgcolor="#fff">カランド残高 <%= number_to_currency(@user.balance, :unit => "￥", :precision => 0) %></td>
+					<td class="balance"  bgcolor="#fff">カランド内 残高 <%= number_to_currency(@user.balance, :unit => "￥", :precision => 0) %></td>
 				</tr>
 				<tr>
 					<td  bgcolor="#fff"><%= link_to "振込申請する", usertransfer_user_path(current_user) %></td>
@@ -39,7 +39,7 @@
 		</table>
 		</div>
 			<% if current_user == @user %>
-　　　　　　　　<%= "" %>
+				<%= "" %>
 			<% end %>
 			<div class="final">
 			<table class="table table-bordered">

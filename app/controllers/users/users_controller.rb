@@ -62,15 +62,19 @@ class Users::UsersController < ApplicationController
 
 	def create
 		# @balance = calculate(current_user)
-		@user = current_user
-		@request_amount = User.new(user_params)
-		@request_amount = @user.request_amount
-		@request_amount.save
-		# binding.pry
-		# @balance.save
-		# binding.pry
-		@user.balance -= @user.request_amount
-        @user.save
+		# @user = current_user
+		# # @request_amount = User.new(user_params)
+		# # @request_amount = @user.request_amount
+		# # @request_amount.save
+		# # binding.pry
+		# # @balance.save
+		# # binding.pry
+		# # if @user.balance == nil
+		# #   @user.balance = 0
+		# #   @user.save
+		# # end
+		# @user.balance -= @user.request_amount
+  #       @user.save
 	end
 
 	def edit
@@ -83,18 +87,25 @@ class Users::UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		@user.update(user_params)
-		 if current_user.request_amount
-	  	   current_user.balance -= @user.request_amount
+		# @user.request_amount = 0
+		# @user.save
+		if @user.request_amount == nil
+		  @user.request_amount = 0
+		  @user.save
+		end
+		 if @user.request_amount
+	  	   @user.balance -= @user.request_amount
 	     else
-	   	   current_user.balance = @user.request_amount
+	     	# binding.pry  ## 止まった!
+	   	   @user.balance = @user.request_amount
 	  	end
 	    # @balance = calculate(@user)
 	    current_user.save
-	if @user.save
-	  	redirect_to user_path(current_user.id)
-	else
-			render :show
-	end
+		if @user.save
+	  	  redirect_to user_path(current_user.id)
+		else
+		  render :show
+		end
 	end
 
   	def delete
