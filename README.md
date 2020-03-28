@@ -11,26 +11,32 @@ comment.test.jpg
 
 ## 機能一覧:
 
-1. 出品 の流れ
+### 1. 出品 の流れ
+
 
 * 「マイページ」 → 「商品を出品する or カメラマーク をクリック」
-<img width="600px" src="https://user-images.githubusercontent.com/58461408/77818420-76d2cd80-7115-11ea-8c78-98515d3309fc.png">
-![introduction2](https://user-images.githubusercontent.com/58461408/77818448-a97cc600-7115-11ea-8710-009af43e0edc.png)
+
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818420-76d2cd80-7115-11ea-8c78-98515d3309fc.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818448-a97cc600-7115-11ea-8710-009af43e0edc.png">
+
 
 
 
 * 自分の商品画像を選択して出品することができます
 * 交換の可否の項目で「交換可能」にしておけば、他のユーザーから
   交換リクエストがくる可能性があります。
-![introduction3](https://user-images.githubusercontent.com/58461408/77818455-c618fe00-7115-11ea-83bc-1c72330056df.png)
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818455-c618fe00-7115-11ea-83bc-1c72330056df.png">
+
+
 
 
 * 自分が出品した商品には「～さんが出品した商品です」と表示され
 　購入はできません。
-![introduction4](https://user-images.githubusercontent.com/58461408/77818465-e779ea00-7115-11ea-93db-c12f926965aa.png)
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818465-e779ea00-7115-11ea-93db-c12f926965aa.png">
 
 
-2. 購入 or 交換 → 取引の流れ
+### 2. 購入 or 交換 → 取引の流れ
+
 
 * 「ヘッダーの検索窓 or カテゴリーからもお探しできます をクリック」
 (検索窓にキーワードを入れないで虫眼鏡マークを押すと、全ての商品を検索できます)
