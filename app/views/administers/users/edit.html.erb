@@ -7,19 +7,20 @@
 				<tbody>
 					<tr>
 						<td>氏名</td>
-						<td><%= @user.last_name %>
+						<td>
+							<%= @user.last_name %>
 							<%= @user.first_name %>
 						</td>
-					<tr>
+					</tr>
 					<tr>
 						<td>氏名 (カナ)</td>
-						<td><%= @user.last_name_kana %>
-						</td>
+						<td><%= @user.last_name_kana %></td>
 					</tr>
 					<tr>
 						<td>該当ユーザー / 残高</td>
 						<td><%= number_to_currency(@balance, :unit => "￥", :precision => 0) %></td>
 					</tr>
+					<tr>
 			          <td class="is_deleted">会員ステータス</td>
 				        <td>
 				          	<label><%=f.radio_button :is_deleted, "有効" %>有効</label>

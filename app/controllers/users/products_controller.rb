@@ -14,11 +14,9 @@ class Users::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-     # trading = @product.build_trading
     @product_comment = ProductComment.new
     @product_comments = @product.product_comments
     @tradings = Trading.where(product_id: @product.id)
-    # @trading = Trading.find(params[:trading_id])
   end
 
   def create
@@ -60,12 +58,7 @@ class Users::ProductsController < ApplicationController
   end
 
   private
-  # def calculate(user_id)
-  #   products = Product.where(sale_status: 1, user_id: user_id)
-  #   puts products.to_json
-  #   # products.balance += user.product.profit
-  # end
   def product_params
     params.require(:product).permit(:category_id, :user_id, :name, :image, :introduction, :status, :price, :profit, :postage, :postage_responsibility, :sale_status, :propriety, :notice, :barter_propriety)
-end
+  end
 end

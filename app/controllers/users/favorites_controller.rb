@@ -11,6 +11,6 @@ class Users::FavoritesController < ApplicationController
     @favorite = current_user.favorites.find_by(product_id: @product.id)
     @favorite.destroy
     redirect_to request.referer
-    end
+  end
 end
 

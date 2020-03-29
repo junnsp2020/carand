@@ -38,9 +38,8 @@
 							<td>
 								<% if current_user == @product.user %>
 									<%= form_for(@barter_request, url: product_barter_request_path(@product, @barter_request), method: :patch) do |f| %>
-									<%#= form_with url: product_barter_request_path(@product, @barter_request, method: :patch, data: {remote: false} do |f| %>
 								 	  	<%= f.select :propriety, BarterRequest.proprieties.keys, class: "col-xs-8" %>
-								 	<%= f.submit "確定", class: "btn-sm btn-danger" %>
+								 		<%= f.submit "確定", class: "btn-sm btn-danger" %>
 						 	  		<% end %>
 							 	<% end %>
 							 	<% if current_user == @product.user && @barter_request.propriety == "許可する" %>

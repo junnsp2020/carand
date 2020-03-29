@@ -19,33 +19,35 @@
           <% end %>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
           <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 8px"></span>
-
-        <!-- </span> -->
       </nav>
-          <ul class="nav navbar-nav navbar-center">
-            <span class="search"><%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
-              <%= f.text_field :name , placeholder: "何をお探しですか？"%></span>
-              <button type="submit" class="btn btn-default glyphicon glyphicon-zoom-in"></button>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-center">
+          <span class="search">
+            <%= form_with url: product_search_path, method: :get, data: {remote: false} do |f| %>
+              <%= f.text_field :name , placeholder: "何をお探しですか？"%>
+          </span>
+            <button type="submit" class="btn btn-default glyphicon glyphicon-zoom-in"></button>
             <% end %>
-            <div class="dropdown">
+          <div class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               カテゴリーからもお探しできます
-              <span class="caret"></span>
+            <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
-              <li>
-                <%= link_to "全て", products_path %>
-              </li>
-              <li>
-                <% Category.all.each do |category| %>
-              </li>
-              <li>
-                <%= link_to category.name, products_path(category_id: category.id) %>
-              </li>
-                <% end %>
-            </ul>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to "全て", products_path %>
+          </li>
+          <li>
+            <% Category.all.each do |category| %>
+          </li>
+          <li>
+            <%= link_to category.name, products_path(category_id: category.id) %>
+          </li>
+            <% end %>
+        </ul>
           </div>
-          </ul>
+        </ul>
+      <% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <% if BarterRequest.where(buyer_id: current_user.id, notice: true).count != 0 %>
@@ -54,8 +56,6 @@
             <% if Product.where(user_id: current_user.id, notice: false).count != 0 %>
               <div class="alert alert-info" role="alert"><%= link_to "交換リクエストがきています　内容を覗いてみましょう", requested_barter_requests_path %></div>
             <% end %>
-            <!-- 以下追加 -->
-
             <% if Trading.where(buyer_id: current_user.id, buyer_notice: true).where("(payment_status = ?) OR (payment_status = ?) OR (payment_status = ?) ", 0, 1, 2) .count != 0 %>
               <div class="alert alert-info" role="alert"><%= link_to "出品者よりメッセージがあります", bought_tradings_path %></div>
             <% end %>
@@ -67,9 +67,8 @@
             <% end %>
             <% if Trading.where(seller_id: current_user.id, seller_notice: true).where("(shipment_status = ?) OR (shipment_status = ?) ", 4, 5) .count != 0 %>
               <div class="alert alert-info" role="alert"><%= link_to "交換者よりメッセージがあります", barter_tradings_path %>
-            <% end %></div>
-
-            <!-- ここまで -->
+            <% end %>
+              </div>
             <% if Trading.where(seller_id: current_user.id, payment_status: "出品者へ入金報告をする").count != 0 %>
               <div class="alert alert-info" role="alert"><%= link_to "商品が購入されました　入金を待っています", sold_tradings_path %>
             <% end %></div>
@@ -80,16 +79,17 @@
                   <% if Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(buyer_id: current_user.id).count == 0 %>
                     <span class="badge1">
                       <span class="badge", style="color: white;">
-                      <%= Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(buyer_id: current_user.id).count %>
+                        <%= Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(buyer_id: current_user.id).count %>
                       </span>
-                  </span>
-                    <% else %>
+                    </span>
+                  <% else %>
                     <span class="badge2">
                       <span class="badge", style="color: white;">
                         <%= Trading.where("(payment_status = ?) OR (payment_status = ?) ", 0, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(buyer_id: current_user.id).count %>
                       </span>
                     </span>
                   <% end %>
+              </span>
             </li>
             <li>
               <span class="trading-list">
@@ -97,35 +97,31 @@
                   <% if Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(seller_id: current_user.id).count == 0 %>
                     <span class="badge3">
                       <span class="badge", style="color: white;">
-                      <%= Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2,).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(seller_id: current_user.id).count %>
+                        <%= Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2,).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(seller_id: current_user.id).count %>
                       </span>
                     </span>
                   <% else %>
                     <span class="badge4">
                       <span class="badge", style="color: white;">
-                      <%= Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(seller_id: current_user.id).count %>
+                        <%= Trading.where("(payment_status = ?) OR (shipment_status = ?) ", 1, 2).where("(paymethod = ?) OR (paymethod = ?) ", 0, 1).where(seller_id: current_user.id).count %>
                       </span>
                     </span>
                   <% end %>
+              </span>
             </li>
             <li>
               <span class="trading-list">
                 <%= link_to "交換！", barter_tradings_path %>
-                  <%# if Trading.where(payment_status: 4).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count == 0 %>
                   <% if Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count == 0 %>
-                  <%# if Trading.where("((payment_status = ?)OR(payment_status = ?)) OR ((shipment_status = ?) OR (shipment_status = ?))", 4, 5, 4, 5).where("((buyer_id = ?)AND(buyer_notice = ?)) OR ((seller_id = ?) AND (seller_notice = ?)) ", current_user.id, true, current_user.id, true).count == 0 %>
                     <span class="badge3">
                       <span class="badge", style="color: white;">
-                      <%#= Trading.where(payment_status: 4).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count %>
-                       <%#Trading.where("((buyer_id = ?)AND(buyer_notice = ?)) OR ((seller_id = ?) AND (seller_notice = ?)) ", current_user.id, true, current_user.id, true).count %>
-                  <%= Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
+                        <%= Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
                       </span>
                     </span>
                   <% else %>
                     <span class="badge4">
                       <span class="badge", style="color: white;">
-                      <%#= Trading.where(payment_status: 4, paymethod: 2).where("(buyer_id = ?) OR (seller_id = ?) ", current_user.id, current_user.id).count %>
-                      <%= Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
+                        <%= Trading.where("((payment_status = ?)OR(shipment_status = ?)) OR ((payment_status = ?) OR (shipment_status = ?))", 4, 4, 5, 5).where("((buyer_id = ?)OR(seller_id = ?))", current_user.id, current_user.id).count %>
                       </span>
                     </span>
                   <% end %>
@@ -142,13 +138,10 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="about_us"><%= link_to 'カランドって何？', about_us_homes_path %></li>
               <li class="sign_in"><%= link_to 'ログイン', new_user_session_path %></li>
-              <li class="sign_up"><%= link_to '新規会員登録', new_user_session_path %></li>
+              <li class="sign_up"><%= link_to '新規会員登録', new_user_registration_path %></li>
             </ul>
           <% end %>
     </header>
-    <div class="camera">
-      <%#= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
-    </div>
     <%= yield %>
   </body>
 </html>

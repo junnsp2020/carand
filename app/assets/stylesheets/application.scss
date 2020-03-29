@@ -18,13 +18,13 @@
 @import "bootstrap";
 
 header {
-  font-weight: bold;
-  position: relative;
-	.title {
-	  font-size: 26px;
-	  font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
-	  color:#fff;
-	  text-shadow: 3px 3px 0 #4169e1
+    font-weight: bold;
+    position: relative;
+	  .title {
+	    font-size: 26px;
+	    font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
+	    color:#fff;
+	    text-shadow: 3px 3px 0 #4169e1
 }
 }
 body {
@@ -32,10 +32,6 @@ body {
 	position: absolute;
 	top: 30px;
 	left: 70px
-}
-.hoge {
-	color: white;
-	margin-bottom: 10px;
 }
 .content1{
   	position: absolute;
@@ -334,18 +330,22 @@ li.about_us{
 	display: block;
 	font-size: 25px;
 	padding-right: 10px;
+	border: 0px none;
 }
 .final2{
 	position: absolute;
 	margin-top: 5px;
 }
 .about_carand{
-	font-size: 25px;
+	font-size: 24px;
 	font-weight: bold;
+	text-shadow: 2px 2px 0 #fff;
+	color: #696969;
 }
 .carand_introduction{
 	font-weight: bold;
 	font-size: 16px;
+	color: #696969;
 }
 .introduction{
 	font-weight: bold;
@@ -377,4 +377,10 @@ h3.my-product-page{
 }
 .search-products{
 	font-weight: bold;
+}
+.user-sign-up{
+	font-weight: bold;
+}
+.come-around{
+	color: #ff4500;
 }

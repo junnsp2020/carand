@@ -1,7 +1,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10">
-
 			<h4 class="my-request-page">交換リクエスト【送った】 一覧</h4>
 				<table class="table table-bordered">
 					<tboy>
@@ -21,7 +20,6 @@
 									<% end %>
 								</td>
 								<td width="20%">
-									<%#= link_to barter_request.product.name, product_path(barter_request.product.id) %>
 									<span><%= link_to "ライバルが送ったリクエスト", product_barter_requests_path(barter_request.product.id), :style=>"font-weight:bold;" %></span>
 								</td>
 								<td width="10%">
@@ -29,15 +27,7 @@
 										<%= attachment_image_tag barter_request, :image, format: "jpeg", fallback: "no_image.jpg", size: "60x60", class: "center-block" %>
 									<% end %>
 								</td>
-								<!-- <td width="15%">
-									<%#= link_to barter_request.name, product_barter_request_path(barter_request.product, barter_request)  %>
-								</td> -->
 								<td width="20%">
-									<%# if barter_request.propriety == "許可する" && barter_request.product.sale_status != "売り切れ" %>
-										<%#= link_to "リクエストが許可されました！", product_barter_requests_path(barter_request.product.id), class: "btn btn-success" %>
-										<%# else %>
-										<!-- <button type="button" class="btn btn-info">リクエスト中</button> -->
-									<%# end %>
 									<% if barter_request.propriety != "許可する" %>
 										<button type="button" class="btn btn-info">リクエスト中</button>
 									<% elsif barter_request.propriety == "許可する" && barter_request.product.sale_status != "売り切れ" %>
@@ -62,3 +52,4 @@
 				</table>
 		</div>
 	</div>
+</div>

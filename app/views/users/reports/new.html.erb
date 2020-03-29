@@ -1,26 +1,26 @@
 <div class="container">
 	<div class="row">
-			<div class="col-xs-12">
-				<table class="table table-bordered">
-					<tboy>
-						<%= form_for((@report), url: product_reports_path) do |f| %>
-							<tr>
-								<td>
-									<h4>不適切商品の報告</h4>
-										<%= f.label :報告理由を選択してください, class: "col-xs-4" %>
-										<%= f.select :subject, Report.subjects.keys, class: "col-xs-8" %>
-										<%= f.submit "報告する" %>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= f.label :"詳しい内容(任意)" %>
-				                    <%= f.text_area :content, size: "20x10", class: "col-xs-12" %>
-				                </td>
-				            </tr>
-			            <% end %>
-					</tboy>
-				</table>
-			</div>
+		<div class="col-xs-12">
+			<table class="table table-bordered">
+				<tboy>
+					<%= form_for((@report), url: product_reports_path) do |f| %>
+						<tr>
+							<td>
+								<h4>不適切商品の報告</h4>
+									<%= f.label :報告理由を選択してください, class: "col-xs-4" %>
+									<%= f.select :subject, Report.subjects.keys, class: "col-xs-8" %>
+									<%= f.submit "報告する" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.label :"詳しい内容(任意)" %>
+			                    <%= f.text_area :content, size: "20x10", class: "col-xs-12" %>
+			                </td>
+			            </tr>
+		            <% end %>
+				</tboy>
+			</table>
+		</div>
 	</div>
 </div>

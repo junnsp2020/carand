@@ -6,9 +6,9 @@ class Trading < ApplicationRecord
   has_many :trading_messages
 
   enum paymethod:{
-  "クレジットカード": 0,
-  "コンビニ払い": 1,
-  "交換": 2
+   "クレジットカード": 0,
+   "コンビニ払い": 1,
+   "交換": 2
   }
   enum payment_status:{
    "出品者へ入金報告をする": 0,
@@ -31,9 +31,9 @@ class Trading < ApplicationRecord
 
   def total_price
     if product.postage_responsibility == "出品者負担"
-    product.price + 0
+      product.price + 0
     else
-    product.price + product.postage
+      product.price + product.postage
     end
   end
 end

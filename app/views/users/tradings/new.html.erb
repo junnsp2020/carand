@@ -3,43 +3,42 @@
       <div class="col-xs-10">
         <h2 class="order-confirm">購入内容の確認</h2>
           <table class="table table-bordered">
-              <tboy>
-                <tr>
-                  <td>
-                      <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-                        <h3>合計金額 <%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h3>
-                        <button type="button" background-color="red"; class="btn btn-secondary col-xs-2" style="font-weight:bold; background: #999999;">
-                          送料 / <%= @product.postage_responsibility %>
-                        </button>
-                  </td>
-                </tr>
-                <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
-                  <%= f.hidden_field :seller_id, :value => @product.user.id %>
-                  <%= f.hidden_field :buyer_id, :value => current_user.id %>
-                  <tr>
-                    <td>
-                      <%= f.label :"支払方法", class: "col-xs-12" %><span> ※交換の方は必ず<span class="warning">「交換」</span>を選択してください</span>
-                      <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="col-xs-3">お届け先</div>
-                      <%= current_user.prefecture_code %><%= current_user.address_city %><%= current_user.address_street %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <%#= f.hidden_field :product_id, :value => @product.id %>
-                      <% if @product.barter_approval != true %>
-                        <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
-                      <% else %>
-                        <%= f.submit "交換取引を確定する", {method: :post, class: "btn-sm btn-success col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tboy>
+            <tboy>
+              <tr>
+                <td>
+                  <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+                    <h3>合計金額 <%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h3>
+                      <button type="button" background-color="red"; class="btn btn-secondary col-xs-2" style="font-weight:bold; background: #999999;">
+                      送料 / <%= @product.postage_responsibility %>
+                      </button>
+                </td>
+              </tr>
+              <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
+                <%= f.hidden_field :seller_id, :value => @product.user.id %>
+                <%= f.hidden_field :buyer_id, :value => current_user.id %>
+              <tr>
+                <td>
+                  <%= f.label :"支払方法", class: "col-xs-12" %><span> ※交換の方は必ず<span class="warning">「交換」</span>を選択してください</span>
+                  <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="col-xs-3">お届け先</div>
+                  <%= current_user.prefecture_code %><%= current_user.address_city %><%= current_user.address_street %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <% if @product.barter_approval != true %>
+                    <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
+                  <% else %>
+                    <%= f.submit "交換取引を確定する", {method: :post, class: "btn-sm btn-success col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tboy>
           </table>
       </div>
   </div>

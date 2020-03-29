@@ -6,70 +6,56 @@
 			    	<p class="notice"><%= "取引がスタートしました。入金後、出品者へ報告してください。" %></p>
 	                <%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
 				<% end %>
-
-	            <% if @trading.buyer_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
+				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
 	            	<p class="notice"><%= "入金報告をしました。出品者の発送待ちです" %></p>
 				<% end %>
-
-				<%# if @trading.buyer_id == current_user.id && @trading.shipment_status == "取引完了" %>
-				　　<%#= "商品が発送されました　届き次第、受取評価をしてください" %>
-					<%#= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch %>
-				 	<%# else %>
-				 	<%#= "" %>
-				<%# end %>
-
 				<% if @trading.buyer_id == current_user.id && @trading.shipment_status == "受取報告をする" %>
 					<p class="notice"><%= "出品者より発送の通知がありました。到着後、受取評価をお願いします。" %></p>
 					<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
 				<% end %>
-
-
-                <% if @trading.seller_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
+				<% if @trading.seller_id == current_user.id && @trading.payment_status == "出品者へ入金報告をする" %>
 					<p class="notice"><%= "商品が購入されました！ 購入者からの入金待ちです  お待ちください" %></p>
 				<% end %>
-
 				<% if @trading.seller_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
 					<p class="notice"><%= "購入者より代金が支払われました　商品を出荷してください" %></p>
 					<%= link_to @trading.shipment_status, trading_change_shipment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
 				<% end %>
-
 				<% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする" && @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
 				　　<p class="notice"><%= "出荷を通知しました　購入者の受取評価をお待ちください" %></p>
 				<% end %>
-
-                <% if @trading.seller_id == current_user.id && @trading.seller_excellent_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+				<% if @trading.seller_id == current_user.id && @trading.seller_excellent_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
 	                <p class="notice"><%= "購入者が受け取りました　購入者の評価をしてください" %></p>
-	                <span class="radio-button">良い</span>
-                	<span class="radio-button">ふつう</span>
-                	<span class="radio-button">わるい</span>
-	　　　　　　　　　<%= form_for (@trading) do |f| %>
-			            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
-	                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
-	                <% end %>
+		                <span class="radio-button">良い</span>
+	                	<span class="radio-button">ふつう</span>
+	                	<span class="radio-button">わるい</span>
+		　　　　　　　　　<%= form_for (@trading) do |f| %>
+				            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
+		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
+		                <% end %>
 	            <% elsif @trading.seller_id == current_user.id && @trading.seller_good_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
 	            	<p class="notice"><%= "購入者が受け取りました　購入者の評価をしてください" %></p>
-	            	<span class="radio-button">良い</span>
-                	<span class="radio-button">ふつう</span>
-                	<span class="radio-button">わるい</span>
-	　　　　　　　　　<%= form_for (@trading) do |f| %>
-			            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
-	                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
-	                <% end %>
+		            	<span class="radio-button">良い</span>
+	                	<span class="radio-button">ふつう</span>
+	                	<span class="radio-button">わるい</span>
+		　　　　　　　　　<%= form_for (@trading) do |f| %>
+				            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
+		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
+		                <% end %>
 	            <% elsif @trading.seller_id == current_user.id && @trading.seller_poor_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
 	            	<p class="notice"><%= "購入者が受け取りました　購入者の評価をしてください" %></p>
-	            	<span class="radio-button">良い</span>
-                	<span class="radio-button">ふつう</span>
-                	<span class="radio-button">わるい</span>
-	　　　　　　　　　<%= form_for (@trading) do |f| %>
-			            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
-	                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
-	                <% end %>
+		            	<span class="radio-button">良い</span>
+	                	<span class="radio-button">ふつう</span>
+	                	<span class="radio-button">わるい</span>
+		　　　　　　　　　<%= form_for (@trading) do |f| %>
+				            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
+		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
+		                <% end %>
                 <% end %>
                 <% if @trading.seller_id == current_user.id && @trading.shipment_status == "取引完了" && @trading.excellent_review == true %>
                 	<p class="notice"><%= "ご利用誠にありがとうございました！" %></p>
@@ -81,9 +67,9 @@
 
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "受取報告をする" && @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
                 	<p class="notice"><%= "商品が発送されました　到着後、受取評価をしてください" %></p>
-                	<span class="radio-button">良い</span>
-                	<span class="radio-button">ふつう</span>
-                	<span class="radio-button">わるい</span>
+	                	<span class="radio-button">良い</span>
+	                	<span class="radio-button">ふつう</span>
+	                	<span class="radio-button">わるい</span>
 		　　　　　　　　　<%= form_for (@trading) do |f| %>
 				            <%= f.radio_button :seller_excellent_review, :true, :style=>"margin-right: 45px;" %>
 				            <%= f.radio_button :seller_good_review, :true, :style=>"margin-right: 45px;" %>
@@ -99,28 +85,21 @@
                 <% elsif @trading.buyer_id == current_user.id && @trading.payment_status == "ご利用誠にありがとうございました！" && @trading.seller_poor_review == true %>
                 	<p class="notice"><%= "ご利用誠にありがとうございました！" %></p>
                 <% end %>
-
-                <%# else %>
-
-                <%# "hoge" %>
-
-                <%# end %>
-
-                <% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
+				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
 	                <p class="notice"><%= "メッセージ機能を使い、送り状番号を確認し合いましょう！" %></p>
 	                <%= link_to "確認完了(※必ずお互いの番号を確認してから押してください)", trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
                 <% end %>
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "番号確認完了(購入者)" &&  @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
                 	<p class="notice"><%= "商品到着後、交換者の評価をお願いします" %></p>
-                	<span class="radio-button">良い</span>
-                	<span class="radio-button">ふつう</span>
-                	<span class="radio-button">わるい</span>
-	                <%= form_for (@trading) do |f| %>
-			            <%= f.radio_button :seller_excellent_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :seller_good_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :seller_poor_review, :true, :style=>"margin-right: 45px;" %>
-	                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
-	                <% end %>
+	                	<span class="radio-button">良い</span>
+	                	<span class="radio-button">ふつう</span>
+	                	<span class="radio-button">わるい</span>
+		                <%= form_for (@trading) do |f| %>
+				            <%= f.radio_button :seller_excellent_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :seller_good_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :seller_poor_review, :true, :style=>"margin-right: 45px;" %>
+		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
+		                <% end %>
                 <% end %>
                 <% if @trading.buyer_id == current_user.id && @trading.payment_status == "交換お疲れ様でした(購入者)" %>
                 	<p class="notice"><%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %></p>
@@ -131,46 +110,39 @@
                 <% end %>
                 <% if @trading.seller_id == current_user.id && @trading.shipment_status == "番号確認完了(出品者)" &&  @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
                 	<p class="notice"><%= "商品到着後、交換者の評価をお願いします" %></p>
-                	<span class="radio-button">良い</span>
-                	<span class="radio-button">ふつう</span>
-                	<span class="radio-button">わるい</span>
-	                <%= form_for (@trading) do |f| %>
-			            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
-			            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
-	                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
-	                <% end %>
+	                	<span class="radio-button">良い</span>
+	                	<span class="radio-button">ふつう</span>
+	                	<span class="radio-button">わるい</span>
+		                <%= form_for (@trading) do |f| %>
+				            <%= f.radio_button :excellent_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :good_review, :true, :style=>"margin-right: 45px;" %>
+				            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
+		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
+		                <% end %>
                 <% end %>
                 <% if @trading.seller_id == current_user.id && @trading.shipment_status == "交換お疲れ様でした(出品者)" %>
                 	<p class="notice"><%= "交換お疲れ様でした！ またのご利用をお待ちしております。" %></p>
                 <% end %>
-
-
-                <div class="message-area">
-                <table class="table table-bordered">
-            	<tbody>
-            	<% @trading_messages.each do |trading_message| %>
-                	<tr>
-                		<td>
-                   			<%= trading_message.message %>
-                   		</td>
-                	</tr>
-                <% end %>
-            	</tbody>
-            	</table>
+				<div class="message-area">
+	                <table class="table table-bordered">
+		            	<tbody>
+		            	<% @trading_messages.each do |trading_message| %>
+		                	<tr>
+		                		<td>
+		                   			<%= trading_message.message %>
+		                   		</td>
+		                	</tr>
+		                <% end %>
+		            	</tbody>
+	            	</table>
             	</div>
-                    <%= form_for [@trading, @trading_message] do |f| %>
-				    	<%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-						<%= f.submit "取引メッセージを送る", class: "btn btn-lg btn-base-1 mt-20 pull-right", :style=>"font-weight:bold; background: #999999;" %>
-					<% end %>
+                <%= form_for [@trading, @trading_message] do |f| %>
+			    	<%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+					<%= f.submit "取引メッセージを送る", class: "btn btn-lg btn-base-1 mt-20 pull-right", :style=>"font-weight:bold; background: #999999;" %>
+				<% end %>
 		</div>
-
 		<div class="col-xs-3">
 			<h4 class="trading-show">取引情報</h4>
-
-
-
-
 				<table class="table table-bordered">
 					<tboy>
 						<tr>
@@ -229,11 +201,3 @@
 			</div>
 	</div>
 </div>
-				<%#= form_for(@trading, url: trading_path(@trading)) do |f| %>
-				<%#= form_for @trading,:url => {controller: "tradings", action: "update"} do |f| %>
-                  <%#= f.select :payment_status, Trading.payment_statuses.keys %>
-                  <%#= f.submit "更新", class: "btn btn-primary" %>
-                <%# end %>
-
-                <%# if @product.barter_approval != true %>
-

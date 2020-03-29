@@ -12,17 +12,12 @@ class Users::BarterRequestsController < ApplicationController
     @buyer = BarterRequest.where(buyer_id: current_user.id)
     @seller = BarterRequest.where(seller_id: @product.user.id)
     @barter_request.product_id = @product.id
-    # params[:barter_request_id]
-    # params[:barter_request_id]
-    # @barter_requests = @product.barter_requests
   end
 
   def show
     @product = Product.find(params[:product_id])
     @barter_requests =  @product.barter_requests
-    # @barter_request = BarterRequest.new
     @barter_request = BarterRequest.find(params[:id])
-    # @barter_requests = BarterRequest.new
   end
 
   def create
@@ -54,20 +49,12 @@ class Users::BarterRequestsController < ApplicationController
   end
 
   def my_request
-     # @product = Product.find(params[:product_id])
-    # @barter_requests =  @product.barter_requests
     @barter_requests = BarterRequest.where(user_id: params[:user_id])
-    # @barter_request.product_id = @product.id
-    # @barter_request.user_id = current_user.id
-    # @barter_request = BarterRequest.find(params[:id])
   end
 
   def requested
     @product = Product.where(user_id: current_user.id)
-    # barter_requests = BarterRequest.all
     @barter_requests = BarterRequest.where(product_id: @product)
-    # @barter_requests = @product.barter_requests
-    # @product.barter_requests.product_id = @product.id
   end
 
   def destroy

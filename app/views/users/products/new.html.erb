@@ -2,57 +2,56 @@
 	<div class="row">
 		<div class="col-xs-10">
 			<h2 class="exhibition">出品</h2>
-			<%= form_for(@product) do |f| %>
-				<table class="table table-bordered">
-					<tboy>
-						<tr>
-							<td>
-								<%= f.label :画像を選択してください, class: "col-xs-4" %>
-								<%= f.file_field :image %>
-								<%= f.label :商品名, class: "col-xs-4" %>
-								<%= f.text_field :name, class: "col-xs-8" %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<%= f.label :カテゴリー, class: "col-xs-4" %>
-								<%= f.collection_select :category_id, Category.all, :id, :name, class: "col-xs-8" %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<%= f.label :商品の状態, class: "col-xs-4" %>
-								<%= f.select :status, Product.statuses.keys, class: "col-xs-8" %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<%= f.label :販売価格 %>
-								<%= f.text_field :price, id: "price" %>円 (販売手数料 10%分が差し引かれます)
-								<%= f.label :"受取金額", class: "col-xs-offset-1" %>
-								<%= f.text_field :profit, id: "profit" %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<%= f.label :送料の負担, class: "col-xs-2" %>
-								<%= f.select :postage_responsibility, Product.postage_responsibilities.keys %>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span><%= f.label :交換取引の可否, class: "col-xs-2" %></span>
+				<%= form_for(@product) do |f| %>
+					<table class="table table-bordered">
+						<tboy>
+							<tr>
+								<td>
+									<%= f.label :画像を選択してください, class: "col-xs-4" %>
+									<%= f.file_field :image %>
+									<%= f.label :商品名, class: "col-xs-4" %>
+									<%= f.text_field :name, class: "col-xs-8" %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :カテゴリー, class: "col-xs-4" %>
+									<%= f.collection_select :category_id, Category.all, :id, :name, class: "col-xs-8" %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :商品の状態, class: "col-xs-4" %>
+									<%= f.select :status, Product.statuses.keys, class: "col-xs-8" %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :販売価格 %>
+									<%= f.text_field :price, id: "price" %>円 (販売手数料 10%分が差し引かれます)
+									<%= f.label :"受取金額", class: "col-xs-offset-1" %>
+									<%= f.text_field :profit, id: "profit" %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :送料の負担, class: "col-xs-2" %>
+									<%= f.select :postage_responsibility, Product.postage_responsibilities.keys %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span><%= f.label :交換取引の可否, class: "col-xs-2" %></span>
 									<span><%= f.select :propriety, Product.proprieties.keys, class: "col-xs-8" %></span>
-								<span class> <span class="about-barter">「交換可能」</span> に設定しておくと思わぬお宝が提案されるかもしれません !</span>
-							</td>
-						</tr>
-					</tboy>
-				</table>
-
-			<%= f.label :商品説明 %>
-			<%= f.text_area :introduction, size: "20x10", class: "col-xs-12" %>
-			<%= f.submit "出品する", class: "btn btn-primary col-xs-12" %>
-			<% end %>
+									<span class> <span class="about-barter">「交換可能」</span> に設定しておくと思わぬお宝が提案されるかもしれません !</span>
+								</td>
+							</tr>
+						</tboy>
+					</table>
+					<%= f.label :商品説明 %>
+					<%= f.text_area :introduction, size: "20x10", class: "col-xs-12" %>
+					<%= f.submit "出品する", class: "btn btn-primary col-xs-12" %>
+				<% end %>
 		</div>
 	</div>
 </div>

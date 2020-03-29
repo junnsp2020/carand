@@ -22,6 +22,7 @@ Rails 5.2.4.1
 ## 取扱説明:
 
 ## A. 出品 → 売れた場合の流れ    
+
 **(1) 「マイページ」 → 「商品を出品する or カメラマーク をクリック」**
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77818420-76d2cd80-7115-11ea-8c78-98515d3309fc.png">
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77818448-a97cc600-7115-11ea-8710-009af43e0edc.png">
@@ -49,6 +50,7 @@ Rails 5.2.4.1
 これにて取引は完了です。  
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819479-77239680-711e-11ea-93d6-54532f6c739b.png">
 ## B. 商品を検索する    
+
 **(1)「ヘッダーの検索窓」 or 「カテゴリーからもお探しできます」 をクリック**  
 (検索窓にキーワードを入れないで虫眼鏡マークを押すと、全ての商品を検索できます)
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819318-60307480-711d-11ea-8910-7d6e989adb1f.png">
@@ -58,6 +60,7 @@ Rails 5.2.4.1
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819362-a38ae300-711d-11ea-88ee-2561bb3a848c.png">
 
 ## C. 購入 or 交換 → 取引の流れ    
+
 ### C-1.「購入する場合]    
 **(1)「購入ページへ進む」をクリックし取引確定ページへ進んでください**  
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77819386-ca491980-711d-11ea-85b2-4a8622cd8dc8.png">
@@ -146,7 +149,9 @@ Rails 5.2.4.1
 入力してください。  
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77828268-b6250c80-715d-11ea-9eee-ccde2a2aee88.png">
 
-## さいごに
+## 最後に
+
+説明は以上となります。  
 ここまでご覧頂き、誠にありがとうございました！  
 あなたが最高の商品と巡り合うこと(*come around*)が  
 できますように～  

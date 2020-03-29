@@ -10,13 +10,8 @@ class Users::UsersController < ApplicationController
 		@trading = Trading.where(buyer_id: current_user.id)
 		@tradings = @user.tradings
 		@tradings = Trading.where(seller_id: current_user.id)
-		# binding.pry
-		# @balance = @user.balance
-		@balance = calculate(params[:id])   ## => 計算してるだけ
-		puts @balance
-		# @product = Product.find(params[:product_id])
+		@balance = calculate(params[:id])
 		@barter_requests = BarterRequest.where(user_id: current_user.id )
-		# product = Product.find(params[:product_id])
 	end
 
 	def userinfo
@@ -29,77 +24,30 @@ class Users::UsersController < ApplicationController
 		@user = current_user
 		@products = Product.where(user_id: current_user.id)
 		@request_amount = User.new
-		# @balance = @user.balance
-        # @user.balance -= @user.request_amount
-        # @user.save
-
-		# @seller = User.find(@trading.seller_id)
-  #     if @seller.balance == nil
-  #       @seller.balance = 0
-  #       @seller.save
-  #     	end
-  #     # puts @seller.to_json
-  #     	@seller.balance += @trading.product.profit
-  #     # puts @seller.to_json
-  #     	@seller.save
-		# @user = current_user
-		# @products = Product.where(user_id: @user.id)
-		# @balance = calculate(current_user)
-		# # @request_amount = User.new
-
-		# @user.request_amount = params[:request_amount].to_i
-		# if @user.request_amount && @balance
-		# 	@balance -= @user.request_amount
-		# end
-		# @user.save
-		# if current_user.request_amount
-	 #  		current_user.request_amount += user_params[:request_amount].to_i
-	 #  	else
-	 #  		current_user.request_amount = user_params[:request_amount].to_i
-	 #  	end
-		# @balance = calculate(@user)
 	end
 
 	def create
-		# @balance = calculate(current_user)
-		# @user = current_user
-		# # @request_amount = User.new(user_params)
-		# # @request_amount = @user.request_amount
-		# # @request_amount.save
-		# # binding.pry
-		# # @balance.save
-		# # binding.pry
-		# # if @user.balance == nil
-		# #   @user.balance = 0
-		# #   @user.save
-		# # end
-		# @user.balance -= @user.request_amount
-  #       @user.save
 	end
 
 	def edit
 		@user = User.find(params[:id])
 		if @user.id != current_user.id
-        redirect_to user_path(current_user)
+          redirect_to user_path(current_user)
         end
 	end
 
 	def update
 		@user = User.find(params[:id])
 		@user.update(user_params)
-		# @user.request_amount = 0
-		# @user.save
 		if @user.request_amount == nil
 		  @user.request_amount = 0
 		  @user.save
 		end
-		 if @user.request_amount
-	  	   @user.balance -= @user.request_amount
-	     else
-	     	# binding.pry  ## 止まった!
-	   	   @user.balance = @user.request_amount
+		if @user.request_amount
+	  	  @user.balance -= @user.request_amount
+	    else
+	   	  @user.balance = @user.request_amount
 	  	end
-	    # @balance = calculate(@user)
 	    current_user.save
 		if @user.save
 	  	  redirect_to user_path(current_user.id)
@@ -116,26 +64,7 @@ class Users::UsersController < ApplicationController
   	end
 
     private
-  #   def calculate(user)
-		# user.balance -= user.request_amount
-  # 	end
   	def calculate(user_id)
-		# balance = 0
-		# profit = 0
-		# request_amount = 0
-		# user.products.each do |product|
-		# 	# binding.pry
-		# 	if product.profit != nil && product.sale_status == "売り切れ"
-		# 		balance += product.profit
-		# 		# binding.pry
-		# 		# balance.save
-		# 	end
-  #   	end
-  #   	# binding.pry
-  #   	if balance != nil && current_user.request_amount != nil
-  #   		balance -= current_user.request_amount
-  #       end
-  #   	return balance
     	products = Product.where(sale_status: 1, user_id: user_id)
     	sum = 0
     	profit = 0
@@ -145,8 +74,6 @@ class Users::UsersController < ApplicationController
     		end
     	end
     	return sum
-    # puts products.to_json
-    # products.balance += user.product.profit
   	end
 
     def user_params
