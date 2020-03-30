@@ -17,11 +17,11 @@
 							<tr>
 								<td><%= report.id %></td>
 								<td><%= link_to report.product.name, product_path(report.product.id)  %></td>
-								<td><%= link_to report.product.user.nickname, user_path(Report.find_by(user_id: report.user.id)) %> <span class="is_deleted"><%= report.product.user.is_deleted %><span>
+								<td><%= link_to report.product.user.nickname, user_path(report.product.user.id) %> <span class="is_deleted"><%= report.product.user.is_deleted %><span>
 								</td>
 								<td><%= link_to report.subject, administers_report_path(report) %></td>
-								<td><%= link_to "実行", edit_administers_user_path(Report.find_by(user_id: report.user.id)) %></td>
-								<td><%= link_to report.user.nickname, user_path(Report.find_by(user_id: report.user.id)) %></td>
+								<td><%= link_to "実行", edit_administers_user_path(report.product.user.id) %></td>
+								<td><%= link_to report.user.nickname, user_path(report.user.id) %></td>
 								<td><%= link_to "#{report.created_at.strftime("%Y-%m-%d")}", administers_report_path(report) %></td>
 							</tr>
 						<% end %>
