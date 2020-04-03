@@ -43,7 +43,7 @@ class Users::UsersController < ApplicationController
 		  @user.request_amount = 0
 		  @user.save
 		end
-		if @user.request_amount
+		if @user.balance && @user.request_amount
 	  	  @user.balance -= @user.request_amount
 	    else
 	   	  @user.balance = @user.request_amount
