@@ -16,12 +16,14 @@
               <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
                 <%= f.hidden_field :seller_id, :value => @product.user.id %>
                 <%= f.hidden_field :buyer_id, :value => current_user.id %>
+              <% if @product.barter_approval != true %>
               <tr>
                 <td>
-                  <%= f.label :"支払方法", class: "col-xs-12" %><span> ※交換の方は必ず<span class="warning">「交換」</span>を選択してください</span>
-                  <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
+                    <%= f.label :"支払方法", class: "col-xs-12" %><span> ※交換の方は必ず<span class="warning">「交換」</span>を選択してください</span>
+                    <%= f.select :paymethod, Trading.paymethods.keys, class: "col-xs-8" %>
                 </td>
               </tr>
+              <% end %>
               <tr>
                 <td>
                   <div class="col-xs-3">お届け先</div>
@@ -33,6 +35,7 @@
                   <% if @product.barter_approval != true %>
                     <%= f.submit "購入を確定する", {method: :post, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
                   <% else %>
+                    <%= f.hidden_field :paymethod, :value => "交換" %>
                     <%= f.submit "交換取引を確定する", {method: :post, class: "btn-sm btn-success col-xs-12", params:{product_id: @product.id,seller_id: @product.user.id}} %>
                   <% end %>
                 </td>
