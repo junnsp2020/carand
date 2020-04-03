@@ -23,7 +23,7 @@
 				<% if @trading.seller_id == current_user.id && @trading.payment_status == "受取報告をする" && @trading.seller_excellent_review == nil && @trading.seller_good_review == nil && @trading.seller_poor_review == nil %>
 				　　<p class="notice"><%= "出荷を通知しました　購入者の受取評価をお待ちください" %></p>
 				<% end %>
-				<% if @trading.seller_id == current_user.id && @trading.seller_excellent_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+				<% if @trading.seller_id == current_user.id && @trading.seller_excellent_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil && @trading.paymethod != "交換" %>
 	                <p class="notice"><%= "購入者が受け取りました　購入者の評価をしてください" %></p>
 		                <span class="radio-button">良い</span>
 	                	<span class="radio-button">ふつう</span>
@@ -34,7 +34,7 @@
 				            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
 		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
 		                <% end %>
-	            <% elsif @trading.seller_id == current_user.id && @trading.seller_good_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+	            <% elsif @trading.seller_id == current_user.id && @trading.seller_good_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil && @trading.paymethod != "交換" %>
 	            	<p class="notice"><%= "購入者が受け取りました　購入者の評価をしてください" %></p>
 		            	<span class="radio-button">良い</span>
 	                	<span class="radio-button">ふつう</span>
@@ -45,7 +45,7 @@
 				            <%= f.radio_button :poor_review, :true, :style=>"margin-right: 45px;" %>
 		                <%= f.submit "評価を確定する", class: "btn btn-danger" %>
 		                <% end %>
-	            <% elsif @trading.seller_id == current_user.id && @trading.seller_poor_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil %>
+	            <% elsif @trading.seller_id == current_user.id && @trading.seller_poor_review == true && @trading.excellent_review == nil && @trading.good_review == nil && @trading.poor_review == nil && @trading.paymethod != "交換" %>
 	            	<p class="notice"><%= "購入者が受け取りました　購入者の評価をしてください" %></p>
 		            	<span class="radio-button">良い</span>
 	                	<span class="radio-button">ふつう</span>

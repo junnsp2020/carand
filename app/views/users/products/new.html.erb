@@ -4,7 +4,7 @@
 			<h2 class="exhibition">出品</h2>
 				<% if @product.errors.any? %>
 			      <div class="error_explanation">
-			        <h3><%= pluralize(@product.errors.count, "件エラーがあります") %></h3>
+			        <h3><%= @product.errors.count %><%= "件エラーがあります" %></h3>
 			        <ul>
 			          <% @product.errors.full_messages.each do |message| %>
 			            <li><%= message %></li>

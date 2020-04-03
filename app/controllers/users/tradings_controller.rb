@@ -106,13 +106,25 @@ class Users::TradingsController < ApplicationController
       @trading.shipment_status = "取引完了"
       @trading.save
     end
-    if @trading.payment_status == "番号確認完了(購入者)"
-      @trading.payment_status = "交換お疲れ様でした(購入者)"
-      @trading.save
-    end
-    if @trading.shipment_status == "番号確認完了(出品者)"
+     if @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_excellent_review == true
+       @trading.payment_status = "交換お疲れ様でした(購入者)"
+       @trading.save
+     elsif @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_good_review == true
+       @trading.payment_status = "交換お疲れ様でした(購入者)"
+       @trading.save
+     elsif @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_poor_review == true
+       @trading.payment_status = "交換お疲れ様でした(購入者)"
+       @trading.save
+     end
+    if @trading.shipment_status == "番号確認完了(出品者)" && @trading.excellent_review == true
       @trading.shipment_status = "交換お疲れ様でした(出品者)"
       @trading.save
+    elsif @trading.shipment_status == "番号確認完了(出品者)"  && @trading.good_review == true
+       @trading.shipment_status = "交換お疲れ様でした(出品者)"
+       @trading.save
+     elsif @trading.shipment_status == "番号確認完了(出品者)"  && @trading.poor_review == true
+       @trading.shipment_status = "交換お疲れ様でした(出品者)"
+       @trading.save
     end
   end
 
