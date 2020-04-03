@@ -122,7 +122,7 @@
 					</tr>
 					<tr>
 						<td colspan=3>
-							<span class="ggg col-xs-4">出品者</span><%= @product.user.nickname %>さん
+							<span class="ggg col-xs-4">出品者</span><%= link_to @product.user.nickname, user_path(@product.user) %>さん
 						</td>
 					</tr>
 					<tr>

@@ -23,10 +23,10 @@ class Users::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = current_user.id
     if @product.save
-      tags = Vision.get_image_data(@product.image)
-      tags.each do |tag|
-        @product.tags.create(name: tag)
-      end
+      # tags = Vision.get_image_data(@product.image)
+      # tags.each do |tag|
+      #   @product.tags.create(name: tag)
+      # end
       redirect_to product_path(@product.id)
     else
       render :new

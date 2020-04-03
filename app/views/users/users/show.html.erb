@@ -1,4 +1,5 @@
 <div class="container">
+	<% if @user == current_user %>
 	<div class="col-xs-2 sidebar">
         <ul class="nav nav-sidebar navbar-light">
             <ul class="nav nav-sidebar navbar-light">
@@ -19,6 +20,7 @@
 			</ul>
         </ul>
 	</div>
+	<% end %>
 	<div class="col-xs-10">
 		<div class="image-user-show"><%= attachment_image_tag @user, :image, format: "jpeg", fallback: "no_image.jpg", size: "200x200" %></div>
 		<div class="table-user-show">
