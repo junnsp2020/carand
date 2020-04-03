@@ -297,7 +297,7 @@ td.product-outline{
 }
 .about-barter{
 	font-weight: bold;
-	color: red;
+	color: green;
 }
 .report{
 	font-weight: bold;
@@ -383,4 +383,19 @@ h3.my-product-page{
 }
 .come-around{
 	color: #ff4500;
+}
+.error_explanation{
+	color: red;
+}
+.emphasis{
+	color: red;
+}
+.pagination>li>a {
+  color: #636363;
+}
+.pagenate{
+	text-align: center;
+		.active>a {
+			background: orange;
+}
 }

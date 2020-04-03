@@ -6,9 +6,9 @@ class Users::ProductsController < ApplicationController
   def index
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @products = @category.products
+      @products = @category.products.order(created_at: :desc).page(params[:page]).per(16)
     else
-      @products = Product.all
+      @products = Product.all.order(created_at: :desc).page(params[:page]).per(16)
     end
   end
 
@@ -23,9 +23,13 @@ class Users::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = current_user.id
     if @product.save
+      tags = Vision.get_image_data(@product.image)
+      tags.each do |tag|
+        @product.tags.create(name: tag)
+      end
       redirect_to product_path(@product.id)
     else
-      render :index
+      render :new
     end
   end
 
@@ -51,9 +55,9 @@ class Users::ProductsController < ApplicationController
 
   def search
     if params[:name].present?
-      @products = Product.where('name LIKE ?', "%#{params[:name]}%")
+      @products = Product.where('name LIKE ?', "%#{params[:name]}%").order(created_at: :desc).page(params[:page]).per(16)
     else
-      @products = Product.all
+      @products = Product.all.order(created_at: :desc).page(params[:page]).per(16)
     end
   end
 

@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h3 class="all-products">商品一覧  全<%= @products.count %>件</h3>
+			<h3 class="all-products">商品一覧  全<%= @products.total_count %>件</h3>
 			<% @products.each do |product| %>
 		        <div class="col-xs-3">
 					<div class="products-index-image">
@@ -23,6 +23,7 @@
 					</div>
 				</div>
 			<% end %>
+			<div class="pagenate"><%= paginate @products, class: "paginate" %></div>
 		</div>
 	</div>
 </div>

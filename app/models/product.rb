@@ -42,6 +42,14 @@ class Product < ApplicationRecord
   has_many :reports
   has_many :wishlists
   has_many :product_comments
+  has_many :tags
+
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :category_id, presence: true
+  validates :status, presence: true
+  validates :price, presence: true
+  validates :postage_responsibility, presence: true
 
   private
     def build_child
