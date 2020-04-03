@@ -1,16 +1,24 @@
 <div class="container">
   <div class="row">
       <div class="col-xs-10">
-        <h2 class="order-confirm">購入内容の確認</h2>
+        <h2 class="order-confirm">
+          <% if @product.barter_approval != true %>
+            <%= "購入内容の確認" %>
+          <% else %>
+            <%= "交換取引 確定画面" %>
+          <% end %>
+        </h2>
           <table class="table table-bordered">
             <tboy>
               <tr>
                 <td>
                   <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+                  <% if @product.barter_approval != true %>
                     <h3>合計金額 <%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h3>
                       <button type="button" background-color="red"; class="btn btn-secondary col-xs-2" style="font-weight:bold; background: #999999;">
                       送料 / <%= @product.postage_responsibility %>
                       </button>
+                  <% end %>
                 </td>
               </tr>
               <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
