@@ -4,6 +4,7 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
+    @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @products = @category.products.order(created_at: :desc).page(params[:page]).per(16)
@@ -22,14 +23,19 @@ class Users::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user_id = current_user.id
-    if @product.save
-      # tags = Vision.get_image_data(@product.image)
-      # tags.each do |tag|
-      #   @product.tags.create(name: tag)
-      # end
+    ActiveRecord::Base.transaction do
+      @product.save
+      annotations = Vision.get_image_data(@product.image)
+      if !annotations.all?{|_k, v| v == 'VERY_UNLIKELY' || v == 'UNLIKELY' }
+        raise ActiveRecord::Rollback
+      end
+      @product.tags.create(name: 'annotation')
+    end
+    if @product.persisted?
       redirect_to product_path(@product.id)
     else
-      render :new
+      flash[:notice] = "投稿画像が有効ではありません"
+      redirect_to new_product_path
     end
   end
 
@@ -40,7 +46,7 @@ class Users::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to my_product_products_path
+      redirect_to new_product_path
     else
       render :edit
     end
