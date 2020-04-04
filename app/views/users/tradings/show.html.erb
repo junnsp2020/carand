@@ -140,6 +140,42 @@
 			    	<%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
 					<%= f.submit "取引メッセージを送る", class: "btn btn-lg btn-base-1 mt-20 pull-right", :style=>"font-weight:bold; background: #999999;" %>
 				<% end %>
+				<br></br>
+				<br></br>
+				<table class="table table-bordered">
+					<tbody style="border: 5px #808080 solid;">
+						<tr>
+							<td class="shipping-address" bgcolor="#fff" colspan=2>
+								配送先情報
+							</td>
+						</tr>
+						<% if current_user == @seller %>
+							<tr>
+								<td width="20%">〒<%= @buyer.postcode %></td>
+								<td width="80%"><%= @buyer.prefecture_code %>
+								<%= @buyer.address_city %>
+								<%= @buyer.address_street %>
+								<%= @buyer.address_city %></td>
+							</tr>
+							<tr>
+								<td width="20%"><%= @buyer.last_name + @buyer.first_name %></td>
+								<td width="80%"><%= @buyer.phone_number %></td>
+							</tr>
+						<% else %>
+							<tr>
+								<td width="20%">〒<%= @seller.postcode %></td>
+								<td width="80%"><%= @seller.prefecture_code %>
+								<%= @seller.address_city %>
+								<%= @seller.address_street %>
+								<%= @seller.address_city %></td>
+							</tr>
+							<tr>
+								<td width="20%"><%= @seller.last_name + @seller.first_name %></td>
+								<td width="80%"><%= @seller.phone_number %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
 		</div>
 		<div class="col-xs-3">
 			<h4 class="trading-show">取引情報</h4>
