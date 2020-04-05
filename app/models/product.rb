@@ -46,7 +46,7 @@ class Product < ApplicationRecord
 
   validates :image, presence: true
   validates :name, presence: true
-  validates :category_id, presence: true
+  validates :category_id, presence: true, allow_blank: true
   validates :status, presence: true
   validates :price, presence: true
   validates :postage_responsibility, presence: true

@@ -49,7 +49,7 @@
 							<tr>
 								<td>
 									<div class="col-xs-2"><%= f.label :送料の負担 %><span class="emphasis"> (必須)</span></div>
-									<%= f.select :postage_responsibility, Product.postage_responsibilities.keys %>
+									<%= f.select :postage_responsibility, Product.postage_responsibilities.keys, include_blank: "-- 選択してください --", selected: 0 %>
 								</td>
 							</tr>
 							<tr>

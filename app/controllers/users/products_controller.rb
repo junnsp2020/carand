@@ -12,10 +12,18 @@ class Users::ProductsController < ApplicationController
     # end
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @products = @category.products.order(created_at: :desc).page(params[:page]).per(16)
-      @ranks = @category.products.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
+      # @category.save
+      @products = @category.products.order(created_at: :desc).page(params[:page]).per(28)
+      barter_requests = BarterRequest.joins(:product)
+          .where(products: {category_id: params[:category_id]})
+          .group(:product_id)
+          .order('count(barter_requests.product_id) desc')
+          .limit(5)
+          .select("barter_requests.product_id, count(barter_requests.product_id) as count")
+      @ranks = @category.products.find(barter_requests.pluck(:product_id))
+     # @ranks = @category.products.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
     else
-      @products = Product.all.order(created_at: :desc).page(params[:page]).per(16)
+      @products = Product.all.order(created_at: :desc).page(params[:page]).per(28)
       @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
     end
   end

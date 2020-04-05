@@ -77,6 +77,8 @@ gem 'pry-rails'
 
 gem 'dotenv-rails'
 
+gem 'font-awesome-sass', '~> 5.4.1'
+
 group :production do
   gem 'mysql2'
 end

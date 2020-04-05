@@ -121,7 +121,7 @@ body {
 .sale-status{
     position: absolute;
 	top: 2px;
-	left :65px
+	left :15px
 }
 .camera{
 	position: fixed;
@@ -241,7 +241,9 @@ h5{
 }
 .all-products{
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 40px;
+	margin-left: 337px;
+	margin-bottom: 22px;
 }
 .order-confirm{
 	font-weight: bold;
@@ -418,4 +420,11 @@ h3.my-product-page{
 }
 .ranks-title{
 	font-weight: bold;
+}
+.rank-number{
+	font-weight: bold;
+}
+.ranking{
+	margin-right: 28px;
+	margin-top: 40px;
 }
