@@ -142,14 +142,14 @@
 				<% end %>
 				<br></br>
 				<br></br>
-				<table class="table table-bordered">
-					<tbody style="border: 5px #808080 solid;">
-						<tr>
-							<td class="shipping-address" bgcolor="#fff" colspan=2>
-								配送先情報
-							</td>
-						</tr>
-						<% if current_user == @seller %>
+				<% if current_user == @seller %>
+					<table class="table table-bordered">
+						<tbody style="border: 5px #808080 solid;">
+							<tr>
+								<td class="shipping-address" bgcolor="#fff" colspan=2>
+									配送先情報
+								</td>
+							</tr>
 							<tr>
 								<td width="20%">〒<%= @buyer.postcode %></td>
 								<td width="80%"><%= @buyer.prefecture_code %>
@@ -161,7 +161,17 @@
 								<td width="20%"><%= @buyer.last_name + @buyer.first_name %></td>
 								<td width="80%"><%= @buyer.phone_number %></td>
 							</tr>
-						<% else %>
+						</tbody>
+					</table>
+				<% end %>
+				<% if current_user == @buyer && @trading.paymethod == "交換" %>
+					<table class="table table-bordered">
+						<tbody style="border: 5px #808080 solid;">
+							<tr>
+								<td class="shipping-address" bgcolor="#fff" colspan=2>
+									配送先情報
+								</td>
+							</tr>
 							<tr>
 								<td width="20%">〒<%= @seller.postcode %></td>
 								<td width="80%"><%= @seller.prefecture_code %>
@@ -173,9 +183,9 @@
 								<td width="20%"><%= @seller.last_name + @seller.first_name %></td>
 								<td width="80%"><%= @seller.phone_number %></td>
 							</tr>
-						<% end %>
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				<% end %>
 		</div>
 		<div class="col-xs-3">
 			<h4 class="trading-show">取引情報</h4>

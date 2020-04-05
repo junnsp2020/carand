@@ -4,12 +4,19 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
+    # @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
+    # if params[:category_id]
+    #   @category = Category.find(params[:category_id])
+    #   @finals = Product.group(:category_id).find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
+    #   # @finals = @category.finals
+    # end
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @products = @category.products.order(created_at: :desc).page(params[:page]).per(16)
+      @ranks = @category.products.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
     else
       @products = Product.all.order(created_at: :desc).page(params[:page]).per(16)
+      @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
     end
   end
 
@@ -21,10 +28,23 @@ class Users::ProductsController < ApplicationController
   end
 
   def create
+    if product_params[:image].blank?
+      flash[:notice] = "画像が選択されていません"
+      redirect_to new_product_path
+      return
+    end
     @product = Product.new(product_params)
     @product.user_id = current_user.id
     ActiveRecord::Base.transaction do
-      @product.save
+      unless @product.save
+        flash[:notice] = "データの保存に失敗しました<br>"
+        @product.errors.full_messages.each do |message|
+          flash[:notice] << message << "<br>"
+        end
+
+        redirect_to new_product_path
+        return
+      end
       annotations = Vision.get_image_data(@product.image)
       if !annotations.all?{|_k, v| v == 'VERY_UNLIKELY' || v == 'UNLIKELY' }
         raise ActiveRecord::Rollback

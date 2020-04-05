@@ -1,10 +1,30 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			
+			<div class="col-xs-3">
+			<h5 class="ranks-title">交換リクエストの多い商品</h5>
+			<table class="table table-bordered">
+				<tboy>
+				<% (1..5).first(1).each do |num,i| %>
+				<% @ranks.each do |rank| %>
+						<tr class="ranks-images">
+							<td>
+									<%= attachment_image_tag rank, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+									<h4 class="rank-number"><%= num %>位</h4>
+									<% break if i== 1 %>
+							</td>
+						</tr>
+					<% end %>
+				<% end %>
+				</tboy>
+			</table>
+			<%# @finals.each do |final| %>
+				<%#= attachment_image_tag final, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+			<%# end %>
+		    </div>
 			<h3 class="all-products">商品一覧  全<%= @products.total_count %>件</h3>
 			<% @products.each do |product| %>
-		        <div class="col-xs-3">
+		        <div class="col-xs-2">
 					<div class="products-index-image">
 						<div class="sale-status">
 							<%= link_to product_path(product.id) do %>

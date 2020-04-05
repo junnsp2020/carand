@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-10">
 			<% if flash[:notice] %>
-	      		<h3 class="image-annotation"><%= flash[:notice] %></h3>
+	      		<h3 class="image-annotation"><%= flash[:notice].html_safe %></h3>
 	      	<% end %>
 			<h2 class="exhibition">出品</h2>
 				<% if @product.errors.any? %>
@@ -29,7 +29,7 @@
 							<tr>
 								<td>
 									<div class="col-xs-4"><%= f.label :カテゴリー %><span class="emphasis"> (必須)</span></div>
-									<%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "-- 選択してください --", selected: 0, class: "col-xs-8" %>
+									<%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "-- 選択してください --", class: "col-xs-8" %>
 								</td>
 							</tr>
 							<tr>
