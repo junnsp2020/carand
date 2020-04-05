@@ -16,6 +16,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 header {
     font-weight: bold;
@@ -423,8 +425,12 @@ h3.my-product-page{
 }
 .rank-number{
 	font-weight: bold;
+	font-size: 25px;
 }
 .ranking{
 	margin-right: 28px;
 	margin-top: 40px;
+}
+.glyphicon-star-empty{
+	font-size: 20px;
 }
