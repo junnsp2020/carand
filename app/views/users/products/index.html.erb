@@ -1,31 +1,30 @@
 <div class="container">
-	<div class="row">
 		<div class="col-xs-12">
 			<div class="ranking col-xs-3">
-			<h4 class="ranks-title">
-				<% if @category %>
-					<p><%= @category.name %></p>
-					<p><%= "交換人気ランキング" %></p>
-				<% else %>
-					<p><%= "全カテゴリー内" %></p>
-					<p><%= "交換人気ランキング" %></p>
-				<% end %>
-			</h4>
-			<table class="table table-bordered">
-				<tboy>
-				<% @ranks.each.with_index(1) do |rank, index| %>
-						<tr class="ranks-images">
-							<td>
-									<%= attachment_image_tag rank, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-									<h4 class="rank-number">第<%= index %>位</h4>
-									<% if index == 1 %>
-										<h4 class="rank-number"><%= "今最もアツい商品！" %></h4>
-									<% end %>
-							</td>
-						</tr>
-				<% end %>
-				</tboy>
-			</table>
+				<h4 class="ranks-title">
+					<% if @category %>
+						<p><%= @category.name %></p>
+						<p><%= "交換人気ランキング" %></p>
+					<% else %>
+						<p><%= "全カテゴリー内" %></p>
+						<p><%= "交換人気ランキング" %></p>
+					<% end %>
+				</h4>
+				<table class="table table-bordered">
+					<tboy>
+					<% @ranks.each.with_index(1) do |rank, index| %>
+							<tr class="ranks-images">
+								<td>
+										<%= attachment_image_tag rank, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+										<h4 class="rank-number">第<%= index %>位</h4>
+										<% if index == 1 %>
+											<h4 class="rank-number"><%= "今最もアツい商品！" %></h4>
+										<% end %>
+								</td>
+							</tr>
+					<% end %>
+					</tboy>
+				</table>
 		    </div>
 			<h3 class="all-products">商品一覧  全<%= @products.total_count %>件</h3>
 			<% @products.each do |product| %>
@@ -51,5 +50,4 @@
 			<% end %>
 			<div class="pagenate"><%= paginate @products, class: "paginate" %></div>
 		</div>
-	</div>
 </div>
