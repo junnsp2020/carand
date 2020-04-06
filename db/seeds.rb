@@ -30,7 +30,7 @@ Category.create([
   	{name: "家具"}
 ])
 
-Product.create([
+Product.create!([
 	{user_id: 1 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 5000},
 	{user_id: 2 , category_id: 2, name: "商品 2", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 6500, propriety: 1},
 	{user_id: 3 , category_id: 3, name: "商品 3", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 8000, sale_status: 1},
