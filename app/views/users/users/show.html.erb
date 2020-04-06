@@ -81,19 +81,19 @@
 								<p>
 								  <span class="sun"><i class="fas fa-sun"></i>
 								  </span>&emsp;&emsp;
-								  <span class="review-number"><%= Trading.where(excellent_review: true, buyer_id: @user.id).count %>
+								  <span class="review-number"><%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %>
 								  </span>
 								</p>
 								<p>
 								  <span class="glyphicon glyphicon-cloud" aria-hidden="true">
 								  </span>&emsp;&emsp;&nbsp;&nbsp;
-								  <span class="review-number"><%= Trading.where(good_review: true, buyer_id: @user.id).count %>
+								  <span class="review-number"><%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %>
 								  </span>
 								</p>
 								<p>
 								  <span class="umbrella"><i class="fas fa-umbrella"></i>
 								  </span>&emsp;&emsp;
-								  <span class="review-number"><%= Trading.where(poor_review: true, buyer_id: @user.id).count %>
+								  <span class="review-number"><%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %>
 								  </span>
 								</p>
 							<% end %>

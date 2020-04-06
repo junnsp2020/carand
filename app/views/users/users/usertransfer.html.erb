@@ -26,13 +26,11 @@
 				<p class="try-exhibition"><%= "残高が 0円のため、振込機能が使えません" %><br>
 				<%= "商品を出品してみましょう!" %></p>
 			<% end %>
-			<div class="camera-2">
-				<% if user_signed_in? %>
-		      		<%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
-		      	<% else %>
-		      		<%= link_to "", new_user_session_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
-		      	<% end %>
-	    	</div>
+			<% if @user.balance == nil %>
+				<div class="camera-2">
+			      	<%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+		    	</div>
+		    <% end %>
 		</div>
 	</div>
 </div>
