@@ -27,12 +27,18 @@
 			<table class="table table-bordered">
 				<tr>
 					<td style="border-top-style: hidden; border-right-style: hidden; border-left-style: hidden;">
-						<h5><%= @user.nickname %> さん</h5>
+						<span class="smile"><i class="far fa-smile-wink"></i></span>&nbsp;<span class="nickname"><%= @user.nickname %> さん</span>
 					</td>
 				</tr>
 				<tbody style="border: 2px #808080 solid;">
 					<tr>
-						<td class="balance"  bgcolor="#fff">カランド内 残高 <%= number_to_currency(@user.balance, :unit => "￥", :precision => 0) %></td>
+						<td class="balance"  bgcolor="#fff">
+                            <% if @user.balance %>
+								カランド内 残高 &nbsp;&nbsp;&nbsp;<%= number_to_currency(@user.balance, :unit => "￥", :precision => 0) %>
+						 	<% else %>
+								カランド内 残高 &nbsp;&nbsp;&nbsp;<%= "￥ 0" %>
+							<% end %>
+						</td>
 					</tr>
 					<tr>
 						<td  bgcolor="#fff"><%= link_to "振込申請する", usertransfer_user_path(current_user) %></td>

@@ -8,19 +8,31 @@
 					<%= "￥ 0" %>
 				<% end %>
 			</h4>
-            <%= form_with(url:user_path(current_user), model: @user, local: false) do |f| %>
-				<table class="table table-bordered">
-					<tboy>
-						<tr>
-							<td>
-								<%= f.label :入金申請額 %>
-								<%= f.number_field :request_amount, value: 0 %>円
-							</td>
-						</tr>
-					</tboy>
-				</table>
-			<%= f.submit "入金申請", class: "btn btn-primary col-xs-12" %>
+			<% if @user.balance %>
+	            <%= form_with(url:user_path(current_user), model: @user, local: false) do |f| %>
+					<table class="table table-bordered">
+						<tboy>
+							<tr>
+								<td>
+									<%= f.label :入金申請額 %>
+									<%= f.number_field :request_amount, value: 0 %>円
+								</td>
+							</tr>
+				<%= f.submit "入金申請", class: "btn btn-primary col-xs-12" %>
+				<% end %>
+						</tboy>
+					</table>
+			<% else %>
+				<p class="try-exhibition"><%= "残高が 0円のため、振込機能が使えません" %><br>
+				<%= "商品を出品してみましょう!" %></p>
 			<% end %>
+			<div class="camera-2">
+				<% if user_signed_in? %>
+		      		<%= link_to "", new_product_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+		      	<% else %>
+		      		<%= link_to "", new_user_session_path, class: "btn btn-default btn-circle btn-lg glyphicon glyphicon-camera" %>
+		      	<% end %>
+	    	</div>
 		</div>
 	</div>
 </div>

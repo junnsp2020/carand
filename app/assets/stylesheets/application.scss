@@ -451,3 +451,28 @@ h3.my-product-page{
 .review-number{
 	font-size: 18px;
 }
+.smile{
+  border-radius: 50%;
+  font-size: 28px;
+}
+.nickname{
+  font-weight: bold;
+}
+.try-exhibition{
+  font-size: 20px;
+  margin-top: 5%;
+}
+.camera-2{
+	position: fixed;
+	bottom: 46%;
+	right: 52%;
+}
+.camera-2
+  .btn-circle.btn-lg {
+    font-size: 50px;
+    width: 85px;
+    height: 85px;
+    color: #fff;
+    background-color: #dc143c;
+    border-radius: 50%;
+}
