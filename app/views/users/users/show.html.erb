@@ -50,7 +50,7 @@
 					<tr>
 						<td bgcolor="#fff">
 							<% if @tradings %>
-								<P>良い評価 <%= Trading.where(excellent_review: true, buyer_id: @user.id).count %></P>
+								<P>良い評価 <span><i class="fas fa-crown"></i></span> <%= Trading.where(excellent_review: true, buyer_id: @user.id).count %></P>
 								<p>ふつう評価 <%= Trading.where(good_review: true, buyer_id: @user.id).count %></p>
 								<p>悪い評価 <%= Trading.where(poor_review: true, buyer_id: @user.id).count %></p>
 							<% end %>

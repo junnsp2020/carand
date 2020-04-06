@@ -4,15 +4,8 @@ class Users::ProductsController < ApplicationController
   end
 
   def index
-    # @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
-    # if params[:category_id]
-    #   @category = Category.find(params[:category_id])
-    #   @finals = Product.group(:category_id).find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
-    #   # @finals = @category.finals
-    # end
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      # @category.save
       @products = @category.products.order(created_at: :desc).page(params[:page]).per(28)
       barter_requests = BarterRequest.joins(:product)
           .where(products: {category_id: params[:category_id]})
@@ -21,7 +14,6 @@ class Users::ProductsController < ApplicationController
           .limit(5)
           .select("barter_requests.product_id, count(barter_requests.product_id) as count")
       @ranks = @category.products.find(barter_requests.pluck(:product_id))
-     # @ranks = @category.products.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
     else
       @products = Product.all.order(created_at: :desc).page(params[:page]).per(28)
       @ranks = Product.find(BarterRequest.group(:product_id).order('count(product_id) desc').limit(5).pluck(:product_id))
@@ -54,7 +46,7 @@ class Users::ProductsController < ApplicationController
         return
       end
       annotations = Vision.get_image_data(@product.image)
-      if !annotations.all?{|_k, v| v == 'VERY_UNLIKELY' || v == 'UNLIKELY' }
+      if !annotations.all?{|_k, v| v == 'VERY_UNLIKELY' || v == 'UNLIKELY' || v == 'POSSIBLE'}
         raise ActiveRecord::Rollback
       end
       @product.tags.create(name: 'annotation')
