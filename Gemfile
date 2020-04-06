@@ -81,7 +81,7 @@ gem 'font-awesome-sass', '~> 5.4.1'
 
 group :production do
   gem 'mysql2'
-  gem "listen"
+  gem "listen", "< 3.2", ">= 3.0.5"
 end
 
 
