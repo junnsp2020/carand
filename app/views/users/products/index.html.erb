@@ -12,34 +12,41 @@
 			</h4>
 			<table class="table table-bordered">
 				<tboy>
-				<% @ranks.each.with_index(1) do |rank, index| %>
+					<% @ranks.each.with_index(1) do |rank, index| %>
+						<tr class="ranks-images">
+							<td>
+								<%= link_to product_path(rank.id) do %>
+									<%= attachment_image_tag rank, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
+								<% end %>
+								<span class="rank-number">第<%= index %>位</span>
+								<% if index == 1 %>
+									<span><i class="fas fa-crown"></i></span>
+									<span><i class="fas fa-crown"></i></span>
+									<span><i class="fas fa-crown"></i></span>
+									<h4 class="rank-number"><%= "今最もアツい商品！" %></h4>
+								<% end %>
+								<% if index == 2 %>
+									<span><i class="fas fa-crown"></i></span>
+									<span><i class="fas fa-crown"></i></span>
+									<h4 class="rank-number"><%= "大人気商品！" %></h4>
+								<% end %>
+								<% if index == 3 %>
+									<span><i class="fas fa-crown"></i></span>
+									<h4 class="rank-number"><%= "注目者多数！" %></h4>
+								<% end %>
+								<% if index == 4 %>
+									<span><i class="fas fa-gem"></i></span>
+								<% end %>
+								<% if index == 5 %>
+									<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+				<% if @ranks.blank? %>
 					<tr class="ranks-images">
 						<td>
-							<%= link_to product_path(rank.id) do %>
-								<%= attachment_image_tag rank, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-							<% end %>
-							<span class="rank-number">第<%= index %>位</span>
-							<% if index == 1 %>
-								<span><i class="fas fa-crown"></i></span>
-								<span><i class="fas fa-crown"></i></span>
-								<span><i class="fas fa-crown"></i></span>
-								<h4 class="rank-number"><%= "今最もアツい商品！" %></h4>
-							<% end %>
-							<% if index == 2 %>
-								<span><i class="fas fa-crown"></i></span>
-								<span><i class="fas fa-crown"></i></span>
-								<h4 class="rank-number"><%= "大人気商品！" %></h4>
-							<% end %>
-							<% if index == 3 %>
-								<span><i class="fas fa-crown"></i></span>
-								<h4 class="rank-number"><%= "注目者多数！" %></h4>
-							<% end %>
-							<% if index == 4 %>
-								<span><i class="fas fa-gem"></i></span>
-							<% end %>
-							<% if index == 5 %>
-								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-							<% end %>
+							<%= "まだ集計は行われていません" %>
 						</td>
 					</tr>
 				<% end %>
@@ -51,7 +58,7 @@
 			<% @products.each do |product| %>
 		        <div class="col-xs-3">
 					<div class="products-index-image">
-						<div class="sale-status">
+						<div class="sale-status-2">
 							<%= link_to product_path(product.id) do %>
 								<% if product.sale_status != "販売中" %>
 									<%= link_to "売切", product_path(product.id), class: "btn-sm btn-danger" %>
