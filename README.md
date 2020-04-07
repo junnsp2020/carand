@@ -53,11 +53,13 @@ Rails 5.2.4.1
 
 **(1)「ヘッダーの検索窓」 or 「カテゴリーからもお探しできます」 をクリック**  
 (検索窓にキーワードを入れないで虫眼鏡マークを押すと、全ての商品を検索できます)
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/78636140-a9818080-78e2-11ea-85dc-b7c39a7cf5ed.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78636606-a63ac480-78e3-11ea-9f99-86a4f5eea652.png">
 
 **(2)自分が見たい商品をクリックしてください**  
-商品一覧には、「販売中」「交換可」「売切」のタグが設定してあります。
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819362-a38ae300-711d-11ea-88ee-2561bb3a848c.png">
+商品一覧には、「販売中」「交換可」「売切」のタグが設定してあります。  
+「カテゴリーからもお探しできます」から検索した場合は、そのカテゴリー内の  
+交換で人気を集めている商品が分かります
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78637210-e484b380-78e4-11ea-8ad8-0c15ada6b63e.png">
 
 ## C. 購入 or 交換 → 取引の流れ    
 
@@ -93,7 +95,7 @@ Rails 5.2.4.1
 ヘッダーに「リクエストが許可されました」と表示されますのでクリックしてください。  
 クリックするとオレンジ色のボタンが出ていますので、  
 押すと、交換取引の確定ページへと進めます。  
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77821092-cd96d200-712a-11ea-8353-744d76724559.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78640539-e5204880-78ea-11ea-9389-b6269a8ce025.png">
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77821113-0171f780-712b-11ea-9eab-e501fe43e406.png">    
 **(5)支払方法を「交換」とし、取引を確定させる**  
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77821177-75140480-712b-11ea-9887-a26de1347f9a.png">    
@@ -137,7 +139,7 @@ Rails 5.2.4.1
 ・「自分が送った交換リクエスト」、「他のユーザーからもらった交換リクエスト」  
 ・「ほしいものリストに登録した商品」  
 を閲覧できます。      
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77827391-ab1bad80-7158-11ea-9213-1c19b82227ad.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78640044-03d20f80-78ea-11ea-86b6-16e856a7f2a1.png">
       
 **交換リクエスト【もらった】をクリックしたページです。魅力的な提案があった場合はリクエストを許可しましょう**    
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77827399-b40c7f00-7158-11ea-9573-5db4d54dbe30.png">   
@@ -147,7 +149,8 @@ Rails 5.2.4.1
 【 カランド内 残高 】には売れた商品の利益総額が表示されています。  
 振込申請をクリックし、受け取りたい金額を  
 入力してください。  
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77828268-b6250c80-715d-11ea-9eee-ccde2a2aee88.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78639310-ac7f6f80-78e8-11ea-869e-70103034f8e0.png">
+
 
 ## 最後に
 
