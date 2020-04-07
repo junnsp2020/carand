@@ -25,12 +25,12 @@ Rails 5.2.4.1
 
 **(1) 「マイページ」 → 「商品を出品する or カメラマーク をクリック」**
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77818420-76d2cd80-7115-11ea-8c78-98515d3309fc.png">
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818448-a97cc600-7115-11ea-8710-009af43e0edc.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78635794-f153d800-78e1-11ea-921b-9521d551ef89.png">
       
 **(2) 出品商品の詳細を記述 → 「出品する」をクリック**  
 交換の可否の項目で「交換可能」にしておけば、他のユーザーから  
 交換リクエストがくる可能性があります。
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77818455-c618fe00-7115-11ea-83bc-1c72330056df.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78635985-59a2b980-78e2-11ea-8580-0e3ada377c98.png">
       
 **(3) 出品処理は以上です**  
 自分が出品した商品には「～さんが出品した商品です」と表示され
@@ -53,7 +53,7 @@ Rails 5.2.4.1
 
 **(1)「ヘッダーの検索窓」 or 「カテゴリーからもお探しできます」 をクリック**  
 (検索窓にキーワードを入れないで虫眼鏡マークを押すと、全ての商品を検索できます)
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77819318-60307480-711d-11ea-8910-7d6e989adb1f.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78636140-a9818080-78e2-11ea-85dc-b7c39a7cf5ed.png">
 
 **(2)自分が見たい商品をクリックしてください**  
 商品一覧には、「販売中」「交換可」「売切」のタグが設定してあります。
