@@ -25,7 +25,7 @@ Rails 5.2.4.1
 
 **(1) 「マイページ」 → 「商品を出品する or カメラマーク をクリック」**
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77818420-76d2cd80-7115-11ea-8c78-98515d3309fc.png">
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/78642390-9de78700-78ed-11ea-9466-690fa8af171b.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78642693-19493880-78ee-11ea-87fe-bafcdee84082.png">
       
 **(2) 出品商品の詳細を記述 → 「出品する」をクリック**  
 交換の可否の項目で「交換可能」にしておけば、他のユーザーから  
