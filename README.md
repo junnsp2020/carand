@@ -59,7 +59,7 @@ Rails 5.2.4.1
 商品一覧には、「販売中」「交換可」「売切」のタグが設定してあります。  
 「カテゴリーからもお探しできます」から検索した場合は、そのカテゴリー内の  
 交換で人気を集めている商品が分かります
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/78637210-e484b380-78e4-11ea-8ad8-0c15ada6b63e.png">
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78640942-7bed0500-78eb-11ea-935a-e000b7e02f50.png">
 
 ## C. 購入 or 交換 → 取引の流れ    
 
@@ -97,8 +97,8 @@ Rails 5.2.4.1
 押すと、交換取引の確定ページへと進めます。  
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/78640539-e5204880-78ea-11ea-9389-b6269a8ce025.png">
 <img width="800px" src="https://user-images.githubusercontent.com/58461408/77821113-0171f780-712b-11ea-9eab-e501fe43e406.png">    
-**(5)支払方法を「交換」とし、取引を確定させる**  
-<img width="800px" src="https://user-images.githubusercontent.com/58461408/77821177-75140480-712b-11ea-9887-a26de1347f9a.png">    
+**(5)「交換取引を確定する」をクリックし、取引を確定させる**  
+<img width="800px" src="https://user-images.githubusercontent.com/58461408/78641368-1c432980-78ec-11ea-8d52-908c443f7788.png">
 **(6)送り状番号を送り合う**  
 メッセージ機能を使用し、送り状番号を互いに通知してください。  
 確認が終わったら、「確認完了」のボタンを押します。  
