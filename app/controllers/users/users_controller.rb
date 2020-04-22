@@ -7,11 +7,11 @@ class Users::UsersController < ApplicationController
 		@excellent_count = Trading.group(:excellent_review).count(:excellent_review)
 		@good_count = Trading.group(:good_review).count(:good_review)
 		@poor_count = Trading.group(:poor_review).count(:poor_review)
-		@trading = Trading.where(buyer_id: current_user.id)
+		@trading = Trading.where(buyer_id: @user.id)
 		@tradings = @user.tradings
-		@tradings = Trading.where(seller_id: current_user.id)
+		@tradings = Trading.where(seller_id: @user.id)
 		@balance = calculate(params[:id])
-		@barter_requests = BarterRequest.where(user_id: current_user.id )
+		@barter_requests = BarterRequest.where(user_id: @user.id )
 	end
 
 	def userinfo
