@@ -6,11 +6,19 @@ class Product < ApplicationRecord
 	end
 
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    if user
+      favorites.where(user_id: user.id).exists?
+    else
+      return nil
+    end
   end
 
   def wished_by?(user)
-    wishlists.where(user_id: user.id).exists?
+    if user
+      wishlists.where(user_id: user.id).exists?
+    else
+      return nil
+    end
   end
 
 	enum status:{

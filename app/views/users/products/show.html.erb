@@ -78,7 +78,7 @@
 					</tr>
 					<tr>
 						<td colspan=3>
-							<% if @product.user_id != current_user.id %>
+							<% if current_user && @product.user_id != current_user.id %>
 								<% if @product.sale_status == "販売中" %>
 									<%= button_to "購入ページへ進む", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
 								<% else %>
@@ -89,7 +89,7 @@
 							<% end %>
                        </td>
 					</tr>
-					<% if @product.user_id != current_user.id %>
+					<% if current_user && @product.user_id != current_user.id %>
 					<tr>
 						<td colspan=3>
 							<% if @product.propriety == "交換可能" && @product.sale_status == "販売中" %>
