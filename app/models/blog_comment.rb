@@ -1,2 +1,0 @@
-class BlogComment < ApplicationRecord
-end

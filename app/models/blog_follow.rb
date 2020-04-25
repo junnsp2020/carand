@@ -1,2 +1,0 @@
-class BlogFollow < ApplicationRecord
-end

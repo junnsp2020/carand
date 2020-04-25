@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_084601) do
+ActiveRecord::Schema.define(version: 2020_04_25_105604) do
 
   create_table "administers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,29 +38,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_084601) do
     t.integer "seller_id"
     t.integer "buyer_id"
     t.boolean "notice"
-  end
-
-  create_table "blog_comments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "blog_id"
-    t.integer "user_id"
-    t.text "comment"
-  end
-
-  create_table "blog_follows", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "blog_id"
-    t.integer "user_id"
-  end
-
-  create_table "blogs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "title"
-    t.integer "user_id"
-    t.text "body"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -97,11 +74,11 @@ ActiveRecord::Schema.define(version: 2020_04_02_084601) do
     t.integer "profit"
     t.integer "postage"
     t.integer "postage_responsibility", default: 0
-    t.integer "status", default: 0
     t.integer "sale_status", default: 0
     t.integer "propriety", default: 0
     t.boolean "notice"
     t.boolean "barter_approval"
+    t.integer "status", default: 0
   end
 
   create_table "reports", force: :cascade do |t|
@@ -111,14 +88,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_084601) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "product_id"
-    t.integer "status"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -160,15 +129,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_084601) do
     t.boolean "completed"
     t.boolean "buyer_notice"
     t.boolean "seller_notice"
-  end
-
-  create_table "transfers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "request_amount"
-    t.integer "commission"
-    t.integer "amount"
   end
 
   create_table "users", force: :cascade do |t|
