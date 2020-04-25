@@ -31,6 +31,7 @@
 					</td>
 				</tr>
 				<tbody style="border: 2px #808080 solid;">
+					<% if @user == current_user %>
 					<tr>
 						<td class="balance"  bgcolor="#fff">
                             <% if @user.balance %>
@@ -40,7 +41,6 @@
 							<% end %>
 						</td>
 					</tr>
-					<% if current_user == @user %>
 					<tr>
 						<td  bgcolor="#fff"><%= link_to "振込申請する", usertransfer_user_path(@user) %></td>
 					</tr>
