@@ -8,15 +8,14 @@ RSpec.describe "Productモデルのテスト", type: :model do
     product
   end
 
-  describe "botを使ったバリデーションのテスト" do
-    it "項目が全て入力されているため有効である" do
-      expect(product).to be_valid
-    end
-  end
-
   describe "バリデーションのテスト" do
+    context "全ての項目が入力されている時" do
+      it "有効である" do
+        expect(product).to be_valid
+      end
+    end
     context "メールアドレスが空の時" do
-      it "バリデーションがエラーになる" do
+      it "エラーとなる" do
         product.name = ""
         expect(product).to be_invalid
       end

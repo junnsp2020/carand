@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Administerモデルのテスト", type: :system do
+RSpec.describe "Administers", type: :system do
     describe "新規登録のテスト" do
         context "新規登録画面に成功する" do
             before do

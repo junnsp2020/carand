@@ -242,9 +242,6 @@ RSpec.describe "Tradings", type: :system do
 	  			expect(page).to have_content "商品が発送されました　到着後、受取評価をしてください"
 			end
 			context "購入者が取引相手を「良い」と評価したとき" do
-				# it "出品者画面・・・「購入者の受取評価をお待ちください」と表示される" do
-		  # 			expect(page).to have_content "出荷を通知しました　購入者の受取評価をお待ちください"
-				# end
 		  		it "購入者画面・・・「ご利用誠にありがとうございました！」と表示される" do
 		  			choose "trading_seller_excellent_review_true"
 		  			click_button "評価を確定する"
