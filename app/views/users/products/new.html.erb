@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10">
-			<% if flash[:notice] && flash[:notice] != "Signed in successfully." %>
+			<% if flash[:notice] && flash[:notice] != "Signed in successfully." && flash[:notice] != "Welcome! You have signed up successfully." %>
 	      		<h3 class="image-annotation"><%= flash[:notice].html_safe %></h3>
 	      	<% end %>
 			<h2 class="exhibition">出品</h2>
