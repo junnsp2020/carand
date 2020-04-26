@@ -7,7 +7,7 @@ FactoryBot.define do
 		postcode {"1111111"}
 		prefecture_code {"カランド県"}
 		address_city {"カランド市"}
-		address_street {"カランド町"}
+		address_street {"カランド33"}
 		email {"c@c"}
 		nickname {"カランド１号"}
 		password {"111111"}
