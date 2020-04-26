@@ -73,8 +73,8 @@ class Users::TradingsController < ApplicationController
 
   def update
     @trading = Trading.find(params[:id])
-    @buyer = Trading.find_by(buyer_id: current_user.id)
-    @seller = Trading.find_by(seller_id: current_user.id)
+    # @buyer = Trading.find_by(buyer_id: current_user.id)
+    # @seller = Trading.find_by(seller_id: current_user.id)
     @trading_message = TradingMessage.new
     @trading_messages = @trading.trading_messages
     if @trading.update(trading_params)
@@ -91,20 +91,34 @@ class Users::TradingsController < ApplicationController
       @trading.shipment_status = "取引完了"
       @trading.save
       @seller = User.find(@trading.seller_id)
-    if @seller.balance == nil
-      @seller.balance = 0
-      @seller.save
-    end
-      @seller.balance += @trading.product.profit
+      if @seller.balance == nil
+        @seller.balance = 0
+        @seller.save
+      end
+      @seller.balance += @trading.product.profit.blank? ? 0 : @trading.product.profit
       @seller.save
     end
     if @trading.shipment_status == "購入者を評価する" && @trading.good_review == true
       @trading.shipment_status = "取引完了"
       @trading.save
+      @seller = User.find(@trading.seller_id)
+      if @seller.balance == nil
+        @seller.balance = 0
+        @seller.save
+      end
+      @seller.balance += @trading.product.profit.blank? ? 0 : @trading.product.profit
+      @seller.save
     end
     if @trading.shipment_status == "購入者を評価する" && @trading.poor_review == true
       @trading.shipment_status = "取引完了"
       @trading.save
+      @seller = User.find(@trading.seller_id)
+      if @seller.balance == nil
+        @seller.balance = 0
+        @seller.save
+      end
+      @seller.balance += @trading.product.profit.blank? ? 0 : @trading.product.profit
+      @seller.save
     end
      if @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_excellent_review == true
        @trading.payment_status = "交換お疲れ様でした(購入者)"
