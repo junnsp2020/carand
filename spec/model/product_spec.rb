@@ -14,9 +14,27 @@ RSpec.describe "Productモデルのテスト", type: :model do
         expect(product).to be_valid
       end
     end
-    context "メールアドレスが空の時" do
+    context "名前が空の時" do
       it "エラーとなる" do
         product.name = ""
+        expect(product).to be_invalid
+      end
+    end
+    context "商品状態が空の時" do
+      it "エラーとなる" do
+        product.status = ""
+        expect(product).to be_invalid
+      end
+    end
+    context "価格が空の時" do
+      it "エラーとなる" do
+        product.price = ""
+        expect(product).to be_invalid
+      end
+    end
+    context "送料の負担が空の時" do
+      it "エラーとなる" do
+        product.postage_responsibility = ""
         expect(product).to be_invalid
       end
     end
