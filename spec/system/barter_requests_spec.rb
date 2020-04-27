@@ -113,7 +113,7 @@ RSpec.describe "BarterRequests", type: :system do
 				select "許可する", from: "barter_request_propriety", match: :first
 				expect(page).to have_button "確定"
 				click_button "確定", match: :first
-				expect(page).to have_content "リクエストを許可しました"   ###ここまでは正しい
+				expect(page).to have_content "リクエストを許可しました"
 				visit user_path(@user2)
 				expect(page).to have_content "マイページ"
 				click_link "マイページ"
@@ -188,7 +188,7 @@ RSpec.describe "BarterRequests", type: :system do
 				select "許可する", from: "barter_request_propriety", match: :first
 				expect(page).to have_button "確定"
 				click_button "確定", match: :first
-				expect(page).to have_content "リクエストを許可しました"   ###ここまでは正しい
+				expect(page).to have_content "リクエストを許可しました"
 				visit user_path(@user2)
 				expect(page).to have_content "マイページ"
 				click_link "マイページ"
@@ -263,6 +263,33 @@ RSpec.describe "BarterRequests", type: :system do
 	  				click_button "取引メッセージを送る"
 	  				expect(page).to have_content "テストメッセージ 1"
 				end
+				it "リクエストを送った側・・・交換相手からメッセージが届いた場合、「交換者よりメッセージがあります」とヘッダーに表示される" do
+					expect(page).to have_button "交換取引を確定する"
+	  				click_button "交換取引を確定する"
+					visit user_path(@user)
+					expect(page).to have_content "ログアウト"
+					click_link "ログアウト"
+					expect(page).to have_content "ログイン"
+					click_link "ログイン"
+					expect(page).to have_content "こちらからログイン"
+					fill_in 'user[email]', with: @user2.email
+		  			fill_in 'user[password]', with: @user2.password
+		  			click_button 'ログイン'
+		  			click_link "交換", href: barter_tradings_path
+		  			expect(page).to have_content "出荷(送り状番号通知)をお願いします"
+		  			click_link "出荷(送り状番号通知)をお願いします"
+	  				fill_in "trading_message[message]", with: "テストメッセージ 2"
+	  				click_button "取引メッセージを送る"
+	  				click_link "マイページ"
+					expect(page).to have_content "ログアウト"
+					click_link "ログアウト"
+					click_link "ログイン"
+					expect(page).to have_content "こちらからログイン"
+					fill_in 'user[email]', with: @user.email
+		  			fill_in 'user[password]', with: @user.password
+		  			click_button 'ログイン'
+		  			expect(page).to have_content "交換者よりメッセージがあります"
+		  		end
 				it "リクエストをもらった側・・・「テストメッセージ 2」を送付した際、画面に表示される" do
 	  				expect(page).to have_button "交換取引を確定する"
 	  				click_button "交換取引を確定する"
@@ -287,6 +314,23 @@ RSpec.describe "BarterRequests", type: :system do
 	  				click_button "取引メッセージを送る"
 	  				expect(page).to have_content "テストメッセージ 2"
 				end
+				it "リクエストをもらった側・・・交換相手からメッセージが届いた場合、「交換者よりメッセージがあります」とヘッダーに表示される" do
+					expect(page).to have_button "交換取引を確定する"
+	  				click_button "交換取引を確定する"
+		  			fill_in "trading_message[message]", with: "テストメッセージ 1"
+	  				click_button "取引メッセージを送る"
+	  				expect(page).to have_content "テストメッセージ 1"
+					click_link "マイページ"
+					expect(page).to have_content "ログアウト"
+					click_link "ログアウト"
+					expect(page).to have_content "ログイン"
+					click_link "ログイン"
+					expect(page).to have_content "こちらからログイン"
+					fill_in 'user[email]', with: @user2.email
+		  			fill_in 'user[password]', with: @user2.password
+		  			click_button 'ログイン'
+		  			expect(page).to have_content "交換者よりメッセージがあります"
+		  		end
 			end
 			context "送り状番号を確認した時" do
 				it "リクエストを送った側・・・「商品到着後、交換者の評価をお願いします」と表示される" do
