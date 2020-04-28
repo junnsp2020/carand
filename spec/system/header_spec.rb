@@ -20,6 +20,13 @@ RSpec.describe "Header", type: :system do
       end
       context "ログイン後" do
         subject { page }
+          it "「ほしいものリスト」リンクが表示される" do
+              visit new_user_session_path
+              fill_in 'user[email]', with: @user.email
+              fill_in 'user[password]', with: @user.password
+              click_button 'ログイン'
+              expect(page).to have_content "ほしいものリスト"
+          end
           it "「買った！」リンクが表示される" do
               visit new_user_session_path
               fill_in 'user[email]', with: @user.email
