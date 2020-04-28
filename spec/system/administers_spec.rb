@@ -18,8 +18,7 @@ RSpec.describe "Administers", type: :system do
                 fill_in "administer[password]", with: ""
                 fill_in "administer[email]", with: ""
                 click_button "Sign up"
-
-                expect(page).to have_content "error"
+				expect(page).to have_content "error"
             end
         end
     end
@@ -33,8 +32,7 @@ RSpec.describe "Administers", type: :system do
                 fill_in "administer[email]", with: "z@z"
                 fill_in "administer[password]", with: 777777
                 click_button "ログイン"
-
-                expect(page).to have_content "管理者画面"
+				expect(page).to have_content "管理者画面"
             end
         end
         context "ログインに失敗する" do
@@ -42,8 +40,7 @@ RSpec.describe "Administers", type: :system do
                 fill_in "administer[email]", with: ""
                 fill_in "administer[password]", with: ""
                 click_button "ログイン"
-
-                expect(current_path).to eq(new_administer_session_path)
+				expect(current_path).to eq(new_administer_session_path)
             end
         end
     end

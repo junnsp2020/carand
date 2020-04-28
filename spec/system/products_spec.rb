@@ -12,46 +12,43 @@ RSpec.describe "Products", type: :system do
             visit new_product_path
             Category.create!(name: "おもちゃ・ホビー")
         end
-            context "商品の出品に成功する" do
-                it "全て入力してあるので保存される" do
-                    @product = Product.create!(user_id: 1 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
-
-                    expect(@product).to be_valid
-                end
+        context "入力内容に不備がない時" do
+            it "正常に出品できる" do
+                @product = Product.create!(user_id: 1 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
+                expect(@product).to be_valid
             end
-            context "商品の出品に失敗する" do
-                it '入力項目に不備があり失敗する' do
-                    fill_in "product[name]", with: ""
-                    fill_in "product[price]", with: ""
-                    attach_file "product[image]", "spec/fixtures/no_image.jpg"
-                    click_button "出品する"
-
-                    expect(page).to have_content "データの保存に失敗しました"
-                end
-                it '画像が選択されず失敗する' do
-                    fill_in "product[name]", with: ""
-                    fill_in "product[price]", with: ""
-                    click_button "出品する"
-
-                    expect(page).to have_content "画像が選択されていません"
-                end
+        end
+        context "入力項目に不備がある時" do
+            it "出品に失敗する" do
+                fill_in "product[name]", with: ""
+                fill_in "product[price]", with: ""
+                attach_file "product[image]", "spec/fixtures/no_image.jpg"
+                click_button "出品する"
+                expect(page).to have_content "データの保存に失敗しました"
             end
-            context "自分の商品へ移動" do
-                it "購入ボタンが表示されない" do
-                    @product = Product.create!(user_id: 1 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
-                    visit product_path(@product)
-
-                    expect(page).not_to have_content("購入ページへ進む")
-                end
+        end
+        context "画像が選択されていない時" do
+            it "「画像が選択されていません」と表示される" do
+                fill_in "product[name]", with: ""
+                fill_in "product[price]", with: ""
+                click_button "出品する"
+                expect(page).to have_content "画像が選択されていません"
             end
-            context "他人の商品へ移動" do
-                it "購入ページへ進むことができる" do
-                    @product = Product.create!(user_id: 2 , category_id: 1, name: "商品 2", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 6000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
-                    visit product_path(@product)
-                    click_button "購入ページへ進む"
-
-                    expect(current_path).to eq("/tradings/new")
-                end
+        end
+        context "自分の商品へ移動した時" do
+            it "購入ボタンが表示されない" do
+                @product = Product.create!(user_id: 1 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
+                visit product_path(@product)
+                expect(page).not_to have_content("購入ページへ進む")
             end
+        end
+        context "他人の商品へ移動した時" do
+            it "購入ページへ進むことができる" do
+                @product = Product.create!(user_id: 2 , category_id: 1, name: "商品 2", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 6000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
+                visit product_path(@product)
+                click_button "購入ページへ進む"
+                expect(current_path).to eq("/tradings/new")
+            end
+        end
     end
 end

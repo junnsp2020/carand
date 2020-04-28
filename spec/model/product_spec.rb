@@ -20,6 +20,12 @@ RSpec.describe "Productモデルのテスト", type: :model do
         expect(product).to be_invalid
       end
     end
+    context "画像が空の時" do
+      it "エラーとなる" do
+        product.image_id = ""
+        expect(product).to be_invalid
+      end
+    end
     context "商品状態が空の時" do
       it "エラーとなる" do
         product.status = ""
