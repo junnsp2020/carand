@@ -32,7 +32,7 @@
 										<button type="button" class="btn btn-info">リクエスト中</button>
 									<% elsif barter_request.propriety == "許可する" && barter_request.product.sale_status != "売り切れ" %>
                                         <%= button_to "リクエストが許可されました！", new_trading_path, {method: :get, class: "btn-sm btn-warning col-xs-12", params:{product_id: barter_request.product.id}} %>
-									<% elsif barter_request.propriety == "許可する" && barter_request.product.sale_status == "売り切れ" %>
+									<% elsif barter_request.propriety == "許可する" && barter_request.product.sale_status != "売り切れ" %>
 										<%= link_to "取引ページへ", trading_path(Trading.find_by(product_id: barter_request.product.id)), class: "btn-sm btn-success col-xs-12" %>
 									<% end %>
 								</td>

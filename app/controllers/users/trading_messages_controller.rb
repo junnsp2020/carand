@@ -16,12 +16,6 @@ class Users::TradingMessagesController < ApplicationController
     redirect_to trading_path(@trading)
   end
 
-  def update
-  end
-
-  def destroy
-  end
-
   private
   def trading_message_params
     params.require(:trading_message).permit(:message, :user_id, :trading_id, :buyer_notice, :seller_notice)

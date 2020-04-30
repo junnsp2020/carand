@@ -28,7 +28,6 @@ RSpec.describe "Users", type: :system do
                 fill_in "user[password]", with: ""
                 fill_in "user[phone_number]", with: ""
                 click_button "登録"
-
                 expect(page).to have_content "エラー"
             end
         end
@@ -43,7 +42,6 @@ RSpec.describe "Users", type: :system do
                 fill_in "user[email]", with: "c@c"
                 fill_in "user[password]", with: "111111"
                 click_button "ログイン"
-
                 expect(page).to have_content "マイページ"
             end
         end
@@ -52,7 +50,6 @@ RSpec.describe "Users", type: :system do
                 fill_in "user[email]", with: ""
                 fill_in "user[password]", with: ""
                 click_button "ログイン"
-
                 expect(current_path).to eq(new_user_session_path)
             end
         end

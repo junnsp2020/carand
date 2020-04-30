@@ -3,11 +3,7 @@ class Users::TradingsController < ApplicationController
     @product = Product.find(params[:product_id])
      trading = @product.trading
     @trading = Trading.new
-    @users = User.where(user_id: current_user.id)
-  end
-
-  def index
-    @tradings = Trading.all
+    @barter_request = BarterRequest.find_by(product_id: @product.id, user_id: current_user.id)
   end
 
   def show
@@ -16,7 +12,6 @@ class Users::TradingsController < ApplicationController
     @seller = @trading.seller
     @trading_message = TradingMessage.new
     @trading_messages = @trading.trading_messages
-    @review = Trading.new
   end
 
   def create
@@ -29,8 +24,7 @@ class Users::TradingsController < ApplicationController
     @trading = Trading.new(trading_params)
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
-    @review = Trading.new(trading_params)
-    @barter_request = BarterRequest.find_by(product_id: @product.id)
+    @barter_request = BarterRequest.find_by(product_id: @product.id, user_id: current_user.id)
     if @barter_request
       @barter_request.notice = false
       @barter_request.save
@@ -41,7 +35,7 @@ class Users::TradingsController < ApplicationController
       @trading.completed = false
     end
 
-    if @product.barter_approval == true
+    if @product.barter_approval == true && @barter_request
       @trading.payment_status = "交換(購入者)"
       @trading.shipment_status = "交換(出品者)"
     end
@@ -68,13 +62,8 @@ class Users::TradingsController < ApplicationController
     @buyer = Trading.where(buyer_id: current_user.id)
   end
 
-  def edit
-  end
-
   def update
     @trading = Trading.find(params[:id])
-    # @buyer = Trading.find_by(buyer_id: current_user.id)
-    # @seller = Trading.find_by(seller_id: current_user.id)
     @trading_message = TradingMessage.new
     @trading_messages = @trading.trading_messages
     if @trading.update(trading_params)
