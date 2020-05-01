@@ -67,7 +67,7 @@ class Users::TradingsController < ApplicationController
     @trading_message = TradingMessage.new
     @trading_messages = @trading.trading_messages
     if @trading.update(trading_params)
-      redirect_to  request.referer
+      redirect_to request.referer
     else
       render :show
     end
@@ -109,25 +109,25 @@ class Users::TradingsController < ApplicationController
       @seller.balance += @trading.product.profit.blank? ? 0 : @trading.product.profit
       @seller.save
     end
-     if @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_excellent_review == true
-       @trading.payment_status = "交換お疲れ様でした(購入者)"
-       @trading.save
-     elsif @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_good_review == true
-       @trading.payment_status = "交換お疲れ様でした(購入者)"
-       @trading.save
-     elsif @trading.payment_status == "番号確認完了(購入者)"  && @trading.seller_poor_review == true
-       @trading.payment_status = "交換お疲れ様でした(購入者)"
-       @trading.save
-     end
+    if @trading.payment_status == "番号確認完了(購入者)" && @trading.seller_excellent_review == true
+      @trading.payment_status = "交換お疲れ様でした(購入者)"
+      @trading.save
+    elsif @trading.payment_status == "番号確認完了(購入者)" && @trading.seller_good_review == true
+      @trading.payment_status = "交換お疲れ様でした(購入者)"
+      @trading.save
+    elsif @trading.payment_status == "番号確認完了(購入者)" && @trading.seller_poor_review == true
+      @trading.payment_status = "交換お疲れ様でした(購入者)"
+      @trading.save
+    end
     if @trading.shipment_status == "番号確認完了(出品者)" && @trading.excellent_review == true
       @trading.shipment_status = "交換お疲れ様でした(出品者)"
       @trading.save
-    elsif @trading.shipment_status == "番号確認完了(出品者)"  && @trading.good_review == true
-       @trading.shipment_status = "交換お疲れ様でした(出品者)"
-       @trading.save
-     elsif @trading.shipment_status == "番号確認完了(出品者)"  && @trading.poor_review == true
-       @trading.shipment_status = "交換お疲れ様でした(出品者)"
-       @trading.save
+    elsif @trading.shipment_status == "番号確認完了(出品者)" && @trading.good_review == true
+      @trading.shipment_status = "交換お疲れ様でした(出品者)"
+      @trading.save
+    elsif @trading.shipment_status == "番号確認完了(出品者)" && @trading.poor_review == true
+      @trading.shipment_status = "交換お疲れ様でした(出品者)"
+      @trading.save
     end
   end
 
@@ -135,7 +135,7 @@ class Users::TradingsController < ApplicationController
     @trading = Trading.find(params[:trading_id])
     if @trading.payment_status == "出品者へ入金報告をする"
       @trading.payment_status = "入金報告をしました。出品者の発送待ちです"
-      @trading.shipment_status = "出荷報告をする"
+      # @trading.shipment_status = "出荷報告をする"
     elsif @trading.payment_status == "受取報告をする"
       @trading.payment_status = "ご利用誠にありがとうございました！"
       @trading.shipment_status = "購入者を評価する"
@@ -145,7 +145,7 @@ class Users::TradingsController < ApplicationController
       @trading.payment_status = "番号確認完了(購入者)"
     end
     @trading.save
-    redirect_to  request.referer
+    redirect_to request.referer
   end
 
   def change_shipment_status
@@ -158,7 +158,7 @@ class Users::TradingsController < ApplicationController
       @trading.shipment_status = "番号確認完了(出品者)"
     end
     @trading.save
-    redirect_to  request.referer
+    redirect_to request.referer
   end
 
   private

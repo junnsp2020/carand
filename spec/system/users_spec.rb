@@ -39,8 +39,8 @@ RSpec.describe "Users", type: :system do
         end
         context "ログインに成功する" do
             it "入力に不備がないためログインできる" do
-                fill_in "user[email]", with: "c@c"
-                fill_in "user[password]", with: "111111"
+                fill_in "user[email]", with: @user.email
+                fill_in "user[password]", with: @user.password
                 click_button "ログイン"
                 expect(page).to have_content "マイページ"
             end
@@ -59,8 +59,8 @@ RSpec.describe "Users", type: :system do
             @user = User.create!(last_name: "カランド", first_name: "1号", last_name_kana: "カランド", first_name_kana: "イチゴウ", postcode: 1111111, prefecture_code: "カランド県", address_city: "カランド市", address_street: "カランド町", email: "c@c" , nickname: "カランド１号", password: 111111, phone_number: "08011111111")
             @user2 = User.create!(last_name: "カランド", first_name: "2号", last_name_kana: "カランド", first_name_kana: "ニゴウ", postcode: 2222222, prefecture_code: "A県", address_city: "A市", address_street: "A町", email: "g@g", nickname: "カランド2号", password: 222222, phone_number: "08022222222")
             visit new_user_session_path
-            fill_in "user[email]", with: "c@c"
-            fill_in "user[password]", with: "111111"
+            fill_in "user[email]", with: @user.email
+            fill_in "user[password]", with: @user.password
             click_button 'ログイン'
         end
         context '表示の確認' do
@@ -98,7 +98,7 @@ RSpec.describe "Users", type: :system do
                 expect(page).to have_content("ログアウト")
             end
             it "「個人情報詳細」リンクが表示される" do
-                expect(page).to have_link '', href: userinfo_user_path(@user)
+                expect(page).to have_content("個人情報詳細")
             end
             it "「残高」が表示される" do
                 expect(page).to have_content("残高")

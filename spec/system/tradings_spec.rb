@@ -706,6 +706,7 @@ RSpec.describe "Tradings", type: :system do
 	  			click_button 'ログイン'
 	  			click_link "売れた！"
 	  			click_link "出荷してください"
+	  			# binding.pry
 	  			click_link "出荷報告をする"
 	  			click_link "マイページ"
 				click_link "ログアウト"

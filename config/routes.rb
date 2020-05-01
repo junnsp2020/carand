@@ -39,7 +39,6 @@ scope module: :users do
 		resource :product_comments
 		resource :wishlists
 		resource :favorites
-		resource :reviews
 		resources :tradings
 		resources :barter_requests, except: [:edit]
 		resources :reports, only: [:new, :create]

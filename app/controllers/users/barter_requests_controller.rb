@@ -42,7 +42,7 @@ class Users::BarterRequestsController < ApplicationController
     if @barter_request.update(barter_request_params)
       @product.barter_approval = true
       @product.save
-      redirect_to  request.referer
+      redirect_to request.referer
     else
       render :show
     end

@@ -129,9 +129,9 @@
 						<td width="30%">
 							<h5 class="review">出品 評価</h5>
 							<% if @tradings %>
-								<P>良い評価 <%= Trading.where(excellent_review: true, buyer_id: @product.user.id).count %></P>
-								<p>ふつう評価 <%= Trading.where(good_review: true, buyer_id: @product.user.id).count %></p>
-								<p>悪い評価 <%= Trading.where(poor_review: true, buyer_id: @product.user.id).count %></p>
+								<P>良い評価 <%= Trading.where(seller_excellent_review: true, seller_id: @product.user.id).count %></P>
+								<p>ふつう評価 <%= Trading.where(seller_good_review: true, seller_id: @product.user.id).count %></p>
+								<p>悪い評価 <%= Trading.where(seller_poor_review: true, seller_id: @product.user.id).count %></p>
 							<% else %>
 								<p><%= "まだ評価がありません" %></p>
 							<% end %>
@@ -139,9 +139,9 @@
 						<td width="30%">
 							<h5 class="review">購入 評価</h5>
                             <% if @trading %>
-								<P>良い評価 <%= Trading.where(seller_excellent_review: true, seller_id: current_user.id).count %></P>
-								<p>ふつう評価 <%= Trading.where(seller_good_review: true, seller_id: current_user.id).count %></p>
-								<P>悪い評価 <%= Trading.where(seller_poor_review: true, seller_id: current_user.id).count %></P>
+								<P>良い評価 <%= Trading.where(excellent_review: true, buyer_id: @product.user.id).count %></P>
+								<p>ふつう評価 <%= Trading.where(good_review: true, buyer_id: @product.user.id).count %></p>
+								<P>悪い評価 <%= Trading.where(poor_review: true, buyer_id: @product.user.id).count %></P>
 							<% else %>
 								<p><%= "まだ評価がありません" %></p>
 							<% end %>

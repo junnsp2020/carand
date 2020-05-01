@@ -24,7 +24,8 @@ class Users::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product_comment = ProductComment.new
     @product_comments = @product.product_comments
-    @tradings = Trading.where(product_id: @product.id)
+    @tradings = Trading.where(seller_id: @product.user.id)
+    @trading = Trading.where(buyer_id: @product.user.id)
   end
 
   def create
@@ -74,9 +75,6 @@ class Users::ProductsController < ApplicationController
 
   def my_product
     @products = Product.where(user_id: current_user.id, sale_status: 0)
-  end
-
-  def destroy
   end
 
   def search
