@@ -135,7 +135,6 @@ class Users::TradingsController < ApplicationController
     @trading = Trading.find(params[:trading_id])
     if @trading.payment_status == "出品者へ入金報告をする"
       @trading.payment_status = "入金報告をしました。出品者の発送待ちです"
-      # @trading.shipment_status = "出荷報告をする"
     elsif @trading.payment_status == "受取報告をする"
       @trading.payment_status = "ご利用誠にありがとうございました！"
       @trading.shipment_status = "購入者を評価する"

@@ -7,9 +7,6 @@ class Administers::ReportsController < ApplicationController
   	@report = Report.find(params[:id])
   end
 
-  def destroy
-  end
-
   private
   def report_params
     params.require(:report).permit(:product_id, :user_id, :subject, :content)

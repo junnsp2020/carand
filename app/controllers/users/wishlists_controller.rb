@@ -2,7 +2,6 @@ class Users::WishlistsController < ApplicationController
 
   def create
   	@product = Product.find(params[:product_id])
-  	@product.save
   	@wishlist = Wishlist.new(product_id: @product.id)
     @wishlist.user_id = current_user.id
     @wishlist.save

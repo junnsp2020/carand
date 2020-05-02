@@ -9,8 +9,6 @@ class Users::BarterRequestsController < ApplicationController
   	@barter_requests =  @product.barter_requests
     @barter_request = BarterRequest.new
     @barter_request.user_id = current_user.id
-    @buyer = BarterRequest.where(buyer_id: current_user.id)
-    @seller = BarterRequest.where(seller_id: @product.user.id)
     @barter_request.product_id = @product.id
   end
 
