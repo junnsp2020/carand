@@ -17,34 +17,26 @@ RSpec.describe "Tradings", type: :system do
 		context "商品を購入した時" do
 			it "購入者画面・・・「出品者へ入金報告をする」と表示される" do
 				click_button "購入ページへ進む"
-				@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				expect(page).to have_content "出品者へ入金報告をする"
         	end
         	it "購入者画面・・・やるべきことの数字「買った！ 1」が表示される" do
         		click_button "購入ページへ進む"
-				@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				expect(page).to have_content "買った！ 1"
         	end
         end
     	context "取引メッセージを送れるかどうかのテスト" do
 			it "購入者画面・・・「テストメッセージ 1」を送付した際、取引画面に表示される" do
 				click_button "購入ページへ進む"
-				@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				fill_in "trading_message[message]", with: "テストメッセージ 1"
   				click_button "取引メッセージを送る"
   				expect(page).to have_content "テストメッセージ 1"
         	end
         	it "購入者画面・・・出品者からメッセージが届いた場合、「出品者よりメッセージがあります」とヘッダーに表示される" do
         		click_button "購入ページへ進む"
-				@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
         		visit user_path(@user)
 				click_link "ログアウト"
 				click_link "ログイン"
@@ -67,17 +59,13 @@ RSpec.describe "Tradings", type: :system do
 		context "購入者が入金報告を行ったとき" do
 			it "購入者画面・・・「出品者の発送待ちです」と表示される" do
 				click_button "購入ページへ進む"
-				@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				expect(page).to have_content "出品者の発送待ちです"
         	end
         	it "購入者画面・・・やるべきことの数字「買った！ 1」が消える" do
         		click_button "購入ページへ進む"
-				@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				expect(page).not_to have_content "買った！ 1"
         	end
@@ -85,9 +73,7 @@ RSpec.describe "Tradings", type: :system do
         context "出品者が出荷報告を行ったとき" do
         	it "購入者画面・・・「商品が発送されました　到着後、受取評価をしてください」と表示される" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -110,9 +96,7 @@ RSpec.describe "Tradings", type: :system do
 	  		end
 	  		it "購入者画面・・・やるべきことの数字「買った！ 1」が表示される" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -135,9 +119,7 @@ RSpec.describe "Tradings", type: :system do
 	  	context "購入者が取引相手を「良い」と評価したとき" do
 	  		it "購入者画面・・・「ご利用誠にありがとうございました！」と表示される" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -162,9 +144,7 @@ RSpec.describe "Tradings", type: :system do
 	  		end
 	  		it "購入者画面・・・やるべきことの数字「買った！ 1」が消える" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -191,9 +171,7 @@ RSpec.describe "Tradings", type: :system do
 	  	context "購入者が取引相手を「ふつう」と評価したとき" do
 	  		it "購入者画面・・・「ご利用誠にありがとうございました！」と表示される" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -218,9 +196,7 @@ RSpec.describe "Tradings", type: :system do
 	  		end
 	  		it "購入者画面・・・やるべきことの数字「買った！ 1」が消える" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -247,9 +223,7 @@ RSpec.describe "Tradings", type: :system do
 	  	context "購入者が取引相手を「わるい」と評価したとき" do
 	  		it "購入者画面・・・「ご利用誠にありがとうございました！」と表示される" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -274,9 +248,7 @@ RSpec.describe "Tradings", type: :system do
 	  		end
 	  		it "購入者画面・・・やるべきことの数字「買った！ 1」が消える" do
 	  			click_button "購入ページへ進む"
-		  		@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 				click_button "購入を確定する"
-				@trading.save
 				click_link "出品者へ入金報告をする"
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -315,9 +287,7 @@ RSpec.describe "Tradings", type: :system do
 	  		@product = Product.create!(user_id: 2 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
 	  		visit product_path(@product)
 	  		click_button "購入ページへ進む"
-			@trading = Trading.new(user_id: 1, product_id: @product.id, buyer_id: @user.id, seller_id: @user2.id)
 			click_button "購入を確定する"
-			@trading.save
 	  	end
 	  	context "商品が購入されたとき" do
 		  	it "出品者画面・・・「商品が購入されました　入金を待っています」と表示される" do
@@ -706,7 +676,6 @@ RSpec.describe "Tradings", type: :system do
 	  			click_button 'ログイン'
 	  			click_link "売れた！"
 	  			click_link "出荷してください"
-	  			# binding.pry
 	  			click_link "出荷報告をする"
 	  			click_link "マイページ"
 				click_link "ログアウト"
