@@ -8,9 +8,6 @@ class Users::ProductCommentsController < ApplicationController
     redirect_to product_path(@product)
   end
 
-  def destroy
-  end
-
   private
   def product_comment_params
     params.require(:product_comment).permit(:comment, :user_id, :product_id)
