@@ -2,10 +2,10 @@
   <div class="row">
       <div class="col-xs-10">
         <h2 class="order-confirm">
-          <% unless @barter_request && @product.barter_approval == true %>
-            <%= "購入内容の確認" %>
-          <% else %>
+          <% if @barter_request.propriety == "許可する" %>
             <%= "交換取引 確定画面" %>
+          <% else %>
+            <%= "購入内容の確認" %>
           <% end %>
         </h2>
           <table class="table table-bordered">
@@ -13,7 +13,7 @@
               <tr>
                 <td>
                   <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "130x130", class: "center-block" %>
-                  <% if @product.barter_approval != true %>
+                  <% unless @barter_request.propriety == "許可する" %>
                     <h3>合計金額 <%= number_to_currency(@product.price, :unit => "￥", :precision => 0) %></h3>
                       <button type="button" class="btn btn-secondary col-xs-2" style="font-weight:bold; background: #999999;">
                       送料 / <%= @product.postage_responsibility %>
@@ -24,11 +24,11 @@
               <%= form_for(@trading, url: product_tradings_path(@product)) do |f| %>
                 <%= f.hidden_field :seller_id, :value => @product.user.id %>
                 <%= f.hidden_field :buyer_id, :value => current_user.id %>
-              <% unless @barter_request && @product.barter_approval == true %>
+              <% unless @barter_request.propriety == "許可する" %>
               <tr>
                 <td>
-                    <%= f.label :"支払方法", class: "col-xs-12" %><span> ※交換の方は必ず<span class="warning">「交換」</span>を選択してください</span>
-                    <%= f.select :paymethod, [["クレジットカード"], ["コンビニ払い"]], class: "col-xs-8" %>
+                  <%= f.label :"支払方法", class: "col-xs-12" %>
+                  <%= f.select :paymethod, [["クレジットカード"], ["コンビニ払い"]], class: "col-xs-8" %>
                 </td>
               </tr>
               <% end %>
@@ -40,7 +40,7 @@
               </tr>
               <tr>
                 <td>
-                  <% if @barter_request && @product.barter_approval == true%>
+                  <% if @barter_request.propriety == "許可する" %>
                     <%= f.hidden_field :paymethod, :value => "交換" %>
                     <%= f.submit "交換取引を確定する", {method: :post, class: "btn-sm btn-success col-xs-12", params:{product_id: @product.id, seller_id: @product.user.id}} %>
                   <% else %>

@@ -17,7 +17,6 @@ namespace :administers do
 	root "home#top"
 	resources :users, except: [:new, :create]
 	resources :reports, only: [:index, :show, :destroy]
-	resources :tradings, except: [:new, :create]
 	resources :categories, except: [:new, :show, :destroy]
 end
 

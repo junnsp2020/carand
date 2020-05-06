@@ -42,7 +42,6 @@ class Users::ProductsController < ApplicationController
         @product.errors.full_messages.each do |message|
           flash[:notice] << message << "<br>"
         end
-
         redirect_to new_product_path
         return
       end
