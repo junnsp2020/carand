@@ -36,11 +36,6 @@ class Users::ProductsController < ApplicationController
     end
     @product = Product.new(product_params)
     @product.user_id = current_user.id
-    if @product.postage_responsibility == "出品者負担"
-      @product.price += 0
-    else
-      @product.price += @product.postage
-    end
     ActiveRecord::Base.transaction do
       unless @product.save
         flash[:notice] = "データの保存に失敗しました<br>"
@@ -55,6 +50,13 @@ class Users::ProductsController < ApplicationController
         raise ActiveRecord::Rollback
       end
       @product.tags.create(name: 'annotation')
+    end
+    if @product.postage_responsibility == "出品者負担"
+      @product.price += 0
+      @product.save
+    else
+      @product.price += @product.postage
+      @product.save
     end
     if @product.persisted?
       redirect_to product_path(@product.id)

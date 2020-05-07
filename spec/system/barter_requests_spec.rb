@@ -32,8 +32,8 @@ RSpec.describe "BarterRequests", type: :system do
   				visit product_path(@product)
 				expect(page).to have_button "この商品は交換可能です"
 				click_button "この商品は交換可能です"
-				@barterRequest = BarterRequest.create!(user_id: 1 , product_id: 1, name: "交換用商品 A", comment: "交換希望です！宜しくお願い致します。", introduction: "大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!", image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
-				expect(page).to have_button "リクエストを送信"
+				fill_in 'barter_request[name]', with: '交換用商品 A'
+	  		    fill_in 'barter_request[introduction]', with: '大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!'
 				click_button "リクエストを送信"
 				expect(page).to have_content "投稿されたリクエスト一覧"
         	end
@@ -44,10 +44,9 @@ RSpec.describe "BarterRequests", type: :system do
   				visit product_path(@product)
 				expect(page).to have_button "この商品は交換可能です"
 				click_button "この商品は交換可能です"
-				@barterRequest = BarterRequest.create!(user_id: 1 , product_id: 1, name: "交換用商品 A", comment: "交換希望です！宜しくお願い致します。", introduction: "大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!", image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
-				expect(page).to have_button "リクエストを送信"
+				fill_in 'barter_request[name]', with: '交換用商品 A'
+	  		    fill_in 'barter_request[introduction]', with: '大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!'
 				click_button "リクエストを送信"
-				expect(page).to have_content "投稿されたリクエスト一覧"
 				visit user_path(@user)
 				expect(page).to have_content "マイページ"
 				click_link "マイページ"
@@ -76,7 +75,8 @@ RSpec.describe "BarterRequests", type: :system do
 	  		@product = Product.create!(user_id: 2 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", propriety: "交換可能", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
 			visit product_path(@product)
 			click_button "この商品は交換可能です"
-			@barterRequest = BarterRequest.create!(user_id: 1 , buyer_id: 1, seller_id: 2, product_id: 1, name: "交換用商品 A", comment: "交換希望です！宜しくお願い致します。", introduction: "大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!", image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
+			fill_in 'barter_request[name]', with: '交換用商品 A'
+	  		fill_in 'barter_request[introduction]', with: '大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!'
 			click_button "リクエストを送信"
 			visit user_path(@user)
 			click_link "マイページ"
@@ -90,14 +90,14 @@ RSpec.describe "BarterRequests", type: :system do
   		context "交換リクエストを許可した時" do
 			it "リクエストを許可した側・・・「リクエストを許可しました」と表示される" do
 				click_link "交換リクエストがきています　内容を覗いてみましょう"
-				select "許可する", from: "barter_request_propriety", match: :first
-				click_button "確定", match: :first
+				select "許可する", from: "barter_request_propriety"
+				click_button "確定"
 				expect(page).to have_content "リクエストを許可しました"
 			end
 			it "リクエストを送った側・・・「リクエストが許可されました」と表示される" do
 				click_link "交換リクエストがきています　内容を覗いてみましょう"
-				select "許可する", from: "barter_request_propriety", match: :first
-				click_button "確定", match: :first
+				select "許可する", from: "barter_request_propriety"
+				click_button "確定"
 				visit user_path(@user2)
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -109,8 +109,8 @@ RSpec.describe "BarterRequests", type: :system do
 			end
 			it "リクエストを送った側・・・「交換取引を確定する」と表示される" do
 				click_link "交換リクエストがきています　内容を覗いてみましょう"
-				select "許可する", from: "barter_request_propriety", match: :first
-				click_button "確定", match: :first
+				select "許可する", from: "barter_request_propriety"
+				click_button "確定"
 				visit user_path(@user2)
 				click_link "マイページ"
 				click_link "ログアウト"
@@ -137,7 +137,8 @@ RSpec.describe "BarterRequests", type: :system do
 	  		@product = Product.create!(user_id: 2 , category_id: 1, name: "商品 1", introduction: "大切に使用してきた商品です。梱包は厳重に致しますのでご安心ください。", propriety: "交換可能", price: 5000, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
 			visit product_path(@product)
 			click_button "この商品は交換可能です"
-			@barterRequest = BarterRequest.create!(user_id: 1 , buyer_id: 1, seller_id: 2, product_id: 1, name: "交換用商品 A", comment: "交換希望です！宜しくお願い致します。", introduction: "大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!", image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/no_image.jpg'), 'image/jpg'))
+			fill_in 'barter_request[name]', with: '交換用商品 A'
+	  		fill_in 'barter_request[introduction]', with: '大切に使用してきた商品Aです。傷はほとんどありません。何卒宜しくお願い致します!'
 			click_button "リクエストを送信"
 			visit user_path(@user)
 			click_link "マイページ"
@@ -147,8 +148,8 @@ RSpec.describe "BarterRequests", type: :system do
   			fill_in 'user[password]', with: @user2.password
   			click_button 'ログイン'
   			click_link "交換リクエストがきています　内容を覗いてみましょう"
-			select "許可する", from: "barter_request_propriety", match: :first
-			click_button "確定", match: :first
+			select "許可する", from: "barter_request_propriety"
+			click_button "確定"
 			visit user_path(@user2)
 			click_link "マイページ"
 			click_link "ログアウト"

@@ -9,7 +9,7 @@
 				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "入金報告をしました。出品者の発送待ちです" %>
 	            	<p class="notice"><%= "入金報告をしました。出品者の発送待ちです" %></p>
 				<% end %>
-				<% if @trading.buyer_id == current_user.id && @trading.shipment_status == "受取報告をする" %>
+				<% if @trading.buyer_id == current_user.id && @trading.payment_status == "受取報告をする" %>
 					<p class="notice"><%= "出品者より発送の通知がありました。到着後、受取評価をお願いします。" %></p>
 					<%= link_to @trading.payment_status, trading_change_payment_status_path(@trading), method: :patch, class: "btn btn-danger" %>
 				<% end %>
