@@ -252,7 +252,7 @@ RSpec.describe "BarterRequests", type: :system do
 		context "送り状番号を確認した時" do
 			it "リクエストを送った側・・・「商品到着後、交換者の評価をお願いします」と表示される" do
   				click_button "交換取引を確定する"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				expect(page).to have_content "商品到着後、交換者の評価をお願いします"
 			end
 			it "リクエストをもらった側・・・「商品到着後、交換者の評価をお願いします」と表示される" do
@@ -266,28 +266,28 @@ RSpec.describe "BarterRequests", type: :system do
 	  			click_button "ログイン"
 	  			click_link "交換", href: barter_tradings_path
 	  			click_link "出荷(送り状番号通知)をお願いします"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				expect(page).to have_content "商品到着後、交換者の評価をお願いします"
 			end
 		end
 		context "評価を確定させた時" do
 			it "リクエストを送った側・・・「良い」評価を取引相手につけた時 ⇒ 「交換お疲れ様でした！」と表示される" do
   				click_button "交換取引を確定する"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				choose "trading_seller_excellent_review_true"
   				click_button "評価を確定する"
   				expect(page).to have_content "交換お疲れ様でした！ またのご利用をお待ちしております。"
 			end
 			it "リクエストを送った側・・・「ふつう」評価を取引相手につけた時 ⇒ 「交換お疲れ様でした！」と表示される" do
   				click_button "交換取引を確定する"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				choose "trading_seller_good_review_true"
   				click_button "評価を確定する"
   				expect(page).to have_content "交換お疲れ様でした！ またのご利用をお待ちしております。"
 			end
 			it "リクエストを送った側・・・「わるい」評価を取引相手につけた時 ⇒ 「交換お疲れ様でした！」と表示される" do
   				click_button "交換取引を確定する"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				choose "trading_seller_poor_review_true"
   				click_button "評価を確定する"
   				expect(page).to have_content "交換お疲れ様でした！ またのご利用をお待ちしております。"
@@ -303,7 +303,7 @@ RSpec.describe "BarterRequests", type: :system do
 	  			click_button "ログイン"
 	  			click_link "交換", href: barter_tradings_path
 	  			click_link "出荷(送り状番号通知)をお願いします"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				choose "trading_excellent_review_true"
   				click_button "評価を確定する"
   				expect(page).to have_content "交換お疲れ様でした！ またのご利用をお待ちしております。"
@@ -319,7 +319,7 @@ RSpec.describe "BarterRequests", type: :system do
 	  			click_button "ログイン"
 	  			click_link "交換", href: barter_tradings_path
 	  			click_link "出荷(送り状番号通知)をお願いします"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				choose "trading_good_review_true"
   				click_button "評価を確定する"
   				expect(page).to have_content "交換お疲れ様でした！ またのご利用をお待ちしております。"
@@ -335,7 +335,7 @@ RSpec.describe "BarterRequests", type: :system do
 	  			click_button "ログイン"
 	  			click_link "交換", href: barter_tradings_path
 	  			click_link "出荷(送り状番号通知)をお願いします"
-  				click_link "確認完了(※必ずお互いの番号を確認してから押してください)"
+  				click_link "番号の確認完了(※必ずお互いの番号を確認してから押してください)"
   				choose "trading_poor_review_true"
   				click_button "評価を確定する"
   				expect(page).to have_content "交換お疲れ様でした！ またのご利用をお待ちしております。"
