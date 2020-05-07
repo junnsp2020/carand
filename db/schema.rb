@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_105604) do
+ActiveRecord::Schema.define(version: 2020_05_07_082748) do
 
   create_table "administers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -74,11 +74,11 @@ ActiveRecord::Schema.define(version: 2020_04_25_105604) do
     t.integer "profit"
     t.integer "postage"
     t.integer "postage_responsibility", default: 0
-    t.integer "status", default: 0
     t.integer "sale_status", default: 0
     t.integer "propriety", default: 0
     t.boolean "notice"
     t.boolean "barter_approval"
+    t.integer "status", default: 0
   end
 
   create_table "reports", force: :cascade do |t|
@@ -112,10 +112,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_105604) do
     t.integer "user_id"
     t.integer "product_id"
     t.integer "status", default: 0
-    t.integer "profit"
-    t.integer "postage"
     t.integer "paymethod"
-    t.integer "total_price"
     t.integer "buyer_id"
     t.integer "seller_id"
     t.integer "shipment_status", default: 0
@@ -126,7 +123,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_105604) do
     t.boolean "seller_excellent_review"
     t.boolean "seller_good_review"
     t.boolean "seller_poor_review"
-    t.boolean "completed"
     t.boolean "buyer_notice"
     t.boolean "seller_notice"
   end
