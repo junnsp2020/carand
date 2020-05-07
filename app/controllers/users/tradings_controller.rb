@@ -28,13 +28,8 @@ class Users::TradingsController < ApplicationController
       @barter_request.notice = false
       @barter_request.save
     end
-    if @product.barter_approval != true && @trading.payment_status == "出品者へ入金報告をする"
-      @trading.completed = false
-    elsif @trading.payment_status == "受取報告をする"
-      @trading.completed = false
-    end
 
-    if @product.barter_approval == true && @barter_request
+    if @barter_request && @barter_request.propriety == "許可する"
       @trading.payment_status = "交換(購入者)"
       @trading.shipment_status = "交換(出品者)"
     end
@@ -137,7 +132,6 @@ class Users::TradingsController < ApplicationController
     elsif @trading.payment_status == "受取報告をする"
       @trading.payment_status = "ご利用誠にありがとうございました！"
       @trading.shipment_status = "購入者を評価する"
-      @trading.completed = true
     end
     if @trading.payment_status == "交換(購入者)"
       @trading.payment_status = "番号確認完了(購入者)"
@@ -161,6 +155,6 @@ class Users::TradingsController < ApplicationController
 
   private
   def trading_params
-    params.require(:trading).permit(:product_id, :user_id, :toal_price, :profit, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :soldout, :seller_excellent_review, :seller_good_review, :seller_poor_review, :completed, :buyer_notice, :seller_notice)
+    params.require(:trading).permit(:product_id, :user_id, :paymethod, :buyer_id, :seller_id, :paypment_status, :shipment_status, :excellent_review, :good_review, :poor_review, :seller_excellent_review, :seller_good_review, :seller_poor_review, :buyer_notice, :seller_notice)
   end
 end

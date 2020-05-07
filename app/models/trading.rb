@@ -28,12 +28,4 @@ class Trading < ApplicationRecord
    "番号確認完了(出品者)": 5,
    "交換お疲れ様でした(出品者)": 6
   }
-
-  def total_price
-    if product.postage_responsibility == "出品者負担"
-      product.price + 0
-    else
-      product.price + product.postage
-    end
-  end
 end
