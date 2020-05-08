@@ -24,9 +24,12 @@ class Users::TradingsController < ApplicationController
     @trading.product_id = @product.id
     @trading.user_id = current_user.id
     @barter_request = BarterRequest.find_by(product_id: @product.id, user_id: current_user.id)
-    if @barter_request
-      @barter_request.notice = false
-      @barter_request.save
+    @barter_requests = BarterRequest.where(product_id: @product.id)
+    if @barter_requests
+      @barter_requests.each do |barter_request|
+        barter_request.notice = false
+        barter_request.save
+      end
     end
 
     if @barter_request && @barter_request.propriety == "許可する"

@@ -48,7 +48,7 @@
 						 	  		<span class="propriety"><%= "リクエストを許可しました" %></span>
 						 	  	<% end %>
 
-						 		<% if barter_request.buyer_id == current_user.id && barter_request.propriety == "許可する" %>
+						 		<% if barter_request.buyer_id == current_user.id && barter_request.propriety == "許可する" && barter_request.product.sale_status != "売り切れ" %>
 						 			<%= button_to "リクエストが承認されました！ 取引画面へ進んでください", new_trading_path, {method: :get, class: "btn-sm btn-danger col-xs-12", params:{product_id: @product.id}} %>
 						 		<% end %>
 							</td>
