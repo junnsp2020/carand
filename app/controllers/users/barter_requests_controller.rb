@@ -7,14 +7,11 @@ class Users::BarterRequestsController < ApplicationController
   def index
   	@product = Product.find(params[:product_id])
   	@barter_requests =  @product.barter_requests
-    @barter_request = BarterRequest.new
-    @barter_request.user_id = current_user.id
-    @barter_request.product_id = @product.id
+    @barter_request = BarterRequest.find_by(user_id: current_user.id, product_id: @product.id)
   end
 
   def show
     @product = Product.find(params[:product_id])
-    @barter_requests =  @product.barter_requests
     @barter_request = BarterRequest.find(params[:id])
   end
 
