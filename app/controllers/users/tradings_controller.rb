@@ -35,7 +35,6 @@ class Users::TradingsController < ApplicationController
     end
 
     @trading.save(trading_params)
-    @product.barter_approval = false
     @product.save
     redirect_to trading_path(@trading)
   end

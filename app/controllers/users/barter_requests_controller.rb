@@ -40,9 +40,7 @@ class Users::BarterRequestsController < ApplicationController
     @barter_request.update(barter_request_params)
     if @barter_request.propriety == "許可する"
       @barter_request.notice = true
-      @product.barter_approval = true
       @barter_request.save
-      @product.save
       redirect_to request.referer
     else
       redirect_to request.referer
