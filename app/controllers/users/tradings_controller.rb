@@ -15,9 +15,6 @@ class Users::TradingsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    if @product.notice == false
-      @product.notice = true
-    end
     @product.sale_status = "売り切れ"
     @trading = @product.trading
     @trading = Trading.new(trading_params)

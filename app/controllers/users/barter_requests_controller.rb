@@ -33,6 +33,10 @@ class Users::BarterRequestsController < ApplicationController
   def update
     @barter_request = BarterRequest.find(params[:id])
     @product = Product.find(params[:product_id])
+    if @product.notice == false
+      @product.notice = true
+      @product.save
+    end
     @barter_request.update(barter_request_params)
     if @barter_request.propriety == "許可する"
       @barter_request.notice = true
