@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-10">
+		<% if not @barter_requests %>
 			<h2>交換希望リクエストです</h2>
 			<h2>あなたの自信のある商品をぶつけてみましょう！</h2>
 				<br></br>
@@ -39,6 +40,11 @@
 				<%= f.text_area :introduction, size: "20x10", class: "col-xs-12 book_body" %>
 				<%= f.submit "リクエストを送信", class: "btn btn-primary col-xs-12" %>
 			<% end %>
+		<% else %>
+			<h2>「<%= @product.name %>」には既に交換リクエストを送っている為、<br>
+				送ることができません
+			</h2>
+		<% end %>
 		</div>
 	</div>
 </div>

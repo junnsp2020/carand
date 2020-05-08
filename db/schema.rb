@@ -74,10 +74,10 @@ ActiveRecord::Schema.define(version: 2020_05_08_052323) do
     t.integer "profit"
     t.integer "postage"
     t.integer "postage_responsibility", default: 0
+    t.integer "status", default: 0
     t.integer "sale_status", default: 0
     t.integer "propriety", default: 0
     t.boolean "notice"
-    t.integer "status", default: 0
   end
 
   create_table "reports", force: :cascade do |t|
