@@ -33,13 +33,15 @@ class Users::BarterRequestsController < ApplicationController
   def update
     @barter_request = BarterRequest.find(params[:id])
     @product = Product.find(params[:product_id])
-    @barter_request.notice = true
-    if @barter_request.update(barter_request_params)
+    @barter_request.update(barter_request_params)
+    if @barter_request.propriety == "許可する"
+      @barter_request.notice = true
       @product.barter_approval = true
+      @barter_request.save
       @product.save
       redirect_to request.referer
     else
-      render :show
+      redirect_to request.referer
     end
   end
 
