@@ -18,6 +18,6 @@ class Users::TradingMessagesController < ApplicationController
 
   private
   def trading_message_params
-    params.require(:trading_message).permit(:message, :user_id, :trading_id, :buyer_notice, :seller_notice)
+    params.require(:trading_message).permit(:message, :user_id, :trading_id)
   end
 end
