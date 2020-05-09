@@ -6,7 +6,6 @@ class Users::ReportsController < ApplicationController
 
   def create
   	@product = Product.find(params[:product_id])
-  	@product.save
   	@report = Report.new(report_params)
   	@report.product_id = @product.id
     @report.user_id = current_user.id

@@ -49,7 +49,7 @@
         </ul>
       <% end %>
         <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
+          <% if user_signed_in? && !request.fullpath.include?("administers") %>
             <% if BarterRequest.where(buyer_id: current_user.id, notice: true).count != 0 %>
               <div class="alert alert-info" role="alert"><%= link_to "リクエストが許可されました", my_request_barter_requests_path(current_user.id) %></div>
             <% end %>
@@ -128,11 +128,16 @@
               </span>
             </li>
             <li class="mypage"><%= link_to "マイページ", user_path(current_user) %></li>
-          <% elsif administer_signed_in? %>
+          <% elsif administer_signed_in? && request.fullpath.include?("administers") %>
             <ul class="nav navbar-nav navbar-right">
               <li class="administer-menu"><%= link_to "通報", administers_reports_path %></li>
               <li class="administer-menu"><%= link_to "カテゴリー", administers_categories_path %></li>
               <li class="administer-sign_out"><%= link_to "ログアウト", destroy_administer_session_path, method: :delete, :style=>"color:black;" %></li>
+            </ul>
+          <% elsif request.fullpath.include?("administers") %>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="sign_in"><%= link_to '管理者ログイン', new_administer_session_path %></li>
+              <li class="sign_up"><%= link_to '新メンバー登録', new_administer_registration_path %></li>
             </ul>
           <% else %>
             <ul class="nav navbar-nav navbar-right">
