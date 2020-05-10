@@ -17,7 +17,7 @@ RSpec.describe "Administers", type: :system do
             it "入力に不備があるため保存されない" do
                 fill_in "administer[password]", with: ""
                 fill_in "administer[email]", with: ""
-                click_button "Sign up"
+                click_button "登録"
 				expect(page).to have_content "error"
             end
         end
