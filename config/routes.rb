@@ -50,9 +50,5 @@ scope module: :users do
 		patch :change_payment_status
 		patch :change_shipment_status
 	end
-	resources :blogs do
-		resource :blog_comments
-		resource :blog_follows
-	end
 end
 end
